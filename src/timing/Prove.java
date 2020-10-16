@@ -11,7 +11,7 @@ public class Prove extends Evento{
 	}
 
 	@Override
-	public Float[] getClassifica() {
+	public Float[] getClassification() {
 		return null;
 	}
 

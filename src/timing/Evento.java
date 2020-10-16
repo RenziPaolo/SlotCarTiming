@@ -13,8 +13,6 @@ public abstract class Evento {
 		this.GUI = GUI;
 	}
 	
-    public abstract Float[] getClassifica();
-	
     public void updatePilota(int numCorsia,Float tempo) {
     	Corsia corsia = piloti.get(numCorsia).getCorsia();
     	corsia.setLap(tempo);
@@ -26,5 +24,7 @@ public abstract class Evento {
     }
     
     public abstract void swap();
+
+	public abstract Float[] getClassification();
     
 }

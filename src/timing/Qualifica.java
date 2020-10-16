@@ -11,7 +11,7 @@ public class Qualifica extends Evento{
 	}
 
 	@Override
-	public Float[] getClassifica() {
+	public Float[] getClassification() {
 		piloti.forEach((key,value) -> value.getCorsia().getGiroVeloce());
 		System.out.println(piloti);
 		return null;
