@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RaceSettings">
+   <children>
+      <CheckBox fx:id="qualy" layoutX="121.0" layoutY="43.0" mnemonicParsing="false" onAction="#qualifiche" text="Qualifche" />
+      <Text layoutX="406.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Partecipante">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="554.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batteria di partenza">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="702.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Corsia di Partenza">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="qualyduration" layoutX="83.0" layoutY="89.0" prefHeight="25.0" prefWidth="166.0" promptText="Durata qualifiche (in minuti)" />
+      <Text layoutX="252.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <VBox fx:id="startingList" layoutX="398.0" layoutY="111.0" prefHeight="594.0" prefWidth="446.0">
+         <children>
+            <HBox prefHeight="28.0" prefWidth="503.0">
+               <children>
+                  <TextField promptText="Partecipante" />
+                  <TextField promptText="Batteria di partenza" />
+                  <TextField promptText="Corsia Di partenza" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <TextField fx:id="raceName" alignment="CENTER" layoutX="398.0" layoutY="44.0" prefHeight="25.0" prefWidth="446.0" promptText="Nome Gara" />
+      <Text layoutX="398.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Gara" textAlignment="CENTER" wrappingWidth="446.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Button layoutX="912.0" layoutY="114.0" mnemonicParsing="false" onAction="#AggiungiPilota" text="Aggiungi pilota" />
+      <Button layoutX="900.0" layoutY="600.0" mnemonicParsing="false" onAction="#Inizia" prefHeight="60.0" prefWidth="110.0" text="Inizia">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="922.0" layoutY="558.0" mnemonicParsing="false" onAction="#indietro" text="indietro">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="912.0" layoutY="153.0" mnemonicParsing="false" onAction="#RimuoviPilota" text="Rimuovi pilota" />
+   </children>
+</AnchorPane>
