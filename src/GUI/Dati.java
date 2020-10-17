@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import timing.Corsia;
 
 public class Dati {
 	
@@ -20,6 +21,8 @@ public class Dati {
 	private static float minLapTime;
 	private static int period;
 	private static String font;
+	private static Colore qualifingLane;
+	private static int qualifingPeriod;
 
 	public Dati() {
 		try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
@@ -85,23 +88,27 @@ public class Dati {
 	}
 
 	public int getPeriod() {
-		try (FileChannel filelanes = (FileChannel) Files.newByteChannel(Path.of("settings practice.config"), StandardOpenOption.READ)){
-			ByteBuffer buffer = ByteBuffer.allocate(4);
-			filelanes.read(buffer);
-			buffer.rewind();
-			period = buffer.getInt();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (period == 0) {
+			try (FileChannel filelanes = (FileChannel) Files.newByteChannel(Path.of("settings practice.config"), StandardOpenOption.READ)){
+				ByteBuffer buffer = ByteBuffer.allocate(4);
+				filelanes.read(buffer);
+				buffer.rewind();
+				period = buffer.getInt();
+				
+			} catch (IOException e) {
+				System.out.println("eccezione!!");
+			}
 		}
 		return period;
 	}
 
 	public String getFont() {
-		try {
-			font = Files.readString(Path.of("settings font.config"));
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (font == null) {
+			try {
+				font = Files.readString(Path.of("settings font.config"));
+			} catch (IOException e) {
+				System.out.println("eccezione!!");
+			}
 		}
 		return font;
 	}
@@ -114,6 +121,38 @@ public class Dati {
 		errore.setFont(new Font(50));
 		Pane pane = (Pane)new MainMenu().getStage().getScene().getRoot();
 		pane.getChildren().add(errore);
+	}
+
+	public Colore getQualifingLane() {
+		if (qualifingLane == null) {
+			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.READ)){
+				ByteBuffer buffer = ByteBuffer.allocate(4);
+				filequaly.read(buffer);
+				buffer.rewind();
+				qualifingLane = Colore.values()[buffer.get(1)];
+				
+			} catch (IOException e) {
+				System.out.println("eccezione!!");
+			}
+		}
+		
+		return qualifingLane;
+	}
+
+	public int getQualifingPeriod() {
+		if (qualifingPeriod == 0) {
+			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.READ)){
+				ByteBuffer buffer = ByteBuffer.allocate(4);
+				filequaly.read(buffer);
+				buffer.rewind();
+				qualifingPeriod = buffer.getInt();
+				
+			} catch (IOException e) {
+				System.out.println("eccezione!!");
+			}
+		}
+		
+		return qualifingPeriod;
 	}
 	
 }
