@@ -1,14 +1,15 @@
 package timing;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import GUI.Event;
 
 public abstract class Evento {
-	protected HashMap<Integer,Pilota> piloti;
+	protected ArrayList<Pilota> piloti;
 	private Event GUI;
 	
-	public Evento(HashMap<Integer,Pilota> piloti, Event GUI) {
+	public Evento(ArrayList<Pilota> piloti, Event GUI) {
 		this.piloti = piloti;
 		this.GUI = GUI;
 	}
@@ -19,7 +20,7 @@ public abstract class Evento {
     	GUI.update(corsia);
     }
     
-    public HashMap<Integer,Pilota> getPiloti(){
+    public ArrayList<Pilota> getPiloti(){
     	return piloti;
     }
     

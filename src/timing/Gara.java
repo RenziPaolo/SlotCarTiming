@@ -1,12 +1,13 @@
 package timing;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import GUI.Event;
 
 public class Gara extends Evento{
 	
-	public Gara(HashMap<Integer, Pilota> piloti, Event GUI) {
+	public Gara(ArrayList<Pilota> piloti, Event GUI) {
 		super(piloti,GUI);
 	}
 
