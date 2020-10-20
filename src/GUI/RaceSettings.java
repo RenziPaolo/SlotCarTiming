@@ -85,15 +85,16 @@ public class RaceSettings implements Initializable{
 				participants[i] = participant;
 			}
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
-				ByteBuffer buffer = ByteBuffer.allocate(2);
-				buffer.put((byte)(int)Integer.valueOf(qualyduration.getText()));
-				buffer.put((byte)(int)Colore.fromlanguage(1, choiceLane.getValue()));
+				ByteBuffer buffer = ByteBuffer.allocate(8);
+				buffer.putInt((int)Integer.valueOf(qualyduration.getText()));
+				buffer.putInt((int)Colore.fromlanguage(1, choiceLane.getValue()));
+				buffer.rewind();
 				filequaly.write(buffer);
 				
 				new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Qualifing Waiting.fxml")));
 				
 			} catch (IOException e) {
-				Dati.error();
+				System.out.println();
 				return;
 			}
 		} else {

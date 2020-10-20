@@ -11,7 +11,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import timing.Corsia;
 
 public class Dati {
 	
@@ -126,10 +125,11 @@ public class Dati {
 	public Colore getQualifingLane() {
 		if (qualifingLane == null) {
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.READ)){
-				ByteBuffer buffer = ByteBuffer.allocate(4);
+				ByteBuffer buffer = ByteBuffer.allocate(8);
 				filequaly.read(buffer);
 				buffer.rewind();
-				qualifingLane = Colore.values()[buffer.get(1)];
+				int index = buffer.getInt(4);
+				qualifingLane = Colore.values()[index-1];
 				
 			} catch (IOException e) {
 				System.out.println("eccezione!!");
@@ -142,7 +142,7 @@ public class Dati {
 	public int getQualifingPeriod() {
 		if (qualifingPeriod == 0) {
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.READ)){
-				ByteBuffer buffer = ByteBuffer.allocate(4);
+				ByteBuffer buffer = ByteBuffer.allocate(8);
 				filequaly.read(buffer);
 				buffer.rewind();
 				qualifingPeriod = buffer.getInt();

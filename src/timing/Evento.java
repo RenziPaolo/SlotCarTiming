@@ -1,13 +1,13 @@
 package timing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import GUI.Event;
 
 public abstract class Evento {
 	protected ArrayList<Pilota> piloti;
 	private Event GUI;
+	private int currentHeat;
 	
 	public Evento(ArrayList<Pilota> piloti, Event GUI) {
 		this.piloti = piloti;
@@ -15,9 +15,11 @@ public abstract class Evento {
 	}
 	
     public void updatePilota(int numCorsia,Float tempo) {
-    	Corsia corsia = piloti.get(numCorsia).getCorsia();
-    	corsia.setLap(tempo);
-    	GUI.update(corsia);
+    	if (piloti.get(numCorsia-1).getHeat() == currentHeat) {
+	    Corsia corsia = piloti.get(numCorsia-1).getCorsia();
+	    corsia.setLap(tempo);
+	    GUI.update(corsia);
+	    }
     }
     
     public ArrayList<Pilota> getPiloti(){
@@ -27,5 +29,13 @@ public abstract class Evento {
     public abstract void swap();
 
 	public abstract Float[] getClassification();
+
+	public int getCurrentHeat() {
+		return currentHeat;
+	}
+
+	public void setCurrentHeat(int currentHeat) {
+		this.currentHeat = currentHeat;
+	}
     
 }

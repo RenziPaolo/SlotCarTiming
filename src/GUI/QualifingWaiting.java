@@ -2,7 +2,8 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +18,6 @@ import javafx.scene.text.Text;
 import testing.test;
 import timing.Corsia;
 import timing.Pilota;
-import timing.Prove;
 import timing.Qualifica;
 import timing.Sensore;
 
@@ -26,6 +26,9 @@ public class QualifingWaiting implements Initializable{
 	@FXML private VBox classification;
 	
 	private Button[] buttons;
+	private Qualifica qualifing;
+	private Pane qualifingPane;
+	private testing.test test;
 	
 	public void back(ActionEvent back) {
 		try {
@@ -39,6 +42,39 @@ public class QualifingWaiting implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		String[] participants = new RaceSettings().getParticipants();
 		buttons = new Button[participants.length];
+		
+		Dati data = new Dati();
+		
+		ArrayList<Pilota> list = new ArrayList<Pilota>();
+		for (int j = 0; j< participants.length;j++){
+			Corsia corisa = new Corsia(j,data.getQualifingLane());
+			Pilota pilota = new Pilota(participants[j],corisa,0);
+			list.add(pilota);
+		}
+		if (list.size()<6) {
+			for (int j = list.size(); j<= 6;j++){
+				Corsia corisa = new Corsia(j,data.getQualifingLane());
+				Pilota pilota = new Pilota(participants[j],corisa,0);
+				list.add(pilota);
+				}
+		}
+		
+		try {
+			Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
+			Dati.setBackground(qualifingPane);
+			Qualifing qualifingGUI = new Qualifing(qualifingPane);
+			Qualifica qualifing = new Qualifica(list, qualifingGUI);
+			this.qualifing = qualifing;
+			Sensore sensor = new Sensore(this.qualifing,new Dati().getMinLapTime());
+			qualifingGUI.addSensor(sensor);
+			test test = new test(6,qualifing,sensor);
+			this.test = test;
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		
+		
 		for (int i = 0; i<participants.length ;i++) {
 			Text participant = new Text();
 			participant.setText(participants[i]);
@@ -48,34 +84,19 @@ public class QualifingWaiting implements Initializable{
 			Button participantButton = new Button();
 			participantButton.setLayoutY((i*30)-20);
 			participantButton.setPrefWidth(100);
+			participantButton.setPrefHeight(50);
 //			participantButton.setBackground(Background.EMPTY);
 //			participantButton.setPickOnBounds(true);
 			participantButton.setOnAction((e->{
-				try {
-					Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
-					Dati dati = new Dati();
-					HashMap<Integer,Pilota> mappa = new HashMap<Integer,Pilota>();
-					for (int j = 0; j<participants.length ;j++){
-						Corsia corisa = new Corsia(j,dati.getQualifingLane());
-						Pilota pilota = new Pilota("test",corisa);
-						mappa.put(j, pilota);
-					}
-					Dati.setBackground(qualifingPane);
-					Qualifing qualifing = new Qualifing(qualifingPane);
-					Sensore sensor = new Sensore(new Qualifica(mappa, qualifing),dati.getMinLapTime());
-					qualifing.addSensor(sensor);
-					test test =new test(6,new Prove(mappa, qualifing),sensor);	
-					test.testCorsie(6);
-							
-					new MainMenu().getStage().getScene().setRoot(qualifingPane);
-				} catch (IOException e1) {
-				}
-				
+				test.testCorsie(6);
+					
+				new MainMenu().getStage().getScene().setRoot(this.qualifingPane);
+				qualifing.setCurrentDriver(list.get(Arrays.asList(buttons).indexOf(e.getSource())));									
 			}));
 			
 			buttons[i] = participantButton;
-			list.getChildren().add(participantButton);
-			list.getChildren().add(participant);
+			this.list.getChildren().add(participantButton);
+			this.list.getChildren().add(participant);
 		}
 		
 	}

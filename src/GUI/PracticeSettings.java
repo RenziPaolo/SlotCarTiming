@@ -38,7 +38,7 @@ public class PracticeSettings implements Initializable{
 		
 		for (int i = 1; i<=(numCorsie);i++) {
 			Corsia corisa = new Corsia(i,colori[i-1]);
-			Pilota pilota = new Pilota("test",corisa);
+			Pilota pilota = new Pilota("test",corisa,1);
 			list.add(pilota);
 		}
 		

@@ -1,7 +1,6 @@
 package timing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import GUI.Event;
 
@@ -19,6 +18,10 @@ public class Qualifica extends Evento{
 	@Override
 	public void swap() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void setCurrentDriver(Pilota currentDriver) {
 		
 	}
 
