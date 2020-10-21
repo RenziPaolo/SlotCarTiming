@@ -26,7 +26,7 @@ public class QualifingWaiting implements Initializable{
 	@FXML private VBox classification;
 	
 	private Button[] buttons;
-	private Qualifica qualifing;
+	private static Qualifica qualifing;
 	private Pane qualifingPane;
 	private testing.test test;
 	
@@ -37,14 +37,10 @@ public class QualifingWaiting implements Initializable{
 		}
 
 	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	
+	public QualifingWaiting() {
 		String[] participants = new RaceSettings().getParticipants();
-		buttons = new Button[participants.length];
-		
 		Dati data = new Dati();
-		
 		ArrayList<Pilota> list = new ArrayList<Pilota>();
 		for (int j = 0; j< participants.length;j++){
 			Corsia corisa = new Corsia(j,data.getQualifingLane());
@@ -54,7 +50,7 @@ public class QualifingWaiting implements Initializable{
 		if (list.size()<6) {
 			for (int j = list.size(); j<= 6;j++){
 				Corsia corisa = new Corsia(j,data.getQualifingLane());
-				Pilota pilota = new Pilota(participants[j],corisa,0);
+				Pilota pilota = new Pilota("test",corisa,0);
 				list.add(pilota);
 				}
 		}
@@ -62,6 +58,7 @@ public class QualifingWaiting implements Initializable{
 		try {
 			Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
 			Dati.setBackground(qualifingPane);
+			this.qualifingPane = qualifingPane;
 			Qualifing qualifingGUI = new Qualifing(qualifingPane);
 			Qualifica qualifing = new Qualifica(list, qualifingGUI);
 			this.qualifing = qualifing;
@@ -72,8 +69,16 @@ public class QualifingWaiting implements Initializable{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
-		
+	}
+	
+	public Qualifica getQualifing() {
+		return qualifing;
+	}
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		String[] participants = new RaceSettings().getParticipants();
+		buttons = new Button[participants.length];
 		
 		for (int i = 0; i<participants.length ;i++) {
 			Text participant = new Text();
@@ -89,9 +94,9 @@ public class QualifingWaiting implements Initializable{
 //			participantButton.setPickOnBounds(true);
 			participantButton.setOnAction((e->{
 				test.testCorsie(6);
-					
+				qualifing.setCurrentDriver(qualifing.getPiloti().get(Arrays.asList(buttons).indexOf(e.getSource())));
 				new MainMenu().getStage().getScene().setRoot(this.qualifingPane);
-				qualifing.setCurrentDriver(list.get(Arrays.asList(buttons).indexOf(e.getSource())));									
+				
 			}));
 			
 			buttons[i] = participantButton;

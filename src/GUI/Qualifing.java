@@ -1,9 +1,11 @@
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -46,7 +48,6 @@ public class Qualifing implements Event,Initializable{
 			currentTesto.setLayoutX(20);
 			currentTesto.setLayoutY(((i+1)*120)-40);
 			currentTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)90));
-			currentTesto.setText("test");
 			currentCorsie[i] = currentTesto;
 			current.getChildren().add(currentTesto);
 			
@@ -63,8 +64,6 @@ public class Qualifing implements Event,Initializable{
 			numberTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
 			numberCorsie[i] = numberTesto;
 			current.getChildren().add(numberTesto);
-			
-//			current.getChildren().add(selezioneCorsie[i]);
 			
 		}	
 		new MainMenu().getStage().getScene().setRoot(current);
@@ -86,14 +85,23 @@ public class Qualifing implements Event,Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Dati dati = new Dati();
-		int temp = dati.getQualifingPeriod();
-		timer = new MyTimer(dati.getQualifingPeriod()*60,rightTimer);
+		timer = new MyTimer(new Dati().getQualifingPeriod()*60,rightTimer);
+		timer.addGUIListener(this);
 		timer.start();
 	}
 	
-	public void exit(ActionEvent e) {
-		System.exit(0);
+	public void back(ActionEvent e) {
+		try {
+			new QualifingWaiting().getQualifing().deselectCurrentDriver();
+			new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Qualifing Waiting.fxml")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	@Override
+	public void exit() {
+		back(new ActionEvent());
 	}
 	
 }

@@ -94,7 +94,7 @@ public class RaceSettings implements Initializable{
 				new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Qualifing Waiting.fxml")));
 				
 			} catch (IOException e) {
-				System.out.println();
+				e.printStackTrace();
 				return;
 			}
 		} else {

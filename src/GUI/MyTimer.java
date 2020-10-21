@@ -11,6 +11,7 @@ public class MyTimer extends TimerTask{
 	private int seconds;
 	private Text label;
 	private Timer timer = new Timer(true);
+	private Event event;
 
 	public Text getLabel() {
 		return label;
@@ -86,6 +87,7 @@ public class MyTimer extends TimerTask{
        	}
 		
         if (seconds == 0 && minutes == 0 && hours == 0) {
+        	event.exit();
         	this.cancel();
        	}
     }
@@ -120,6 +122,11 @@ public class MyTimer extends TimerTask{
 		if (this.hours>0)
 			return hours + ":" + minutes + ":" + seconds;
 		return minutes + ":" + seconds;
+	}
+
+	public void addGUIListener(Event event) {
+		this.event = event;
+		
 	}
 
 

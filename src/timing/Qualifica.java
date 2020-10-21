@@ -12,6 +12,7 @@ public class Qualifica extends Evento{
 
 	@Override
 	public Float[] getClassification() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -22,6 +23,15 @@ public class Qualifica extends Evento{
 	}
 	
 	public void setCurrentDriver(Pilota currentDriver) {
+		// TODO Auto-generated method stub
+	}
+	
+//	public Pilota getCurrentDriver() {
+//		return null;
+//	}
+
+	public void deselectCurrentDriver() {
+		// TODO Auto-generated method stub
 		
 	}
 

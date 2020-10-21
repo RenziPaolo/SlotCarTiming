@@ -31,4 +31,10 @@ public class Race implements Event{
 		sensor.Start();
 	}
 
+	@Override
+	public void exit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

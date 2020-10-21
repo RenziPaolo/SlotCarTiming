@@ -31,8 +31,8 @@ public class Practice implements Event,Initializable{
 	private static Text[] numberCorsie;
 	private static Button[] selezioneCorsie;
 	private static Sensore sensor;
-		
-	public void Exit(ActionEvent exit) throws Exception {
+	
+	public void exit(ActionEvent exit) throws Exception {
 		System.exit(0);
 	}
 	
@@ -140,6 +140,15 @@ public class Practice implements Event,Initializable{
 					}
 				}));
 			selezioneCorsie[i] = selezione;
+		}
+	}
+
+	@Override
+	public void exit() {
+		try {
+			exit(new ActionEvent());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
