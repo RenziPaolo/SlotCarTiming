@@ -102,7 +102,7 @@ public class RigaDiComando extends Application{
 			Thread taskThread = new Thread(new Runnable() {
 				@Override
 				public void run() {
-					MyTimer timer = new MyTimer(Integer.valueOf(min)%60,Integer.valueOf(min)/60,Integer.valueOf(min)/3600,new Text());
+					MyTimer timer = new MyTimer(Integer.valueOf(min)%60,Integer.valueOf(min)/60,Integer.valueOf(min)/3600,new Text(),new Practice());
 					timer.toString();
 				}
 			});

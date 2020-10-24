@@ -17,17 +17,19 @@ public class MyTimer extends TimerTask{
 		return label;
 	}
 	
-	public MyTimer(int seconds, int minutes,int hours,Text label) {
+	public MyTimer(int seconds, int minutes,int hours,Text label, Event event) {
 		this.hours = hours;
 		this.minutes = minutes;
 	    this.seconds = seconds;
 		this.label = label;
+		this.event = event;
 	}
-	public MyTimer(int seconds,Text text) {
+	public MyTimer(int seconds,Text text, Event event) {
 		this.hours = seconds/3600;
 		this.minutes = (seconds/60)%60;
 	    this.seconds = seconds%60;;
 		this.label = text;
+		this.event = event;
 	}
 	
 	public void setHours(int hours) {
@@ -60,13 +62,12 @@ public class MyTimer extends TimerTask{
 	
 	public void restart() {
 		timer = new Timer(true);
-		timer.schedule(new MyTimer(seconds,minutes,hours,label) , 0, 1000);
+		timer.schedule(new MyTimer(seconds,minutes,hours,label,event) , 0, 1000);
 	}
 	
 	public void stop() {
 		timer.cancel();
 	}
-	
         
 	@Override
     public void run() {
@@ -87,6 +88,7 @@ public class MyTimer extends TimerTask{
        	}
 		
         if (seconds == 0 && minutes == 0 && hours == 0) {
+    		label.setText(toString());
         	event.exit();
         	this.cancel();
        	}
@@ -123,13 +125,5 @@ public class MyTimer extends TimerTask{
 			return hours + ":" + minutes + ":" + seconds;
 		return minutes + ":" + seconds;
 	}
-
-	public void addGUIListener(Event event) {
-		this.event = event;
-		
-	}
-
-
-
 
 }

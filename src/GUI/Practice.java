@@ -33,7 +33,7 @@ public class Practice implements Event,Initializable{
 	private static Sensore sensor;
 	
 	public void exit(ActionEvent exit) throws Exception {
-		System.exit(0);
+		stop(exit);
 	}
 	
 	public Text getTimer() {
@@ -106,10 +106,12 @@ public class Practice implements Event,Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		Dati dati = new Dati();
-		if (dati.getPeriod()>0) {
-			timer = new MyTimer(dati.getPeriod()*60,rightTimer);
+		
+		int period = new PracticeSettings().getDuration();
+		if (period>0) {
+			timer = new MyTimer(period*60,rightTimer,this);
 			timer.start();
-			}
+		}
 		
 		selezioneCorsie = new Button[dati.getNumCorsie()];
 		

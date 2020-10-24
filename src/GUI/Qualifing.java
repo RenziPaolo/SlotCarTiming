@@ -85,8 +85,7 @@ public class Qualifing implements Event,Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		timer = new MyTimer(new Dati().getQualifingPeriod()*60,rightTimer);
-		timer.addGUIListener(this);
+		timer = new MyTimer(new Dati().getQualifingPeriod()*60,rightTimer,this);
 		timer.start();
 	}
 	
