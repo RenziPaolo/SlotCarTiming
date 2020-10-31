@@ -7,6 +7,7 @@ module slotcartiming {
 	requires javafx.swing;
 	requires javafx.swt;
 	requires javafx.web;
+	requires java.xml;
 	
 	opens GUI to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.swt,javafx.web;
 }

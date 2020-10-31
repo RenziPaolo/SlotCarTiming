@@ -48,7 +48,7 @@ public class PracticeSettings implements Initializable{
 		
 		for (int i = 1; i<=(numCorsie);i++) {
 			Corsia corisa = new Corsia(i,colori[i-1]);
-			Pilota pilota = new Pilota("test",corisa,1);
+			Pilota pilota = new Pilota("test",(float)i,corisa,1);
 			list.add(pilota);
 		}
 		
@@ -56,8 +56,8 @@ public class PracticeSettings implements Initializable{
 		Practice prove = new Practice(practice);
 		Sensore sensor = new Sensore(new Prove(list, prove),data.getMinLapTime());
 		prove.addSensor(sensor);
-		test test =new test(6,new Prove(list, prove),sensor);	
-		test.testCorsie(6);
+		test test =new test(6,new Prove(list, prove),sensor,10);	
+		test.testCorsie(6,10);
 		
 
 		

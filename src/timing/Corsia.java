@@ -35,7 +35,11 @@ public class Corsia {
     }
     
     public float getGiroVeloce(){
+    	try {
         return Collections.min(laps);
+        } catch(java.util.NoSuchElementException e) {
+        return 0;
+        }
     }
     
     public int getNome() {

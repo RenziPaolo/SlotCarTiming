@@ -34,6 +34,7 @@ public class Practice implements Event,Initializable{
 	
 	public void exit(ActionEvent exit) throws Exception {
 		stop(exit);
+		// da modificare!!!
 	}
 	
 	public Text getTimer() {

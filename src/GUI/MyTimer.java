@@ -32,6 +32,12 @@ public class MyTimer extends TimerTask{
 		this.event = event;
 	}
 	
+	public void setTime(int seconds) {
+		this.hours = seconds/3600;
+		this.minutes = (seconds/60)%60;
+	    this.seconds = seconds%60;;
+	}
+	
 	public void setHours(int hours) {
 		this.hours = hours;
 	}
@@ -57,7 +63,7 @@ public class MyTimer extends TimerTask{
 	}
 
 	public void start() {
-		timer.schedule(this , 0, 1000);
+		timer.scheduleAtFixedRate(new MyTimer(seconds,minutes,hours,label,event) , 0, 1000);
 	}
 	
 	public void restart() {
@@ -86,18 +92,18 @@ public class MyTimer extends TimerTask{
        			}
        		}
        	}
-		
         if (seconds == 0 && minutes == 0 && hours == 0) {
     		label.setText(toString());
+    		try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
         	event.exit();
         	this.cancel();
        	}
     }
 		
-		
-		
-    
-	
 	@Override
 	public String toString() {
 	    String hours = "";
@@ -124,6 +130,11 @@ public class MyTimer extends TimerTask{
 		if (this.hours>0)
 			return hours + ":" + minutes + ":" + seconds;
 		return minutes + ":" + seconds;
+	}
+
+	public void resetSchedule() {
+		stop();
+		timer = new Timer(true);
 	}
 
 }

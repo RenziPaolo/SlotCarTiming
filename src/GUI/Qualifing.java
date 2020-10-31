@@ -17,7 +17,7 @@ import timing.Corsia;
 import timing.Sensore;
 
 public class Qualifing implements Event,Initializable{
-	@FXML private Text rightTimer = new Text();
+	@FXML private Text rightTimer;
 	@FXML private Button start;
 	@FXML private Button stop;
 	@FXML private VBox provClassification;
@@ -28,12 +28,20 @@ public class Qualifing implements Event,Initializable{
 	private static Text[] numberCorsie;
 	private static Sensore sensor;
 	
+	public Sensore getSensor() {
+		return sensor;
+	}
+	
+	public MyTimer getTimer() {
+		return timer;
+	}
 	
 	@Override
 	public void update(Corsia corsia) {
-		currentCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getUltimoGiro()));
-		bestCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getGiroVeloce()));
-		numberCorsie[corsia.getNome()].setText(corsia.getNumeroDiGiri()+"");
+		Dati data = new Dati();
+		currentCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getUltimoGiro()));
+		bestCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getGiroVeloce()));
+		numberCorsie[data.getCodeQualyLane()].setText(corsia.getNumeroDiGiri()+"");
 	}
 	
 	public Qualifing() {}
@@ -64,8 +72,7 @@ public class Qualifing implements Event,Initializable{
 			numberTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
 			numberCorsie[i] = numberTesto;
 			current.getChildren().add(numberTesto);
-			
-		}	
+		}
 		new MainMenu().getStage().getScene().setRoot(current);
 	}
 	
@@ -76,17 +83,22 @@ public class Qualifing implements Event,Initializable{
 	@Override
 	public void stop(ActionEvent e) {
 		sensor.Stop();
+		timer.stop();
+		stop.setVisible(false);
+		start.setVisible(true);
 	}
 
 	@Override
 	public void start(ActionEvent e) {
 		sensor.Start();
+		timer.restart();
+		stop.setVisible(true);
+		start.setVisible(false);
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		timer = new MyTimer(new Dati().getQualifingPeriod()*60,rightTimer,this);
-		timer.start();
+		timer = new MyTimer(new RaceSettings().getQualyduration()*60,rightTimer,this);
 	}
 	
 	public void back(ActionEvent e) {
@@ -96,11 +108,22 @@ public class Qualifing implements Event,Initializable{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		sensor.reset();
+		for (int i = 0; i<new Dati().getNumCorsie();i++) {
+			currentCorsie[i].setText("");
+			bestCorsie[i].setText("");
+			numberCorsie[i].setText("");
+		}
 	}
 
 	@Override
 	public void exit() {
 		back(new ActionEvent());
+	}
+
+	public void resetTimer() {
+		timer.setTime(new RaceSettings().getQualyduration()*60);
+//		timer.resetSchedule();
 	}
 	
 }

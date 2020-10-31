@@ -6,6 +6,8 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -153,6 +155,10 @@ public class Dati {
 		}
 		
 		return qualifingPeriod;
+	}
+
+	public int getCodeQualyLane() {
+		return Arrays.asList(colori).indexOf(qualifingLane);
 	}
 	
 }

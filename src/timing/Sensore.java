@@ -57,6 +57,14 @@ public class Sensore implements EventListener {
 		}
 		go = true;
 	}
+
+	public void reset() {
+		lastPass = new float[new Dati().getNumCorsie()];
+		provisional = new float[new Dati().getNumCorsie()];
+		for(int i = 0; i<new Dati().getNumCorsie();i++ ) {
+			lastPass[i] = System.nanoTime();
+		}
+	}
 	
 }
 

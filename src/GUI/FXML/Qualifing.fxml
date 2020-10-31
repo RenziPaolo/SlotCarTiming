@@ -12,7 +12,7 @@
       <VBox fx:id="provClassification" layoutX="800.0" layoutY="80.0" prefHeight="600.0" prefWidth="280.0" />
       <Button fx:id="stop" layoutX="800.0" layoutY="690.0" mnemonicParsing="false" onAction="#stop" text="stop" />
       <Button fx:id="start" layoutX="900.0" layoutY="690.0" mnemonicParsing="false" onAction="#start" text="start" visible="false" />
-      <Text fx:id="rightTimer" layoutX="900.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0">
+      <Text fx:id="rightTimer" layoutX="910.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font size="30.0" />
          </font>

@@ -11,7 +11,7 @@ public class Gara extends Evento{
 	}
 
 	@Override
-	public Float[] getClassification() {
+	public Float[][] getClassification() {
 		return null;
 	}
 

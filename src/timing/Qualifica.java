@@ -1,19 +1,24 @@
 package timing;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import GUI.Event;
 
 public class Qualifica extends Evento{
+	
+	int currentDriver;
 
 	public Qualifica(ArrayList<Pilota> piloti, Event GUI) {
 		super(piloti,GUI);
 	}
 
 	@Override
-	public Float[] getClassification() {
-		// TODO Auto-generated method stub
-		return null;
+	public Float[][] getClassification() {
+		Float[][] classification = piloti.stream().map(x -> new Float[] {x.getId() ,x.getCorsia().getGiroVeloce()}).toArray(size -> new Float[size][2]);
+		Arrays.sort(classification, (a, b) -> Float.compare(a[1], b[1]));
+		return classification;
 	}
 
 	@Override
@@ -23,7 +28,8 @@ public class Qualifica extends Evento{
 	}
 	
 	public void setCurrentDriver(Pilota currentDriver) {
-		// TODO Auto-generated method stub
+		this.currentDriver = piloti.indexOf(currentDriver);
+		piloti.get(this.currentDriver).setHeat(1);
 	}
 	
 //	public Pilota getCurrentDriver() {
@@ -31,7 +37,7 @@ public class Qualifica extends Evento{
 //	}
 
 	public void deselectCurrentDriver() {
-		// TODO Auto-generated method stub
+		piloti.get(this.currentDriver).setHeat(0);
 		
 	}
 

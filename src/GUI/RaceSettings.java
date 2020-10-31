@@ -34,16 +34,21 @@ public class RaceSettings implements Initializable{
 	@FXML private Text startingLaneText;
 	@FXML private Text startingHeatText;
 	@FXML private ChoiceBox<String> choiceLane;
-	
 	private int tot;
+	private static Colore chosenLane;
+	private static int qualyDurationInt;
 	private static String[] participants;
+	
+	public Colore getChosenLane() {
+		return chosenLane;
+	}
 	
 	public String[] getParticipants() {
 		return participants;
 	}
 	
 	public int getQualyduration() {
-		return Integer.valueOf(qualyduration.getText());
+		return qualyDurationInt;
 	}
 	
 	public void AggiungiPilota(ActionEvent aggiungiPilota) {
@@ -84,6 +89,10 @@ public class RaceSettings implements Initializable{
 				}
 				participants[i] = participant;
 			}
+			
+			qualyDurationInt = Integer.valueOf(qualyduration.getText());
+			chosenLane = Colore.values()[Colore.fromlanguage(1, choiceLane.getValue())];
+			
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
 				ByteBuffer buffer = ByteBuffer.allocate(8);
 				buffer.putInt((int)Integer.valueOf(qualyduration.getText()));

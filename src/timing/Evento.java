@@ -20,7 +20,7 @@ public abstract class Evento {
 	    corsia.setLap(tempo);
 	    GUI.update(corsia);
 	    }
-    }
+     }
     
     public ArrayList<Pilota> getPiloti(){
     	return piloti;
@@ -28,7 +28,7 @@ public abstract class Evento {
     
     public abstract void swap();
 
-	public abstract Float[] getClassification();
+	public abstract Float[][] getClassification();
 
 	public int getCurrentHeat() {
 		return currentHeat;

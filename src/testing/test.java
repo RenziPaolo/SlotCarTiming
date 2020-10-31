@@ -1,29 +1,19 @@
 package testing;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import GUI.Colore;
-import GUI.MainMenu;
-import GUI.Practice;
 import timing.*;
 
 public class test extends TimerTask{
 	
 	private static Sensore sensore;
 	private int corsia;
+	private int numberOfLaps;
 	public static Evento evento;
 
 	
-	public test(int corsia, Evento evento,Sensore sensore) {
+	public test(int corsia, Evento evento,Sensore sensore,int numberOfLaps) {
 		this.corsia = corsia;
 //		HashMap<Integer,Pilota> configurazione = new HashMap<Integer,Pilota>();
 //		try(FileChannel file = (FileChannel) Files.newByteChannel(Path.of("settings.txt"), StandardOpenOption.READ)){
@@ -39,12 +29,13 @@ public class test extends TimerTask{
 		
 		this.evento = evento;
 		this.sensore = sensore;
+		this.numberOfLaps = numberOfLaps;
 		
 	}
 	
-	public void testCorsie(int lanes) {
+	public void testCorsie(int lanes,int numberOfLaps) {
 		for (int i = 1;i<= lanes;i++)
-			new Timer().schedule(new test(i,evento,sensore),0);
+			new Timer().schedule(new test(i,evento,sensore,numberOfLaps),0);
 	}
 	
 	private void generateRandomTimingEvent(int upperLimit, int lowerLimit, int numberOfLaps, int lanes,Sensore sensore) {
@@ -67,9 +58,8 @@ public class test extends TimerTask{
 
 	@Override
 	public void run() {
-		
-		test test = new test(corsia,evento,sensore);
-		test.generateRandomTimingEvent(14, 12, 10, corsia, sensore);
+	test test = new test(corsia,evento,sensore,numberOfLaps);
+	test.generateRandomTimingEvent(14, 12, numberOfLaps, corsia, sensore);
 		
 	}
 }
