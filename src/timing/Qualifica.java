@@ -10,8 +10,8 @@ public class Qualifica extends Evento{
 	
 	int currentDriver;
 
-	public Qualifica(ArrayList<Pilota> piloti, Event GUI) {
-		super(piloti,GUI);
+	public Qualifica(ArrayList<Pilota> piloti, Event GUI,int currentHeat) {
+		super(piloti,GUI,currentHeat);
 	}
 
 	@Override
@@ -31,10 +31,6 @@ public class Qualifica extends Evento{
 		this.currentDriver = piloti.indexOf(currentDriver);
 		piloti.get(this.currentDriver).setHeat(1);
 	}
-	
-//	public Pilota getCurrentDriver() {
-//		return null;
-//	}
 
 	public void deselectCurrentDriver() {
 		piloti.get(this.currentDriver).setHeat(0);

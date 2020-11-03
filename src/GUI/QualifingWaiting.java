@@ -66,7 +66,7 @@ public class QualifingWaiting implements Initializable{
 				Qualifing qualifingGUI = new Qualifing(qualifingPane);
 				this.qualifingGUI = qualifingGUI;
 	
-				Qualifica qualifing = new Qualifica(list, qualifingGUI);
+				Qualifica qualifing = new Qualifica(list, qualifingGUI,1);
 				this.qualifing = qualifing;
 				Sensore sensor = new Sensore(this.qualifing,new Dati().getMinLapTime());
 				qualifingGUI.addSensor(sensor);

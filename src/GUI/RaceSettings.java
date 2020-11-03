@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import timing.Qualifica;
 
 public class RaceSettings implements Initializable{
 	@FXML private VBox startingList;
@@ -189,7 +190,39 @@ public class RaceSettings implements Initializable{
 		
 		choiceLane.setItems(FXCollections.observableArrayList(choices));
 		choiceLane.setValue(data.getQualifingLane().toStringlanguage(1));
-		
+		int numLanes = data.getNumCorsie();
+		Qualifica classification = new QualifingWaiting().getQualifing();
+		for (int i = 0;i<classification.getClassification().length-1;i++) 
+			AggiungiPilota(new ActionEvent());
+
+		starting(numLanes,classification,classification.getClassification().length);
 	}
+	
+	private void starting(int numLanes, Qualifica classification,int index) {
+		Float[][] classificationFloat = classification.getClassification();
+		if ((index+1/2)<=numLanes*2) {
+			for(int i = 0;i<index;i++) {
+				if(i<index/2) {
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0]).getNomePilota()+"  ");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).setText("1");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i+"");
+				}else {
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0]).getNomePilota()+"  ");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).setText("2");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i-(index/2)+"");
+				}
+			}
+		} else {
+			int groups = numLanes/index+1;
+			for (int j = 0; j<groups/index;j++) {
+				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[j][0]).getNomePilota()+"  ");
+				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(1)).setText(groups+"");
+				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(2)).setText(j+"");	
+			}
+			starting(numLanes,classification,index-groups/index);
+			//da testare!!!
+		}
+	}
+
 	
 }

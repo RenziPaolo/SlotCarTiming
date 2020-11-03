@@ -7,11 +7,12 @@ import GUI.Event;
 public abstract class Evento {
 	protected ArrayList<Pilota> piloti;
 	private Event GUI;
-	private int currentHeat = 1;
+	private int currentHeat;
 	
-	public Evento(ArrayList<Pilota> piloti, Event GUI) {
+	public Evento(ArrayList<Pilota> piloti, Event GUI,int currentHeat) {
 		this.piloti = piloti;
 		this.GUI = GUI;
+		this.currentHeat = currentHeat;
 	}
 	
     public void updatePilota(int numCorsia,Float tempo) {

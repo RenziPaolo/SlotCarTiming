@@ -16,10 +16,10 @@ public enum Colore {
 	public float[] getRGB() {
 		switch(codice){
 		case 1: float[] test = {1,1,0};return test;
-		case 2: float[] test1 = {0,1,0};return test1;
+		case 2: float[] test1 = {0,(float)0.9,0};return test1;
 		case 3: float[] test2 = {1,1,1};return test2;
 		case 4: float[] test3 = {1,0,0};return test3;
-		case 5: float[] test4 = {0,(float) 0.27,(float) 0.78};return test4;
+		case 5: float[] test4 = {0,(float) 0.35,(float) 1};return test4;
 		case 6: float[] test5 = {1,(float) 0.5,0};return test5;
 		case 7: float[] test6 = {0,1,1};return test6;
 		case 8: float[] test7 = {0,(float) 0.2,0};return test7;

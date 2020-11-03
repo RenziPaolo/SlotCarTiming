@@ -6,17 +6,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainMenu">
    <children>
-      <Button layoutX="237.0" layoutY="285.0" mnemonicParsing="false" onAction="#Gara" prefHeight="150.0" prefWidth="200.0" text="GARA">
+      <Button alignment="CENTER" layoutX="240.0" layoutY="285.0" mnemonicParsing="false" onAction="#Gara" prefHeight="150.0" prefWidth="200.0" text="GARA">
          <font>
             <Font size="45.0" />
          </font>
       </Button>
-      <Button layoutX="677.0" layoutY="285.0" mnemonicParsing="false" onAction="#Prove" prefHeight="150.0" prefWidth="200.0" text="PROVE">
+      <Button alignment="CENTER" layoutX="670.0" layoutY="285.0" mnemonicParsing="false" onAction="#Prove" prefHeight="150.0" prefWidth="210.0" text="PROVE">
          <font>
             <Font size="45.0" />
          </font>
       </Button>
-      <Button layoutX="1014.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" text="uscita" />
+      <Button alignment="CENTER" layoutX="1014.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" text="uscita" />
       <Button layoutX="950.0" layoutY="650.0" mnemonicParsing="false" onAction="#Impostazioni" text="Impostazioni" />
    </children>
 </AnchorPane>

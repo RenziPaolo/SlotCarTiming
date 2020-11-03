@@ -6,8 +6,11 @@ import GUI.Event;
 
 public class Gara extends Evento{
 	
-	public Gara(ArrayList<Pilota> piloti, Event GUI) {
-		super(piloti,GUI);
+	private int currentManche;
+	
+	public Gara(ArrayList<Pilota> piloti, Event GUI,int currentHeat,int currentManche) {
+		super(piloti,GUI,currentHeat);
+		this.currentManche = currentManche;
 	}
 
 	@Override

@@ -54,9 +54,9 @@ public class PracticeSettings implements Initializable{
 		
 		Dati.setBackground(practice);
 		Practice prove = new Practice(practice);
-		Sensore sensor = new Sensore(new Prove(list, prove),data.getMinLapTime());
+		Sensore sensor = new Sensore(new Prove(list, prove,1),data.getMinLapTime());
 		prove.addSensor(sensor);
-		test test =new test(6,new Prove(list, prove),sensor,10);	
+		test test =new test(6,new Prove(list, prove,1),sensor,10);	
 		test.testCorsie(6,10);
 		
 

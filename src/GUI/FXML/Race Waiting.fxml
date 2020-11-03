@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <ChoiceBox layoutX="54.0" layoutY="433.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="323.0" layoutY="433.0" prefWidth="150.0" />
+      <Text layoutX="118.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batteria" />
+      <Text layoutX="387.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manche" />
+   </children>
 </AnchorPane>
-
