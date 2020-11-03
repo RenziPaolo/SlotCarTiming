@@ -132,7 +132,7 @@ public class RaceSettings implements Initializable{
 		}
 	}
 	
-	public void indietro(ActionEvent indietro) {
+	public void back(ActionEvent indietro) {
 		try {
 			new MainMenu().getStage().setScene(new Scene(FXMLLoader.load(getClass().getResource("FXML/Main Menu.fxml"))));
 		} catch (IOException e) {
@@ -192,6 +192,8 @@ public class RaceSettings implements Initializable{
 		choiceLane.setValue(data.getQualifingLane().toStringlanguage(1));
 		int numLanes = data.getNumCorsie();
 		Qualifica classification = new QualifingWaiting().getQualifing();
+		if (classification==null)
+			return;
 		for (int i = 0;i<classification.getClassification().length-1;i++) 
 			AggiungiPilota(new ActionEvent());
 

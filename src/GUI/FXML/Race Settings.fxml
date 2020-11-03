@@ -57,7 +57,7 @@
             <Font size="25.0" />
          </font>
       </Button>
-      <Button layoutX="922.0" layoutY="558.0" mnemonicParsing="false" onAction="#indietro" text="indietro">
+      <Button layoutX="922.0" layoutY="558.0" mnemonicParsing="false" onAction="#back" text="indietro">
          <font>
             <Font size="13.0" />
          </font>

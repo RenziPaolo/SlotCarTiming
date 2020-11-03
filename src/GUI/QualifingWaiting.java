@@ -44,6 +44,8 @@ public class QualifingWaiting implements Initializable{
 	public QualifingWaiting() {
 		if(this.qualifing ==null) {
 			String[] participants = new RaceSettings().getParticipants();
+			if (participants == null)
+				return;
 			RaceSettings data = new RaceSettings();
 			ArrayList<Pilota> list = new ArrayList<Pilota>();
 			for (int j = 0; j< participants.length;j++){
