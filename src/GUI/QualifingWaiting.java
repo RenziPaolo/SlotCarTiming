@@ -63,7 +63,7 @@ public class QualifingWaiting implements Initializable{
 			
 			try {
 				Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
-				Dati.setBackground(qualifingPane);
+				Dati.setBackground(qualifingPane,120,500);
 				this.qualifingPane = qualifingPane;
 				Qualifing qualifingGUI = new Qualifing(qualifingPane);
 				this.qualifingGUI = qualifingGUI;
@@ -99,10 +99,9 @@ public class QualifingWaiting implements Initializable{
 			
 			Button participantButton = new Button();
 			participantButton.setLayoutY((i*30)-20);
-			participantButton.setPrefWidth(100);
+			participantButton.setPrefWidth(200);
 			participantButton.setPrefHeight(30);
 			participantButton.setBackground(Background.EMPTY);
-			participantButton.setPickOnBounds(true);
 			participantButton.setOnAction((e->{
 				test.testCorsie(6,4);
 				qualifing.setCurrentDriver(qualifing.getPiloti().get(Arrays.asList(buttons).indexOf(e.getSource())));
@@ -113,8 +112,8 @@ public class QualifingWaiting implements Initializable{
 			}));
 			
 			buttons[i] = participantButton;
-			this.list.getChildren().add(participantButton);
 			this.list.getChildren().add(participant);
+			this.list.getChildren().add(participantButton);
 		}
 		classification.getChildren().clear();
 		Float[][] classificationfloat = qualifing.getClassification();

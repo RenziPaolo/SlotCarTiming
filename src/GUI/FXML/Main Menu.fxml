@@ -11,7 +11,7 @@
             <Font size="45.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="670.0" layoutY="285.0" mnemonicParsing="false" onAction="#Prove" prefHeight="150.0" prefWidth="210.0" text="PROVE">
+      <Button alignment="CENTER" layoutX="643.0" layoutY="285.0" mnemonicParsing="false" onAction="#Prove" prefHeight="150.0" prefWidth="225.0" text="PROVE">
          <font>
             <Font size="45.0" />
          </font>

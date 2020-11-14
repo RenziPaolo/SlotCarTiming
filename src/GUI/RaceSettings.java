@@ -39,6 +39,7 @@ public class RaceSettings implements Initializable{
 	private static Colore chosenLane;
 	private static int qualyDurationInt;
 	private static String[] participants;
+	private static int[][] startingInfo;
 	
 	public Colore getChosenLane() {
 		return chosenLane;
@@ -46,6 +47,10 @@ public class RaceSettings implements Initializable{
 	
 	public String[] getParticipants() {
 		return participants;
+	}
+	
+	public int[][] getStartingInfo() {
+		return startingInfo;
 	}
 	
 	public int getQualyduration() {
@@ -74,26 +79,26 @@ public class RaceSettings implements Initializable{
 	}
 	
 	public void Inizia(ActionEvent inizia) {
-
+		participants = new String[startingList.getChildren().size()];
+		String participant;
+		
+		for (int i = 0 ; i<startingList.getChildren().size();i++) {
+			participant = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).getText();
+			if (participant.equals("")) {
+				Dati.error();
+				return;
+			}
+			participants[i] = participant;
+		}
+		
 		if (qualy.isSelected()) {
 			if (qualyduration.getText().equals("")) {
 				Dati.error();
 				return;
 			}
-			String participant;
-			participants = new String[startingList.getChildren().size()];
-			for (int i = 0 ; i<startingList.getChildren().size();i++) {
-				participant = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).getText();
-				if (participant.equals("")) {
-					Dati.error();
-					return;
-				}
-				participants[i] = participant;
-			}
 			
 			qualyDurationInt = Integer.valueOf(qualyduration.getText());
 			chosenLane = Colore.values()[Colore.fromlanguage(1, choiceLane.getValue())];
-			
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
 				ByteBuffer buffer = ByteBuffer.allocate(8);
 				buffer.putInt((int)Integer.valueOf(qualyduration.getText()));
@@ -110,21 +115,28 @@ public class RaceSettings implements Initializable{
 		} else {
 			
 			try {
-				String participant;
 				String startingLane;
 				String StartingHeat;
+				startingInfo = new int[startingList.getChildren().size()][2];
+				
+				String raceNameString = raceName.getText();
+				if (raceNameString.equals("")) {
+					Dati.error();
+				}
 				
 				for (int i = 0 ; i<startingList.getChildren().size();i++) {
-					participant = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).getText();
 					startingLane = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).getText();
 					StartingHeat = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).getText();
-					if (participant.equals("") || startingLane.equals("") || StartingHeat.equals("")) {
+					if (startingLane.equals("") || StartingHeat.equals("")) {
 						Dati.error();
 						return;
 					}
+					startingInfo[i][0] = Integer.valueOf(StartingHeat);
+					startingInfo[i][1] = Integer.valueOf(startingLane);
 				}
 				new MainMenu().getStage().setScene(new Scene(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml"))));
 			} catch (IOException e) {
+				e.printStackTrace();
 				Dati.error();
 				return;
 			}
@@ -173,10 +185,6 @@ public class RaceSettings implements Initializable{
 		}
 		tot++;
 	}
-	
-	public TextField getDurataq() {
-		return qualyduration;
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -194,7 +202,7 @@ public class RaceSettings implements Initializable{
 		Qualifica classification = new QualifingWaiting().getQualifing();
 		if (classification==null)
 			return;
-		for (int i = 0;i<classification.getClassification().length-1;i++) 
+		for (int i = 0;i<participants.length-1;i++) 
 			AggiungiPilota(new ActionEvent());
 
 		starting(numLanes,classification,classification.getClassification().length);
@@ -204,20 +212,20 @@ public class RaceSettings implements Initializable{
 		Float[][] classificationFloat = classification.getClassification();
 		if ((index+1/2)<=numLanes*2) {
 			for(int i = 0;i<index;i++) {
-				if(i<index/2) {
-					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0]).getNomePilota()+"  ");
+				if(i<index+1/2) {
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0]).getNomePilota()+"");
 					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).setText("1");
-					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i+"");
-				}else {
-					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0]).getNomePilota()+"  ");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i+1+"");
+				} else {
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0]).getNomePilota()+"");
 					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).setText("2");
-					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i-(index/2)+"");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i-(index/2)+1+"");
 				}
 			}
 		} else {
 			int groups = numLanes/index+1;
 			for (int j = 0; j<groups/index;j++) {
-				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[j][0]).getNomePilota()+"  ");
+				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[j][0]).getNomePilota()+"");
 				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(1)).setText(groups+"");
 				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(2)).setText(j+"");	
 			}

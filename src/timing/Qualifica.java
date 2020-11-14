@@ -2,8 +2,6 @@ package timing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import GUI.Event;
 
 public class Qualifica extends Evento{
@@ -16,7 +14,7 @@ public class Qualifica extends Evento{
 
 	@Override
 	public Float[][] getClassification() {
-		Float[][] classification = piloti.stream().map(x -> new Float[] {x.getId() ,x.getCorsia().getGiroVeloce()}).toArray(size -> new Float[size][2]);
+		Float[][] classification = piloti.stream().map(x -> new Float[] {x.getId() ,x.getCorsia().getGiroVeloce()}).filter(x-> x[1]!=0).toArray(size -> new Float[size][2]);
 		Arrays.sort(classification, (a, b) -> Float.compare(a[1], b[1]));
 		return classification;
 	}

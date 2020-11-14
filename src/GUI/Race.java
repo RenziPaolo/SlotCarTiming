@@ -1,12 +1,19 @@
 package GUI;
 
 import javafx.event.ActionEvent;
+import javafx.scene.layout.Pane;
 import timing.Corsia;
 import timing.Sensore;
 
 public class Race implements Event{
 	private Sensore sensor;
+
+	public Race() {}
 	
+	public Race(Pane racePane) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void exit(ActionEvent exit) throws Exception {
 		System.exit(0);
 	}

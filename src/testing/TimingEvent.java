@@ -6,6 +6,7 @@ import java.util.EventObject;
 import timing.Sensore;
 
 public class TimingEvent extends EventObject{
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Sensore> listeners = new ArrayList<Sensore>(); 
 	private int corsia;
 	

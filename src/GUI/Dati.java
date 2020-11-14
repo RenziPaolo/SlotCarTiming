@@ -24,6 +24,7 @@ public class Dati {
 	private static String font;
 	private static Colore qualifingLane;
 	private static int qualifingPeriod;
+	private static int mancheDuration;
 
 	public Dati() {
 		try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
@@ -59,15 +60,15 @@ public class Dati {
 		}
 	}
 	
-	public static void setBackground(Pane practice) {
+	public static void setBackground(Pane practice,int heigth,int width) {
 		for (int i = 0; i<numCorsie;i++) {
 			Rectangle rettangolo = new Rectangle();
 			float[] colorcode = colori[i].getRGB();
 			rettangolo.setFill(Color.color(colorcode[0], colorcode[1], colorcode[2]));
 			rettangolo.setLayoutX(0);
-			rettangolo.setLayoutY((i)*120);
-			rettangolo.setHeight(120);
-			rettangolo.setWidth(500);
+			rettangolo.setLayoutY((i)*heigth);
+			rettangolo.setHeight(heigth);
+			rettangolo.setWidth(width);
 			practice.getChildren().add(rettangolo);
 		}
 	}
@@ -155,6 +156,21 @@ public class Dati {
 		}
 		
 		return qualifingPeriod;
+	}
+	
+	public int getMancheduration() {
+		if (mancheDuration == 0) {
+			try (FileChannel fileMancheDuration = (FileChannel) Files.newByteChannel(Path.of("settings MancheDuration.config"), StandardOpenOption.READ)){
+				ByteBuffer buffer = ByteBuffer.allocate(8);
+				fileMancheDuration.read(buffer);
+				buffer.rewind();
+				mancheDuration = buffer.getInt();
+				
+			} catch (IOException e) {
+				System.out.println("eccezione!!");
+			}
+		}
+		return mancheDuration;
 	}
 
 	public int getCodeQualyLane() {

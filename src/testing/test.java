@@ -50,6 +50,7 @@ public class test extends TimerTask{
 			}
 			timing.setCorsia(lanes);
 		}
+		
 	}
 	
 	private float getLaptime(int upperLimit, int lowerLimit) {
@@ -60,6 +61,6 @@ public class test extends TimerTask{
 	public void run() {
 	test test = new test(corsia,evento,sensore,numberOfLaps);
 	test.generateRandomTimingEvent(14, 12, numberOfLaps, corsia, sensore);
-		
+	this.cancel();
 	}
 }

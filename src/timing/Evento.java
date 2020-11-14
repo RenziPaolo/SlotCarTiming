@@ -7,7 +7,7 @@ import GUI.Event;
 public abstract class Evento {
 	protected ArrayList<Pilota> piloti;
 	private Event GUI;
-	private int currentHeat;
+	protected int currentHeat;
 	
 	public Evento(ArrayList<Pilota> piloti, Event GUI,int currentHeat) {
 		this.piloti = piloti;

@@ -20,10 +20,10 @@
          <font>
             <Font size="15.0" />
          </font></Text>
-      <VBox layoutX="619.0" layoutY="468.0" prefHeight="200.0" prefWidth="420.0" />
       <ScrollPane fx:id="Classification" layoutY="1.0" prefHeight="720.0" prefWidth="585.0" />
-      <Button layoutX="993.0" layoutY="680.0" mnemonicParsing="false" text="Inizia" />
+      <Button layoutX="993.0" layoutY="680.0" mnemonicParsing="false" onAction="#start" text="Inizia" />
       <VBox layoutX="609.0" layoutY="15.0" prefHeight="350.0" prefWidth="440.0" />
       <Button layoutX="619.0" layoutY="668.0" mnemonicParsing="false" onAction="#back" text="indietro" />
+      <AnchorPane fx:id="manchePreview" layoutX="620.0" layoutY="465.0" prefHeight="200.0" prefWidth="420.0" />
    </children>
 </AnchorPane>

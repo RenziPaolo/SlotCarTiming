@@ -1,8 +1,6 @@
 package timing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import GUI.Event;
 
 public class Prove extends Evento{

@@ -52,7 +52,7 @@ public class PracticeSettings implements Initializable{
 			list.add(pilota);
 		}
 		
-		Dati.setBackground(practice);
+		Dati.setBackground(practice,120,500);
 		Practice prove = new Practice(practice);
 		Sensore sensor = new Sensore(new Prove(list, prove,1),data.getMinLapTime());
 		prove.addSensor(sensor);

@@ -5,11 +5,9 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -33,11 +30,11 @@ public class Settings implements Initializable{
 	private Colore[] colors;
 	private int[] swap;
 	
-	@FXML ChoiceBox<String> numberOFLanes;
-	@FXML VBox lanesPreferences;
-	@FXML VBox championshipPoints;
-	@FXML TextField minLapTime;
-	@FXML ChoiceBox<String> font;
+	@FXML private ChoiceBox<String> numberOFLanes;
+	@FXML private VBox lanesPreferences;
+	@FXML private TextField minLapTime;
+	@FXML private ChoiceBox<String> font;
+	@FXML private TextField mancheDuration;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -50,12 +47,13 @@ public class Settings implements Initializable{
 		numberOFLanes.setItems(FXCollections.observableArrayList("6","4","2"));
     	for(int k = 1;k<= numberOfLanes;k++) 
     		lanesPreferences.getChildren().add(getLineCorsie(k,numberOfLanes));
+    	
     	numberOFLanes.setValue(String.valueOf(numberOfLanes));
     		
 		numberOFLanes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 		      @Override
-		      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-		        numberOfLanes = Integer.valueOf((String)numberOFLanes.getItems().get((Integer) number2));
+		      public void changed(ObservableValue<? extends Number> observableValue, Number oldnumber, Number newnumber) {
+		        numberOfLanes = Integer.valueOf((String)numberOFLanes.getItems().get((Integer) newnumber));
 		        lanesPreferences.getChildren().clear();
 		        
 		        for(int j = 1;j<= numberOfLanes;j++) 
@@ -149,16 +147,18 @@ public class Settings implements Initializable{
 			Dati.error();
 			return;
 		}
-	}
-	
-	@FXML
-	public void Aggiungi() {
 		
-	}
-	
-	@FXML
-	public void Togli() {
-		
+		try (FileChannel fileMancheDuration = (FileChannel) Files.newByteChannel(Path.of("settings MancheDuration.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
+			ByteBuffer buffer = ByteBuffer.allocate(4);
+			buffer.putInt(Integer.parseInt(mancheDuration.getText()));
+			buffer.rewind();
+			buffer.rewind();
+			fileMancheDuration.write(buffer);
+			
+		} catch (IOException e) {
+			Dati.error();
+			return;
+		}
 	}
 
 }

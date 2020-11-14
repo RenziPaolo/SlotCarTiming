@@ -93,12 +93,17 @@ public class MyTimer extends TimerTask{
        		}
        	}
         if (seconds == 0 && minutes == 0 && hours == 0) {
-    		label.setText(toString());
     		try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			}
+			}        	
+    		label.setText(toString());
+    		try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}  
         	event.exit();
         	this.cancel();
        	}
