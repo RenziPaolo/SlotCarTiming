@@ -174,7 +174,7 @@ public class Dati {
 	}
 
 	public int getCodeQualyLane() {
-		return Arrays.asList(colori).indexOf(qualifingLane);
+		return Arrays.asList(colori).indexOf(qualifingLane)+1;
 	}
 	
 }

@@ -1,28 +1,38 @@
 package timing;
 
+import GUI.Colore;
+import GUI.Dati;
+
 public class Pilota {
 	private String nameDriver;
 	private int heat;
-	private Corsia corsia;
+	private int selectedLane;
+	private Corsia[] lanes;
 	private float id;
 	
-	public Pilota(String nomePilota,Float id,Corsia corsia,int heat) {
+	public Pilota(String nomePilota,Float id,int lane,int heat) {
 		this.nameDriver = nomePilota;
-		this.corsia = corsia;
+		this.selectedLane = lane;
 		this.heat = heat;
 		this.id = id;
+		Dati data = new Dati();
+		int numLanes = data.getNumCorsie();
+		Colore[] colors = data.getColori();
+		this.lanes = new Corsia[numLanes];
+		for (int i = 0;i<numLanes;i++)
+			lanes[i] = new Corsia(i,colors[i]);
 	}
 	
-	public void setCorsia(Corsia corsia) {
-		this.corsia = corsia;
+	public void setselectedLane(int corsia) {
+		this.selectedLane = corsia;
 	}
 	
 	public String getNomePilota() {
 		return nameDriver;
 	}
 
-	public Corsia getCorsia() {
-		return corsia;
+	public int getselectedLane() {
+		return selectedLane;
 	}
 
 	public int getHeat() {
@@ -35,5 +45,9 @@ public class Pilota {
 	
 	public void setHeat(int heat) {
 		this.heat = heat;
+	}
+
+	public Corsia[] getLanes() {
+		return lanes;
 	}
 }

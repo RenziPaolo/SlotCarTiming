@@ -16,18 +16,19 @@ public abstract class Evento {
 	}
 	
     public void updatePilota(int numCorsia,Float tempo) {
-    	if (piloti.get(numCorsia-1).getHeat() == currentHeat) {
-	    Corsia corsia = piloti.get(numCorsia-1).getCorsia();
-	    corsia.setLap(tempo);
-	    GUI.update(corsia);
-	    }
+    	for (int i = 0;i<piloti.size();i++) {
+    		Pilota pilota = piloti.get(i);
+	    	if (pilota.getHeat() == currentHeat && pilota.getselectedLane()==numCorsia) {
+		    Corsia corsia = piloti.get(i).getLanes()[piloti.get(i).getselectedLane()-1];
+		    corsia.setLap(tempo);
+		    GUI.update(corsia);
+		    }
+    	}
      }
     
     public ArrayList<Pilota> getPiloti(){
     	return piloti;
     }
-    
-    public abstract void swap();
 
 	public abstract Float[][] getClassification();
 

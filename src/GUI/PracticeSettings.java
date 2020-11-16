@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import testing.test;
-import timing.Corsia;
 import timing.Pilota;
 import timing.Prove;
 import timing.Sensore;
@@ -44,11 +43,9 @@ public class PracticeSettings implements Initializable{
 		Dati data = new Dati();
 		int numCorsie =  data.getNumCorsie();
 		ArrayList<Pilota> list = new ArrayList<Pilota>();
-		Colore[] colori = data.getColori(); 
 		
 		for (int i = 1; i<=(numCorsie);i++) {
-			Corsia corisa = new Corsia(i,colori[i-1]);
-			Pilota pilota = new Pilota("test",(float)i,corisa,1);
+			Pilota pilota = new Pilota("test",(float)i,i,1);
 			list.add(pilota);
 		}
 		

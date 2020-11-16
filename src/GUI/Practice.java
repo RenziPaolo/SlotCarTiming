@@ -43,9 +43,9 @@ public class Practice implements Event,Initializable{
 
 	@Override
 	public void update(Corsia corsia) {
-		currentCorsie[corsia.getNome()-1].setText(String.format("%.3f",corsia.getUltimoGiro()));
-		bestCorsie[corsia.getNome()-1].setText(String.format("%.3f",corsia.getGiroVeloce()));
-		numberCorsie[corsia.getNome()-1].setText(corsia.getNumeroDiGiri()+"");
+		currentCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getUltimoGiro()));
+		bestCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getGiroVeloce()));
+		numberCorsie[corsia.getNome()].setText(corsia.getNumeroDiGiri()+"");
 	}
 
 	public Practice() {}
@@ -125,7 +125,7 @@ public class Practice implements Event,Initializable{
 			selezione.setPickOnBounds(true);
 			selezione.setOnAction((e->{
 				Integer numCorsia = Arrays.asList(selezioneCorsie).indexOf(e.getSource());
-				Corsia corsia = sensor.getEvento().getPiloti().get(numCorsia+1).getCorsia();
+				Corsia corsia = sensor.getEvento().getPiloti().get(numCorsia).getLanes()[sensor.getEvento().getPiloti().get(numCorsia).getselectedLane()];
 				ArrayList<Float> giri =  corsia.getGiri();
 				classification.getChildren().clear();
 				for (int j = 0; j<corsia.getNumeroDiGiri(); j++) {

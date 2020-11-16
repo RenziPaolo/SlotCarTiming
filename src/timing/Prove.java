@@ -14,10 +14,4 @@ public class Prove extends Evento{
 		return null;
 	}
 
-	@Override
-	public void swap() {
-		
-		
-	}
-
 }

@@ -122,11 +122,12 @@ public class RaceSettings implements Initializable{
 				String raceNameString = raceName.getText();
 				if (raceNameString.equals("")) {
 					Dati.error();
+					return;
 				}
 				
 				for (int i = 0 ; i<startingList.getChildren().size();i++) {
-					startingLane = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).getText();
-					StartingHeat = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).getText();
+					startingLane = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).getText();
+					StartingHeat = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).getText();
 					if (startingLane.equals("") || StartingHeat.equals("")) {
 						Dati.error();
 						return;

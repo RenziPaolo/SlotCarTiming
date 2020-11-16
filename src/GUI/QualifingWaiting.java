@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import testing.test;
-import timing.Corsia;
 import timing.Pilota;
 import timing.Qualifica;
 import timing.Sensore;
@@ -46,17 +45,14 @@ public class QualifingWaiting implements Initializable{
 			String[] participants = new RaceSettings().getParticipants();
 			if (participants == null)
 				return;
-			RaceSettings data = new RaceSettings();
 			ArrayList<Pilota> list = new ArrayList<Pilota>();
 			for (int j = 0; j< participants.length;j++){
-				Corsia corisa = new Corsia(j,data.getChosenLane());
-				Pilota pilota = new Pilota(participants[j],(float)j,corisa,0);
+				Pilota pilota = new Pilota(participants[j],(float)j,j,0);
 				list.add(pilota);
 			}
 			if (list.size()<6) {
 				for (int j = list.size(); j<= 6;j++){
-					Corsia corisa = new Corsia(0,data.getChosenLane());
-					Pilota pilota = new Pilota("test",(float)0,corisa,0);
+					Pilota pilota = new Pilota("test",(float)0,0,0);
 					list.add(pilota);
 					}
 			}
