@@ -36,10 +36,6 @@ public class Dati {
 			int dato;
 			for (int i = 0; i<numCorsie*2;i++) {
 				dato = (int)buffer.get(i);
-				if (dato == 0) {
-					System.out.println("eccezione!!");
-					break;
-				}
 				if (i%2==0) {
 					colori[i/2] = Colore.BLUE.getColore(dato);
 				} else {

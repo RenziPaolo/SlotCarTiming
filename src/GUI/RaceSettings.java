@@ -133,7 +133,7 @@ public class RaceSettings implements Initializable{
 						return;
 					}
 					startingInfo[i][0] = Integer.valueOf(StartingHeat);
-					startingInfo[i][1] = Integer.valueOf(startingLane);
+					startingInfo[i][1] = Integer.valueOf(startingLane)-1;
 				}
 				new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml")));
 			} catch (IOException e) {

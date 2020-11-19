@@ -90,7 +90,7 @@ public class Settings implements Initializable{
 		pinrele.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30);
 		for (int i = 1;i<= totaleCorsie;i++)
 			scambio.getItems().add(i);
-		scambio.setValue(swap[corsiaAttuale-1]);
+		scambio.setValue(swap[corsiaAttuale-1]+1);
 		line.getChildren().addAll(space,number,space1,colori,space2,scambio,space3,pinsensor,space4,pinrele);
 		return line;
 	}
@@ -103,7 +103,7 @@ public class Settings implements Initializable{
 		try {
 			for(int i = 0;i<numberOfLanes;i++) {
 				colori.add(Colore.fromlanguage(1,((ChoiceBox<String>) ((HBox) lanesPreferences.getChildren().get(i)).getChildren().get(3)).getValue()));
-				swap.add(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(5)	).getValue());
+				swap.add(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(5)	).getValue()-1);
 			}
 		} catch(java.lang.NullPointerException e1) {
 			Dati.error();
@@ -156,7 +156,7 @@ public class Settings implements Initializable{
 			buffer.rewind();
 			fileMancheDuration.write(buffer);
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Dati.error();
 			return;
 		}

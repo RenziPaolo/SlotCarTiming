@@ -19,8 +19,12 @@ public class Pilota {
 		int numLanes = data.getNumCorsie();
 		Colore[] colors = data.getColori();
 		this.lanes = new Corsia[numLanes];
-		for (int i = 0;i<numLanes;i++)
-			lanes[i] = new Corsia(i,colors[i]);
+		int[] swap = data.getSwap();
+		int j = 0;
+		for (int i = lane;j<numLanes;i=swap[i]) {
+			lanes[j] = new Corsia(i,colors[i]);
+			j++;
+			}
 	}
 	
 	public void setselectedLane(int corsia) {

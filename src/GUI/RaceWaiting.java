@@ -57,14 +57,14 @@ public class RaceWaiting implements Initializable{
 		Heat.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 		@Override
 		public void changed(ObservableValue<? extends Number> observableValue, Number oldnumber, Number newnumber) {
-			race.setCurrentHeat(newnumber.intValue()+1);
+			race.setCurrentHeat(newnumber.intValue());
 			change(race.getCurrentHeat());
 			}
 		});
 		Manche.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 		@Override
 		public void changed(ObservableValue<? extends Number> observableValue, Number oldnumber, Number newnumber) {
-			race.setCurrentManche(newnumber.intValue()+1);
+			race.setCurrentManche(newnumber.intValue());
 			change(race.getCurrentHeat());
 			}
 		});
@@ -81,7 +81,7 @@ public class RaceWaiting implements Initializable{
 		}
 		for (int i = 0; i<participants.length;i++) {
 			if(startingInfo[i][0]==1) {
-				manchePreviewText[startingInfo[i][1]-1].setText(participants[i]);
+				manchePreviewText[startingInfo[i][1]].setText(participants[i]);
 				drivers.add(new Pilota(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));
 			} else {
 				drivers.add(new Pilota(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));				
@@ -113,7 +113,7 @@ public class RaceWaiting implements Initializable{
 		for (int i = 0;i<drivers.size();i++) {
 			Pilota driver = drivers.get(i);
 			if (driver.getHeat()==heat) {
-				manchePreviewText[driver.getLanes()[driver.getselectedLane()-1].getNome()].setText(driver.getNomePilota());
+				manchePreviewText[driver.getLanes()[driver.getselectedLane()].getNome()].setText(driver.getNomePilota());
 			}
 		}
 	}
