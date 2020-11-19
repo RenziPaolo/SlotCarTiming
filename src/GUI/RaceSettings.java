@@ -135,7 +135,7 @@ public class RaceSettings implements Initializable{
 					startingInfo[i][0] = Integer.valueOf(StartingHeat);
 					startingInfo[i][1] = Integer.valueOf(startingLane);
 				}
-				new MainMenu().getStage().setScene(new Scene(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml"))));
+				new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml")));
 			} catch (IOException e) {
 				e.printStackTrace();
 				Dati.error();

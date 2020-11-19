@@ -41,7 +41,7 @@ public class QualifingWaiting implements Initializable{
 	}
 	
 	public QualifingWaiting() {
-		if(this.qualifing ==null) {
+		if(qualifing ==null) {
 			String[] participants = new RaceSettings().getParticipants();
 			if (participants == null)
 				return;
@@ -60,16 +60,16 @@ public class QualifingWaiting implements Initializable{
 			try {
 				Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
 				Dati.setBackground(qualifingPane,120,500);
-				this.qualifingPane = qualifingPane;
+				QualifingWaiting.qualifingPane = qualifingPane;
 				Qualifing qualifingGUI = new Qualifing(qualifingPane);
-				this.qualifingGUI = qualifingGUI;
+				QualifingWaiting.qualifingGUI = qualifingGUI;
 	
 				Qualifica qualifing = new Qualifica(list, qualifingGUI,1);
-				this.qualifing = qualifing;
-				Sensore sensor = new Sensore(this.qualifing,new Dati().getMinLapTime());
+				QualifingWaiting.qualifing = qualifing;
+				Sensore sensor = new Sensore(QualifingWaiting.qualifing,new Dati().getMinLapTime());
 				qualifingGUI.addSensor(sensor);
 				test test = new test(6,qualifing,sensor,4);
-				this.test = test;
+				QualifingWaiting.test = test;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -104,7 +104,7 @@ public class QualifingWaiting implements Initializable{
 				qualifingGUI.resetTimer();
 				qualifingGUI.getTimer().start();
 				qualifingGUI.getSensor().reset();
-				new MainMenu().getStage().getScene().setRoot(this.qualifingPane);
+				new MainMenu().getStage().getScene().setRoot(qualifingPane);
 			}));
 			
 			buttons[i] = participantButton;

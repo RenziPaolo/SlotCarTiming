@@ -95,8 +95,9 @@ public class Settings implements Initializable{
 		return line;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@FXML
-	public void Indietro(ActionEvent indietro) {
+	public void back(ActionEvent indietro) {
 		ArrayList<Integer> colori = new ArrayList<Integer>();
 		ArrayList<Integer> swap = new ArrayList<Integer>();
 		try {

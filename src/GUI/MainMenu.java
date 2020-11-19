@@ -58,7 +58,7 @@ public class MainMenu extends Application{
         stage.setTitle("SlotCar Timing");
         stage.setScene(primaryScene);
         stage.show();
-        this.stage = stage;
+        MainMenu.stage = stage;
 	}
 	
 }

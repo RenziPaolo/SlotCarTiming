@@ -34,7 +34,7 @@ public class RaceWaiting implements Initializable{
 	private Text[] manchePreviewText;
 	private test test;
 	private Pane racePane;
-	private Race qualifingGUI;
+	private Race raceGUI;
 	private static Gara race;
 	
 	@Override
@@ -80,7 +80,6 @@ public class RaceWaiting implements Initializable{
 			manchePreview.getChildren().add(name);
 		}
 		for (int i = 0; i<participants.length;i++) {
-			int test = startingInfo[i][0];
 			if(startingInfo[i][0]==1) {
 				manchePreviewText[startingInfo[i][1]-1].setText(participants[i]);
 				drivers.add(new Pilota(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));
@@ -88,18 +87,15 @@ public class RaceWaiting implements Initializable{
 				drivers.add(new Pilota(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));				
 			}
 		}
-		
-
-		
-		
+	
 		try {
 			racePane = FXMLLoader.load(getClass().getResource("FXML/Race.fxml"));
 			Dati.setBackground(racePane,120,500);
-			qualifingGUI = new Race(racePane);
-			Gara race = new Gara(drivers, qualifingGUI,1,1);
-			this.race = race;
+			raceGUI = new Race(racePane);
+			Gara race = new Gara(drivers, raceGUI,1,1);
+			RaceWaiting.race = race;
 			Sensore sensor = new Sensore(race,new Dati().getMinLapTime());
-			qualifingGUI.addSensor(sensor);
+			raceGUI.addSensor(sensor);
 			test test = new test(6,race,sensor,7);
 			this.test = test;
 		} catch (IOException e1) {
@@ -135,7 +131,11 @@ public class RaceWaiting implements Initializable{
 	}
 	
 	public void start(ActionEvent indietro) {
-		new MainMenu().getStage().setScene(new Scene(racePane));
+		test.testCorsie(6, 30);
+		raceGUI.resetTimer();
+		raceGUI.getTimer().start();
+		raceGUI.getSensor().reset();
+		new MainMenu().getStage().getScene().setRoot(this.racePane);
 	}
 	
 }

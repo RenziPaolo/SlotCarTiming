@@ -77,7 +77,7 @@ public class Qualifing implements Event,Initializable{
 	}
 	
 	public void addSensor(Sensore sensor) {
-		this.sensor = sensor;
+		Qualifing.sensor = sensor;
 	}
 	
 	@Override
@@ -123,7 +123,6 @@ public class Qualifing implements Event,Initializable{
 
 	public void resetTimer() {
 		timer.setTime(new RaceSettings().getQualyduration()*60);
-//		timer.resetSchedule();
 	}
 	
 }

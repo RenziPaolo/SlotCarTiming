@@ -51,7 +51,7 @@ public class Practice implements Event,Initializable{
 	public Practice() {}
 	
 	public void addSensor(Sensore sensor) {
-		this.sensor = sensor;
+		Practice.sensor = sensor;
 	}
 	
 	public Practice(Pane current) {

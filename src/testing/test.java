@@ -27,8 +27,8 @@ public class test extends TimerTask{
 //			
 //		}
 		
-		this.evento = evento;
-		this.sensore = sensore;
+		test.evento = evento;
+		test.sensore = sensore;
 		this.numberOfLaps = numberOfLaps;
 		
 	}
