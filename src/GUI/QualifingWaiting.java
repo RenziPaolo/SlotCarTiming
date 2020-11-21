@@ -47,7 +47,7 @@ public class QualifingWaiting implements Initializable{
 				return;
 			ArrayList<Pilota> list = new ArrayList<Pilota>();
 			for (int j = 0; j< participants.length;j++){
-				Pilota pilota = new Pilota(participants[j],(float)j,j,0);
+				Pilota pilota = new Pilota(participants[j],(float)j,Arrays.asList(new Dati().getColori()).indexOf(new Dati().getQualifingLane()),0);
 				list.add(pilota);
 			}
 			if (list.size()<6) {
