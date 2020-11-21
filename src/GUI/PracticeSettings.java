@@ -44,7 +44,7 @@ public class PracticeSettings implements Initializable{
 		int numCorsie =  data.getNumCorsie();
 		ArrayList<Pilota> list = new ArrayList<Pilota>();
 		
-		for (int i = 1; i<=(numCorsie);i++) {
+		for (int i = 0; i<(numCorsie);i++) {
 			Pilota pilota = new Pilota("test",(float)i,i,1);
 			list.add(pilota);
 		}

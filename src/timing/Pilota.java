@@ -24,7 +24,7 @@ public class Pilota {
 		for (int i = lane;j<numLanes;i=swap[i]) {
 			lanes[j] = new Corsia(i,colors[i]);
 			j++;
-			}
+		}
 	}
 	
 	public void setselectedLane(int corsia) {
