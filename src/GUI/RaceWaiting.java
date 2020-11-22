@@ -103,7 +103,7 @@ public class RaceWaiting implements Initializable{
 				Text textRowcolors = new Text();
 				textRowcolors.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
 				textRowcolors.setText(colors[i].toStringlanguage(1));
-				row.getChildren().add(textRow);
+				row.getChildren().add(textRowcolors);
 			}	
 			classificationInside.getChildren().add(row);
 		
@@ -116,7 +116,7 @@ public class RaceWaiting implements Initializable{
 				for (int j = 0;j<classification[i][1].length;j++) {
 					Text textRowmanche = new Text();
 					textRowmanche.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
-					textRowmanche.setText(classification[i][1][j]+"");
+					textRowmanche.setText(Math.round(classification[i][1][j])+"");
 					row.getChildren().add(textRowmanche);
 				}
 				Rectangle space = new Rectangle();
@@ -124,7 +124,7 @@ public class RaceWaiting implements Initializable{
 				row.getChildren().add(space);
 				Text textRowtot = new Text();
 				textRowtot.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
-				textRowtot.setText(classification[i][3][0]+"");
+				textRowtot.setText(Math.round(classification[i][3][0])+"");
 				row.getChildren().add(textRowtot);
 				
 				classificationInside.getChildren().add(row);

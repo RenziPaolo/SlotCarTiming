@@ -109,7 +109,7 @@ public class Race implements Event, Initializable{
 	@Override
 	public void exit() {
 		try {
-			new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Qualifing Waiting.fxml")));
+			new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
