@@ -14,7 +14,7 @@ public class Qualifica extends Evento{
 
 	@Override
 	public Float[][] getClassification() {
-		Float[][] classification = piloti.stream().map(x -> new Float[] {x.getId() ,x.getLanes()[x.getselectedLane()].getGiroVeloce()}).filter(x-> x[1]!=0).toArray(size -> new Float[size][2]);
+		Float[][] classification = piloti.stream().map(x -> new Float[] {x.getId() ,x.getLanes()[x.getselectedLane()].getGiroVeloce()}).toArray(size -> new Float[size][2]);
 		Arrays.sort(classification, (a, b) -> Float.compare(a[1], b[1]));
 		return classification;
 	}
