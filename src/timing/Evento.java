@@ -30,7 +30,7 @@ public abstract class Evento {
     	return piloti;
     }
 
-	public abstract Float[][] getClassification();
+	public abstract Float[][][] getClassification();
 
 	public int getCurrentHeat() {
 		return currentHeat;

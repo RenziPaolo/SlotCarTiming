@@ -42,6 +42,10 @@ public class Corsia {
         }
     }
     
+    public float getTimeFromStart() {
+    	return (float) laps.stream().mapToDouble(x->(double)x).sum();
+    }
+    
     public int getNome() {
     	return nome;
     }

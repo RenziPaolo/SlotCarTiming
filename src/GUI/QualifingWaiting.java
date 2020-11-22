@@ -112,17 +112,17 @@ public class QualifingWaiting implements Initializable{
 			this.list.getChildren().add(participantButton);
 		}
 		classification.getChildren().clear();
-		Float[][] classificationfloat = qualifing.getClassification();
+		Float[][][] classificationfloat = qualifing.getClassification();
 		int position = 0;
 		for (int i = 0; i<classificationfloat.length;i++) {
-			if(classificationfloat[i][1]!=0) {
+			if(classificationfloat[i][1][0]!=0) {
 				position++;
 				HBox riga = new HBox();
 				Text pos = new Text();
 				pos.setText(position+"  ");
 				riga.getChildren().add(pos);
 				Text name = new Text();
-				name.setText(qualifing.getPiloti().get((int)(float)classificationfloat[i][0]).getNomePilota()+"  ");
+				name.setText(qualifing.getPiloti().get((int)(float)classificationfloat[i][0][0]).getNomePilota()+"  ");
 				riga.getChildren().add(name);
 				Text laptime = new Text();
 				laptime.setText(classificationfloat[i][1]+"");
