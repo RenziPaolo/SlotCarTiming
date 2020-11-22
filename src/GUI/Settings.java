@@ -64,6 +64,7 @@ public class Settings implements Initializable{
 		font.setItems(FXCollections.observableArrayList(Font.getFamilies()));
 		font.setValue("Calibri");
 		minLapTime.setText(dati.getMinLapTime()+"");
+		mancheDuration.setText(dati.getMancheduration()+"");
 	}
 	
 	private Node getLineCorsie(int corsiaAttuale, int totaleCorsie) {

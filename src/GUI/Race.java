@@ -1,10 +1,12 @@
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -106,7 +108,17 @@ public class Race implements Event, Initializable{
 
 	@Override
 	public void exit() {
-		// TODO Auto-generated method stub
+		try {
+			new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Qualifing Waiting.fxml")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		sensor.reset();
+		for (int i = 0; i<new Dati().getNumCorsie();i++) {
+			currentCorsie[i].setText("");
+			bestCorsie[i].setText("");
+			numberCorsie[i].setText("");
+		}
 		
 	}
 	
