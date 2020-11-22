@@ -10,8 +10,8 @@ public class Gara extends Evento{
 	
 	private int currentManche;
 	
-	public Gara(ArrayList<Pilota> piloti, Event GUI,int currentHeat,int currentManche) {
-		super(piloti,GUI,currentHeat);
+	public Gara(ArrayList<Pilota> drivers, Event GUI,int currentHeat,int currentManche) {
+		super(drivers,GUI,currentHeat);
 		this.currentManche = currentManche;
 	}
 

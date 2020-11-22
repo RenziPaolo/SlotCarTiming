@@ -50,12 +50,6 @@ public class QualifingWaiting implements Initializable{
 				Pilota pilota = new Pilota(participants[j],(float)j,Arrays.asList(new Dati().getColori()).indexOf(new Dati().getQualifingLane()),0);
 				list.add(pilota);
 			}
-			if (list.size()<6) {
-				for (int j = list.size(); j<= 6;j++){
-					Pilota pilota = new Pilota("test",(float)0,0,0);
-					list.add(pilota);
-					}
-			}
 			
 			try {
 				Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
