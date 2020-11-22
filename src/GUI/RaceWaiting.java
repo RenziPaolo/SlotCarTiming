@@ -16,7 +16,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -87,7 +90,48 @@ public class RaceWaiting implements Initializable{
 				drivers.add(new Pilota(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));				
 			}
 		}
-	
+		if (race!=null) {
+			Float[][][] classification = race.getClassification();
+			VBox classificationInside = new VBox();
+			HBox row = new HBox();
+			Colore[] colors = data.getColori();
+			Text textRow = new Text();
+			textRow.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+			textRow.setText("Pilota");
+			row.getChildren().add(textRow);
+			for (int i = 0; i<colors.length;i++) {
+				Text textRowcolors = new Text();
+				textRowcolors.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+				textRowcolors.setText(colors[i].toStringlanguage(1));
+				row.getChildren().add(textRow);
+			}	
+			classificationInside.getChildren().add(row);
+		
+			for (int i = 0; i<classification.length;i++) {
+				row = new HBox();
+				Text textRowdriver = new Text();
+				textRowdriver.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+				textRowdriver.setText(race.getPiloti().get((int)(float)classification[i][0][0]).getNomePilota()+"  ");
+				row.getChildren().add(textRowdriver);
+				for (int j = 0;j<classification[i][1].length;j++) {
+					Text textRowmanche = new Text();
+					textRowmanche.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+					textRowmanche.setText(classification[i][1][j]+"");
+					row.getChildren().add(textRowmanche);
+				}
+				Rectangle space = new Rectangle();
+				space.setLayoutY(100);
+				row.getChildren().add(space);
+				Text textRowtot = new Text();
+				textRowtot.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+				textRowtot.setText(classification[i][3][0]+"");
+				row.getChildren().add(textRowtot);
+				
+				classificationInside.getChildren().add(row);
+			}
+		
+			Classification.setContent(classificationInside);
+		}
 		try {
 			racePane = FXMLLoader.load(getClass().getResource("FXML/Race.fxml"));
 			Dati.setBackground(racePane,120,500);
@@ -101,6 +145,7 @@ public class RaceWaiting implements Initializable{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		
 	}
 	
 	public void change(int heat) {

@@ -8,11 +8,8 @@ import GUI.Event;
 
 public class Gara extends Evento{
 	
-	private int currentManche;
-	
 	public Gara(ArrayList<Pilota> drivers, Event GUI,int currentHeat,int currentManche) {
-		super(drivers,GUI,currentHeat);
-		this.currentManche = currentManche;
+		super(drivers,GUI,currentHeat,currentManche);
 	}
 
 	@Override

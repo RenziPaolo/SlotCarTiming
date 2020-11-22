@@ -170,7 +170,7 @@ public class Dati {
 	}
 
 	public int getCodeQualyLane() {
-		return Arrays.asList(colori).indexOf(qualifingLane)+1;
+		return Arrays.asList(colori).indexOf(qualifingLane);
 	}
 	
 }

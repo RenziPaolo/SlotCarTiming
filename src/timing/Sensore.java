@@ -21,7 +21,7 @@ public class Sensore implements EventListener {
 	}
 	
 	public void setTime(TimingEvent input) {
-		int index = input.getCorsia()-1;
+		int index = input.getCorsia();
 		float lapTime = 0;
 		if(provisional[index]==0 && go) {
 			lapTime = (System.nanoTime()-lastPass[index])/1000000000;

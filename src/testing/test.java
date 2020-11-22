@@ -48,7 +48,7 @@ public class test extends TimerTask{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			timing.setCorsia(lanes);
+			timing.setCorsia(lanes-1);
 		}
 		
 	}
