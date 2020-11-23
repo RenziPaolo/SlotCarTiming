@@ -60,7 +60,8 @@ public class RaceWaiting implements Initializable{
 		Heat.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 		@Override
 		public void changed(ObservableValue<? extends Number> observableValue, Number oldnumber, Number newnumber) {
-			race.setCurrentHeat(newnumber.intValue());
+			race.setCurrentHeat(newnumber.intValue()+1);
+			Manche.setValue(1);
 			change(race.getCurrentHeat());
 			}
 		});
@@ -136,7 +137,7 @@ public class RaceWaiting implements Initializable{
 			racePane = FXMLLoader.load(getClass().getResource("FXML/Race.fxml"));
 			Dati.setBackground(racePane,120,500);
 			raceGUI = new Race(racePane);
-			Gara race = new Gara(drivers, raceGUI,1,1);
+			Gara race = new Gara(drivers, raceGUI,1,0);
 			RaceWaiting.race = race;
 			Sensore sensor = new Sensore(race,new Dati().getMinLapTime());
 			raceGUI.addSensor(sensor);

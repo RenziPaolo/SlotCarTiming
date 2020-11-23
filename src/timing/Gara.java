@@ -50,14 +50,9 @@ public class Gara extends Evento{
 		this.currentManche = currentManche;
 	}
 	
-	private void resetManche() {
-		currentManche = 1;
-	}
-	
 	@Override
 	public void setCurrentHeat(int currentHeat) {
 		this.currentHeat = currentHeat;
-		resetManche();
-		setCurrentManche(1);
+		setCurrentManche(0);
 	}
 }

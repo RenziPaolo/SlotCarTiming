@@ -28,7 +28,7 @@ public abstract class Evento {
     	for (int i = 0;i<piloti.size();i++) {
     		Pilota pilota = piloti.get(i);
 	    	if (pilota.getHeat() == currentHeat && pilota.getselectedLane()==numCorsia) {
-		    Corsia corsia = piloti.get(i).getLanes()[currentManche-1];
+		    Corsia corsia = piloti.get(i).getLanes()[currentManche];
 		    corsia.setLap(tempo);
 		    GUI.update(corsia);
 		    }
