@@ -39,7 +39,7 @@ public class test extends TimerTask{
 	}
 	
 	private void generateRandomTimingEvent(int upperLimit, int lowerLimit, int numberOfLaps, int lanes,Sensore sensore) {
-		TimingEvent timing = new TimingEvent(new Object(),0);
+		TimingEvent timing = new TimingEvent(new Object(),lanes-1);
 		timing.addSensore(sensore);
 		for(;numberOfLaps>0 ;numberOfLaps--) {
 			float lapTime = getLaptime(upperLimit, lowerLimit);
@@ -48,7 +48,6 @@ public class test extends TimerTask{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			timing.setCorsia(lanes-1);
 		}
 		
 	}

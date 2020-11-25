@@ -16,7 +16,7 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <VBox fx:id="lanesPreferences" layoutX="25.0" layoutY="190.0" prefHeight="300.0" prefWidth="750.0" />
+      <VBox fx:id="lanesPreferences" layoutX="25.0" layoutY="190.0" prefHeight="300.0" prefWidth="828.0" />
       <Text layoutX="175.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Corsie">
          <font>
             <Font size="25.0" />
@@ -65,11 +65,6 @@
          </font>
       </Text>
       <Text layoutX="715.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pin sensore secondo settore(opzionale)" wrappingWidth="140.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="874.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pin sensore terzo settore(opzionale)" wrappingWidth="120.0">
          <font>
             <Font size="15.0" />
          </font>

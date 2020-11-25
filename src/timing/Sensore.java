@@ -2,7 +2,6 @@ package timing;
 
 import java.util.EventListener;
 import GUI.Dati;
-import testing.TimingEvent;
 
 public class Sensore implements EventListener {
 	

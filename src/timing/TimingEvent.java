@@ -1,9 +1,7 @@
-package testing;
+package timing;
 
 import java.util.ArrayList;
 import java.util.EventObject;
-
-import timing.Sensore;
 
 public class TimingEvent extends EventObject{
 	private static final long serialVersionUID = 1L;
@@ -23,9 +21,7 @@ public class TimingEvent extends EventObject{
 		listeners.add(listener);
 	}
 	
-	public void setCorsia(int corsia) {
-		this.corsia = corsia;
-		
+	public void setCorsia() {
 		for (int i = listeners.size()-1;i>=0;i--) {
 			listeners.get(i).setTime(this);
 		}

@@ -117,7 +117,7 @@ public class RaceWaiting implements Initializable{
 				for (int j = 0;j<classification[i][1].length;j++) {
 					Text textRowmanche = new Text();
 					textRowmanche.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
-					textRowmanche.setText(Math.round(classification[i][1][j])+"");
+					textRowmanche.setText(Math.round(classification[i][1][j])+"    ");
 					row.getChildren().add(textRowmanche);
 				}
 				Rectangle space = new Rectangle();

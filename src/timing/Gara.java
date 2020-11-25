@@ -17,10 +17,10 @@ public class Gara extends Evento{
 		Float[][][] classification = piloti.stream().map(x -> 
 		new Float[][]
 				{
-				new Float[] {x.getId()},
-				Arrays.stream(x.getLanes()).map(y -> (float)y.getNumeroDiGiri()).toArray(size -> new Float[size]),
-				new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getTimeFromStart()).sum()},
-				new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getNumeroDiGiri()).sum()}
+					new Float[] {x.getId()},
+					Arrays.stream(x.getLanes()).map(y -> (float)y.getNumeroDiGiri()).toArray(size -> new Float[size]),
+					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getTimeFromStart()).sum()},
+					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getNumeroDiGiri()).sum()}
 				}
 				).toArray(size -> new Float[size][4][new Dati().getNumCorsie()]);
 		

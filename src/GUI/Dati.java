@@ -25,36 +25,9 @@ public class Dati {
 	private static Colore qualifingLane;
 	private static int qualifingPeriod;
 	private static int mancheDuration;
-
-	public Dati() {
-		try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
-			numCorsie = (int)fileLanes.size()/2;
-			colori = new Colore[numCorsie];
-			swap = new int[numCorsie];
-			ByteBuffer buffer = ByteBuffer.allocate(numCorsie*2);
-			fileLanes.read(buffer);
-			int dato;
-			for (int i = 0; i<numCorsie*2;i++) {
-				dato = (int)buffer.get(i);
-				if (i%2==0) {
-					colori[i/2] = Colore.BLUE.getColore(dato);
-				} else {
-					swap[i/2] = dato;
-				}
-			}
-			
-		} catch(IOException e){
-			System.out.println("eccezione!!");
-		}
-		try(FileChannel fileMinLapTime = (FileChannel) Files.newByteChannel(Path.of("settings minlaptime.config"), StandardOpenOption.READ)){
-			ByteBuffer buffer = ByteBuffer.allocate(4);
-			fileMinLapTime.read(buffer);
-			buffer.rewind();
-			minLapTime = buffer.getFloat();
-		} catch(IOException e){
-			System.out.println("eccezione!!");
-		}
-	}
+	private static int[] requiredSensor;
+	private static int[][] additionalSensors;
+	private static int[] rele;
 	
 	public static void setBackground(Pane practice,int heigth,int width) {
 		for (int i = 0; i<numCorsie;i++) {
@@ -70,18 +43,90 @@ public class Dati {
 	}
 	
 	public int getNumCorsie() {
+		if (numCorsie==0)
+			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
+				numCorsie = (int)fileLanes.size()/2;
+				colori = new Colore[numCorsie];
+				swap = new int[numCorsie];
+				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*2);
+				fileLanes.read(buffer);
+				int dato;
+				for (int i = 0; i<numCorsie*2;i++) {
+					dato = (int)buffer.get(i);
+					if (i%2==0) {
+						colori[i/2] = Colore.BLUE.getColore(dato);
+					} else {
+						swap[i/2] = dato;
+					}
+				}
+			
+			} catch(IOException e){
+				System.out.println("eccezione!!");
+			}
 		return numCorsie;
 	}
 	
 	public Colore[] getColori() {
+		if (colori == null) {
+			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
+				numCorsie = (int)fileLanes.size()/2;
+				colori = new Colore[numCorsie];
+				swap = new int[numCorsie];
+				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*2);
+				fileLanes.read(buffer);
+				int dato;
+				for (int i = 0; i<numCorsie*2;i++) {
+					dato = (int)buffer.get(i);
+					if (i%2==0) {
+						colori[i/2] = Colore.BLUE.getColore(dato);
+					} else {
+						swap[i/2] = dato;
+					}
+				}
+			
+			} catch(IOException e){
+				System.out.println("eccezione!!");
+			}
+		}
 		return colori;
 	}
 	
 	public int[] getSwap() {
+		if (swap==null) {
+			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
+				numCorsie = (int)fileLanes.size()/2;
+				colori = new Colore[numCorsie];
+				swap = new int[numCorsie];
+				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*2);
+				fileLanes.read(buffer);
+				int dato;
+				for (int i = 0; i<numCorsie*2;i++) {
+					dato = (int)buffer.get(i);
+					if (i%2==0) {
+						colori[i/2] = Colore.BLUE.getColore(dato);
+					} else {
+						swap[i/2] = dato;
+					}
+				}
+			
+			} catch(IOException e){
+				System.out.println("eccezione!!");
+			}
+		}
 		return swap;
 	}
 	
 	public float getMinLapTime() {
+		if (minLapTime == 0) {
+			try(FileChannel fileMinLapTime = (FileChannel) Files.newByteChannel(Path.of("settings minlaptime.config"), StandardOpenOption.READ)){
+				ByteBuffer buffer = ByteBuffer.allocate(4);
+				fileMinLapTime.read(buffer);
+				buffer.rewind();
+				minLapTime = buffer.getFloat();
+			} catch(IOException e){
+				System.out.println("eccezione!!");
+			}
+		}
 		return minLapTime;
 	}
 
@@ -171,6 +216,77 @@ public class Dati {
 
 	public int getCodeQualyLane() {
 		return Arrays.asList(colori).indexOf(qualifingLane);
+	}
+	
+	public int[] getRequiredSensor() {
+		if (requiredSensor==null) {
+			try(FileChannel fileRequiredsensors = (FileChannel) Files.newByteChannel(Path.of("settings Requiredsensors.config"), StandardOpenOption.READ)){
+				requiredSensor = new int[getNumCorsie()];
+				rele = new int[numCorsie];
+				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*8);
+				fileRequiredsensors.read(buffer);
+				int dato;
+				for (int i = 0; i<numCorsie*8;i++) {
+					dato = (int)buffer.get(i);
+					if (i%2==0) {
+						requiredSensor[i/2] = dato;
+					} else {
+						rele[i/2] = dato;
+					}
+				}
+			
+			} catch(IOException e){
+				System.out.println("eccezione!!");
+			}
+		}
+		return requiredSensor;
+	}
+	
+	public int[] getRele() {
+		if (rele==null) {
+			try(FileChannel fileRequiredsensors = (FileChannel) Files.newByteChannel(Path.of("settings Requiredsensors.config"), StandardOpenOption.READ)){
+				requiredSensor = new int[getNumCorsie()];
+				rele = new int[numCorsie];
+				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*8);
+				fileRequiredsensors.read(buffer);
+				int dato;
+				for (int i = 0; i<numCorsie*8;i++) {
+					dato = (int)buffer.get(i);
+					if (i%2==0) {
+						requiredSensor[i/2] = dato;
+					} else {
+						rele[i/2] = dato;
+					}
+				}
+			
+			} catch(IOException e){
+				System.out.println("eccezione!!");
+			}
+		}
+		return rele;
+	}
+	
+	public int[] getAddtionalSensor() {
+		if (requiredSensor==null) {
+			try(FileChannel fileAdditionalsensors = (FileChannel) Files.newByteChannel(Path.of("settings Additionalsensors.config"), StandardOpenOption.READ)){
+				additionalSensors = new int[getNumCorsie()][2];
+				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*8);
+				fileAdditionalsensors.read(buffer);
+				int dato;
+				for (int i = 0; i<numCorsie*8;i++) {
+					dato = (int)buffer.get(i);
+					if (i%2==0) {
+						additionalSensors[i][0] = dato;
+					} else {
+						additionalSensors[i][1] = dato;
+					}
+				}
+			
+			} catch(IOException e){
+				System.out.println("eccezione!!");
+			}
+		}
+		return requiredSensor;
 	}
 	
 }
