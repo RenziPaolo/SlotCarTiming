@@ -7,10 +7,11 @@ module slotcartiming {
 	requires javafx.swing;
 	requires javafx.web;
 	requires java.xml;
-	requires diozero.imu.devices;
-	requires diozero.provider.pigpio;
 	requires diozero.core;
-	requires diozero.provider.wiringpi;
+	requires diozero.provider.pigpio;
+	requires org.tinylog.api;
+	requires org.tinylog.impl;
 	
-	opens GUI to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.web;
+	
+	opens GUI to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.web,org.tinylog.api,org.tinylog.impl;
 }

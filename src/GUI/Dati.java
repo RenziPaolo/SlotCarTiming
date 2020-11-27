@@ -226,12 +226,12 @@ public class Dati {
 				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*8);
 				fileRequiredsensors.read(buffer);
 				int dato;
-				for (int i = 0; i<numCorsie*8;i++) {
-					dato = (int)buffer.get(i);
-					if (i%2==0) {
-						requiredSensor[i/2] = dato;
+				for (int i = 0; i<numCorsie*8;i+=4) {
+					dato = (int)buffer.getInt(i);
+					if (i%8==0) {
+						requiredSensor[i/8] = dato;
 					} else {
-						rele[i/2] = dato;
+						rele[i/8] = dato;
 					}
 				}
 			

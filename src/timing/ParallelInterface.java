@@ -11,6 +11,7 @@ public class ParallelInterface {
 	public ParallelInterface(Sensore sensor) {
 		Dati data = new Dati();
 		interfaces = new Button[data.getNumCorsie()];
+		events = new TimingEvent[data.getNumCorsie()];
 		int[] sensorint = data.getRequiredSensor();
 		for (int i = 0;i<sensorint.length;i++) {
 			events[i] = new TimingEvent(new Object(),i);
