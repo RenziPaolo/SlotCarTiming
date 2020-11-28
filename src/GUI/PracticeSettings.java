@@ -54,7 +54,11 @@ public class PracticeSettings implements Initializable{
 		Practice prove = new Practice(practice);
 		Sensore sensor = new Sensore(new Prove(list, prove,1),data.getMinLapTime());
 		prove.addSensor(sensor);
-		ParallelInterface parInterface = new ParallelInterface(sensor);
+		try {
+			ParallelInterface parInterface = new ParallelInterface(sensor);
+		} catch (Error | Exception error) {
+			System.out.println("ERROR INITIALIZING TRACK INTERFACE");
+        }
 		test test =new test(6,new Prove(list, prove,1),sensor,10);	
 		test.testCorsie(6,10);
 		

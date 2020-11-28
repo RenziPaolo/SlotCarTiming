@@ -63,7 +63,11 @@ public class QualifingWaiting implements Initializable{
 				QualifingWaiting.qualifing = qualifing;
 				Sensore sensor = new Sensore(QualifingWaiting.qualifing,new Dati().getMinLapTime());
 				qualifingGUI.addSensor(sensor);
-				ParallelInterface parInterface = new ParallelInterface(sensor);
+				try {
+					ParallelInterface parInterface = new ParallelInterface(sensor);
+				} catch (Error | Exception error) {
+					System.out.println("ERROR INITIALIZING TRACK INTERFACE");
+		        }
 				test test = new test(6,qualifing,sensor,4);
 				QualifingWaiting.test = test;
 			} catch (IOException e1) {

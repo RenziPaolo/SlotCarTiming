@@ -142,11 +142,16 @@ public class RaceWaiting implements Initializable{
 			RaceWaiting.race = race;
 			Sensore sensor = new Sensore(race,new Dati().getMinLapTime());
 			raceGUI.addSensor(sensor);
-			ParallelInterface parInterface = new ParallelInterface(sensor);
+			try {
+				ParallelInterface parInterface = new ParallelInterface(sensor);
+			} catch (Error | Exception error) {
+				System.out.println("ERROR INITIALIZING TRACK INTERFACE");
+	        }
+			
 			test test = new test(6,race,sensor,7);
 			this.test = test;
 		} catch (IOException e1) {
-			e1.printStackTrace();
+//			e1.printStackTrace();
 		}
 		
 	}
