@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import testing.test;
-import timing.ParallelInterface;
+import timing.ParallelInterfaceButton;
 import timing.Pilota;
 import timing.Prove;
 import timing.Sensore;
@@ -55,7 +55,7 @@ public class PracticeSettings implements Initializable{
 		Sensore sensor = new Sensore(new Prove(list, prove,1),data.getMinLapTime());
 		prove.addSensor(sensor);
 		try {
-			ParallelInterface parInterface = new ParallelInterface(sensor);
+			ParallelInterfaceButton parInterface = new ParallelInterfaceButton(sensor);
 		} catch (Error | Exception error) {
 			System.out.println("ERROR INITIALIZING TRACK INTERFACE");
         }

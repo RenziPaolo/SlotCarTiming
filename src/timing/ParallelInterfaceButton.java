@@ -3,12 +3,12 @@ package timing;
 import com.diozero.devices.Button;
 import GUI.Dati;
 
-public class ParallelInterface {
+public class ParallelInterfaceButton {
 	
 	private static Button[] interfaces;
 	private static TimingEvent[] events;
 	
-	public ParallelInterface(Sensore sensor) {
+	public ParallelInterfaceButton(Sensore sensor) {
 		Dati data = new Dati();
 		interfaces = new Button[data.getNumCorsie()];
 		events = new TimingEvent[data.getNumCorsie()];
