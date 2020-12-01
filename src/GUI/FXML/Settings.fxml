@@ -17,7 +17,7 @@
          </font>
       </Text>
       <VBox fx:id="lanesPreferences" layoutX="25.0" layoutY="190.0" prefHeight="300.0" prefWidth="828.0" />
-      <Text layoutX="175.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Corsie">
+      <Text layoutX="447.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Circuito">
          <font>
             <Font size="25.0" />
          </font>
