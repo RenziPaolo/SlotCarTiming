@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import timing.Corsia;
+import timing.Pilota;
 import timing.Sensore;
 
 public class Practice implements Event,Initializable{
@@ -61,21 +62,21 @@ public class Practice implements Event,Initializable{
 		numberCorsie = new Text[numCorsie];
 		for (int i = 0; i<numCorsie;i++) {
 			Text currentTesto = new Text();
-			currentTesto.setLayoutX(70);
+			currentTesto.setLayoutX(100);
 			currentTesto.setLayoutY(((i+1)*120)-35);
 			currentTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)110));
 			currentCorsie[i] = currentTesto;
 			current.getChildren().add(currentTesto);
 			
 			Text bestTesto = new Text();
-			bestTesto.setLayoutX(70);
+			bestTesto.setLayoutX(100);
 			bestTesto.setLayoutY(((i+1)*120)-10);
 			bestTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)30));
 			bestCorsie[i] = bestTesto;
 			current.getChildren().add(bestTesto);
 			
 			Text numberTesto = new Text();
-			numberTesto.setLayoutX(250);
+			numberTesto.setLayoutX(280);
 			numberTesto.setLayoutY(((i+1)*120)-10);
 			numberTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)30));
 			numberCorsie[i] = numberTesto;
@@ -125,7 +126,8 @@ public class Practice implements Event,Initializable{
 			selezione.setPickOnBounds(true);
 			selezione.setOnAction((e->{
 				Integer numCorsia = Arrays.asList(selezioneCorsie).indexOf(e.getSource());
-				Corsia corsia = sensor.getEvento().getPiloti().get(numCorsia).getLanes()[sensor.getEvento().getPiloti().get(numCorsia).getselectedLane()];
+				Pilota test = sensor.getEvento().getPiloti().get(numCorsia);
+				Corsia corsia = sensor.getEvento().getPiloti().get(numCorsia).getLanes()[0];
 				ArrayList<Float> giri =  corsia.getGiri();
 				classification.getChildren().clear();
 				for (int j = 0; j<corsia.getNumeroDiGiri(); j++) {
@@ -133,12 +135,12 @@ public class Practice implements Event,Initializable{
 					Text numGiri = new Text();
 					Text space = new Text();
 					space.setText("         ");
-					numGiri.setText("Giro N"+(j+1));
+					numGiri.setText("Giro N "+(j+1));
 					tempoGiri.setText(giri.get(j)+"");
+					numGiri.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)30));
+					tempoGiri.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)30));
 					HBox riga = new HBox();
 					riga.getChildren().addAll(numGiri,space,tempoGiri);
-					System.out.println(numGiri.getText());
-					System.out.println(tempoGiri.getText());
 					classification.getChildren().add(riga);
 					}
 				}));

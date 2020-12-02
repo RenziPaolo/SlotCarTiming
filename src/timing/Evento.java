@@ -14,7 +14,7 @@ public abstract class Evento {
 		this.piloti = piloti;
 		this.GUI = GUI;
 		this.currentHeat = currentHeat;
-		this.currentManche = 1;
+		this.currentManche = 0;
 	}
 	
 	public Evento(ArrayList<Pilota> piloti, Event GUI,int currentHeat, int currentManche) {
