@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-11.0.9">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx.base.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx.controls.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx.fxml.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx.graphics.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx.media.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx.swing.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx.web.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/javafx/javafx-sdk-11.0.2/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-distribution-0.13-bin/diozero-distribution-0.13/diozero-core-0.13.jar" sourcepath="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-master">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-distribution-0.13-bin/diozero-distribution-0.13/diozero-provider-pigpio-0.13.jar" sourcepath="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-master/diozero-provider-pigpio">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-distribution-0.13-bin/diozero-distribution-0.13/tinylog-api-2.1.2.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-distribution-0.13-bin/diozero-distribution-0.13/tinylog-impl-2.1.2.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+	<referencedentry kind="lib" path="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-distribution-0.13-bin/diozero-distribution-0.13/pigpioj-java-2.4.jar" sourcepath="C:/Program Files/Java/jdk-11.0.9/lib/GPIO library/diozero-master/diozero-provider-pigpio/src/main/java/com/diozero/internal/provider/pigpioj"/>
+</classpath>
