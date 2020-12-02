@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class Dati {
@@ -29,7 +30,7 @@ public class Dati {
 	private static int[][] additionalSensors;
 	private static int[] rele;
 	
-	public static void setBackground(Pane practice,int heigth,int width) {
+	public static void setBackground(Pane pane,int heigth,int width) {
 		for (int i = 0; i<numCorsie;i++) {
 			Rectangle rettangolo = new Rectangle();
 			float[] colorcode = colori[i].getRGB();
@@ -38,7 +39,13 @@ public class Dati {
 			rettangolo.setLayoutY((i)*heigth);
 			rettangolo.setHeight(heigth);
 			rettangolo.setWidth(width);
-			practice.getChildren().add(rettangolo);
+			Text num = new Text();
+			num.setLayoutX(0);
+			num.setLayoutY(((i+1)*120-20));
+			num.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)130));
+			num.setText(""+(i+1));
+			pane.getChildren().add(rettangolo);
+			pane.getChildren().add(num);
 		}
 	}
 	

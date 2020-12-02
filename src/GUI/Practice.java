@@ -61,21 +61,21 @@ public class Practice implements Event,Initializable{
 		numberCorsie = new Text[numCorsie];
 		for (int i = 0; i<numCorsie;i++) {
 			Text currentTesto = new Text();
-			currentTesto.setLayoutX(20);
+			currentTesto.setLayoutX(70);
 			currentTesto.setLayoutY(((i+1)*120)-35);
 			currentTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)110));
 			currentCorsie[i] = currentTesto;
 			current.getChildren().add(currentTesto);
 			
 			Text bestTesto = new Text();
-			bestTesto.setLayoutX(20);
+			bestTesto.setLayoutX(70);
 			bestTesto.setLayoutY(((i+1)*120)-10);
 			bestTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)30));
 			bestCorsie[i] = bestTesto;
 			current.getChildren().add(bestTesto);
 			
 			Text numberTesto = new Text();
-			numberTesto.setLayoutX(200);
+			numberTesto.setLayoutX(250);
 			numberTesto.setLayoutY(((i+1)*120)-10);
 			numberTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)30));
 			numberCorsie[i] = numberTesto;

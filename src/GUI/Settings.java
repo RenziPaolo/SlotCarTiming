@@ -46,7 +46,7 @@ public class Settings implements Initializable{
 			if(dati.getNumCorsie()!=0) 
 				numberOfLanes = dati.getNumCorsie();
 			
-			numberOFLanes.setItems(FXCollections.observableArrayList("6","4","2"));
+			numberOFLanes.setItems(FXCollections.observableArrayList("8","6","4","2"));
 			for(int k = 1;k<= numberOfLanes;k++) 
 				lanesPreferences.getChildren().add(getLineCorsie(k,numberOfLanes));
 			
@@ -92,7 +92,7 @@ public class Settings implements Initializable{
 		ChoiceBox<String> colori = new ChoiceBox<String>();
 		ChoiceBox<Integer> scambio = new ChoiceBox<Integer>();
 		colori.setItems(FXCollections.observableArrayList("Giallo","Verde","Bianco","Rosso","Blu","Arancione","Azzurro"));
-		colori.setValue(colors[corsiaAttuale-1].toStringlanguage(2));
+
 		ChoiceBox<Integer> pinsensor = new ChoiceBox<Integer>();
 		pinsensor.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30);
 		ChoiceBox<Integer> pinrele = new ChoiceBox<Integer>();
@@ -103,7 +103,13 @@ public class Settings implements Initializable{
 		pinsensor2.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30);
 		for (int i = 1;i<= totaleCorsie;i++)
 			scambio.getItems().add(i);
-		scambio.setValue(swap[corsiaAttuale-1]+1);
+		try {
+			colori.setValue(colors[corsiaAttuale-1].toStringlanguage(2));
+			scambio.setValue(swap[corsiaAttuale-1]+1);
+		} catch (Exception e) {
+			System.out.print("nessun dato già salvato");
+			
+		}
 		line.getChildren().addAll(space,number,space1,colori,space2,scambio,space3,pinsensor,space4,pinrele,space5,pinsensor1,space6,pinsensor2);
 		return line;
 	}
