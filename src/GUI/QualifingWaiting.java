@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import testing.test;
-import timing.ParallelInterfaceButton;
 import timing.Pilota;
 import timing.Qualifica;
 import timing.Sensore;
@@ -63,11 +62,6 @@ public class QualifingWaiting implements Initializable{
 				QualifingWaiting.qualifing = qualifing;
 				Sensore sensor = new Sensore(QualifingWaiting.qualifing,new Dati().getMinLapTime());
 				qualifingGUI.addSensor(sensor);
-				try {
-					ParallelInterfaceButton parInterface = new ParallelInterfaceButton(sensor);
-				} catch (Error | Exception error) {
-					System.out.println("ERROR INITIALIZING TRACK INTERFACE");
-		        }
 				test test = new test(6,qualifing,sensor,4);
 				QualifingWaiting.test = test;
 			} catch (IOException e1) {

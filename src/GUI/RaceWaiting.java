@@ -25,7 +25,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import testing.test;
 import timing.Gara;
-import timing.ParallelInterfaceButton;
 import timing.Pilota;
 import timing.Sensore;
 
@@ -141,13 +140,7 @@ public class RaceWaiting implements Initializable{
 			Gara race = new Gara(drivers, raceGUI,1,0);
 			RaceWaiting.race = race;
 			Sensore sensor = new Sensore(race,new Dati().getMinLapTime());
-			raceGUI.addSensor(sensor);
-			try {
-				ParallelInterfaceButton parInterface = new ParallelInterfaceButton(sensor);
-			} catch (Error | Exception error) {
-				System.out.println("ERROR INITIALIZING TRACK INTERFACE");
-	        }
-			
+			raceGUI.addSensor(sensor);	
 			test test = new test(6,race,sensor,7);
 			this.test = test;
 		} catch (IOException e1) {

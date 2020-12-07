@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -24,7 +25,7 @@ public class Practice implements Event,Initializable{
 	@FXML private Text rightTimer = new Text();
 	@FXML private Button start;
 	@FXML private Button stop;
-	@FXML private VBox classification;
+	@FXML private ScrollPane classification;
 	
 	private static MyTimer timer;
 	private static Text[] currentCorsie;
@@ -127,9 +128,10 @@ public class Practice implements Event,Initializable{
 			selezione.setOnAction((e->{
 				Integer numCorsia = Arrays.asList(selezioneCorsie).indexOf(e.getSource());
 				Pilota test = sensor.getEvento().getPiloti().get(numCorsia);
-				Corsia corsia = sensor.getEvento().getPiloti().get(numCorsia).getLanes()[0];
+				Corsia corsia = sensor.getEvento().getPiloti().get(numCorsia).getLanes()[0 ];
 				ArrayList<Float> giri =  corsia.getGiri();
-				classification.getChildren().clear();
+				VBox classificationData = new VBox();
+				classificationData.getChildren().clear();
 				for (int j = 0; j<corsia.getNumeroDiGiri(); j++) {
 					Text tempoGiri = new Text();
 					Text numGiri = new Text();
@@ -141,8 +143,9 @@ public class Practice implements Event,Initializable{
 					tempoGiri.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)30));
 					HBox riga = new HBox();
 					riga.getChildren().addAll(numGiri,space,tempoGiri);
-					classification.getChildren().add(riga);
+					classificationData.getChildren().add(riga);
 					}
+				classification.setContent(classificationData);
 				}));
 			selezioneCorsie[i] = selezione;
 		}
