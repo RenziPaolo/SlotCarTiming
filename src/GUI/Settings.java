@@ -40,7 +40,7 @@ public class Settings implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		try {
-			Dati dati = new Dati();
+			Data dati = new Data();
 			colors = dati.getColori();
 			swap = dati.getSwap();
 			if(dati.getNumCorsie()!=0) 
@@ -124,7 +124,7 @@ public class Settings implements Initializable{
 				swap.add(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(5)	).getValue()-1);
 			}
 		} catch(java.lang.NullPointerException e1) {
-			Dati.error();
+			Data.error();
 			return;
 		}
 
@@ -139,7 +139,7 @@ public class Settings implements Initializable{
 			filelanes.write(buffer);
 			
 		} catch (IOException e) {
-			Dati.error();
+			Data.error();
 			return;
 		}
 		
@@ -150,14 +150,14 @@ public class Settings implements Initializable{
 			fileMinLapTime.write(buffer);
 			
 		} catch (IOException e) {
-			Dati.error();
+			Data.error();
 			return;
 		}
 		try {
 			Files.writeString(Path.of("settings font.config"), font.getValue(), StandardOpenOption.WRITE,StandardOpenOption.CREATE);
 			
 		} catch (IOException e) {
-			Dati.error();
+			Data.error();
 			return;
 		}
 		
@@ -168,7 +168,7 @@ public class Settings implements Initializable{
 			fileMancheDuration.write(buffer);
 			
 		} catch (Exception e) {
-			Dati.error();
+			Data.error();
 			return;
 		}
 		try (FileChannel fileRequiredsensors = (FileChannel) Files.newByteChannel(Path.of("settings Requiredsensors.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
@@ -181,7 +181,7 @@ public class Settings implements Initializable{
 			fileRequiredsensors.write(buffer);
 			
 		} catch (Exception e) {
-			Dati.error();
+			Data.error();
 			return;
 		}
 		try (FileChannel fileAdditionalsensors = (FileChannel) Files.newByteChannel(Path.of("settings Additionalsensors.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
@@ -199,7 +199,7 @@ public class Settings implements Initializable{
 		try {
 			new MainMenu().getStage().setScene(new Scene(FXMLLoader.load(getClass().getResource("FXML/Main Menu.fxml"))));
 		} catch (IOException e) {
-			Dati.error();
+			Data.error();
 			return;
 		}
 		

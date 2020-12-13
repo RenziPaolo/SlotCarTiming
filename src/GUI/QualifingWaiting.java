@@ -18,16 +18,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import testing.test;
-import timing.Pilota;
-import timing.Qualifica;
-import timing.Sensore;
+import timing.Driver;
+import timing.QualifingT;
+import timing.Sensor;
 
 public class QualifingWaiting implements Initializable{
 	@FXML private AnchorPane list;
 	@FXML private VBox classification;
 	
 	private Button[] buttons;
-	private static Qualifica qualifing;
+	private static QualifingT qualifing;
 	private static Pane qualifingPane;
 	private static Qualifing qualifingGUI;
 	private static testing.test test;
@@ -45,22 +45,22 @@ public class QualifingWaiting implements Initializable{
 			String[] participants = new RaceSettings().getParticipants();
 			if (participants == null)
 				return;
-			ArrayList<Pilota> list = new ArrayList<Pilota>();
+			ArrayList<Driver> list = new ArrayList<Driver>();
 			for (int j = 0; j< participants.length;j++){
-				Pilota pilota = new Pilota(participants[j],(float)j,Arrays.asList(new Dati().getColori()).indexOf(new Dati().getQualifingLane()),0);
+				Driver pilota = new Driver(participants[j],(float)j,Arrays.asList(new Data().getColori()).indexOf(new Data().getQualifingLane()),0);
 				list.add(pilota);
 			}
 			
 			try {
 				Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
-				Dati.setBackground(qualifingPane,120,500);
+				Data.setBackground(qualifingPane,120,500);
 				QualifingWaiting.qualifingPane = qualifingPane;
 				Qualifing qualifingGUI = new Qualifing(qualifingPane);
 				QualifingWaiting.qualifingGUI = qualifingGUI;
 	
-				Qualifica qualifing = new Qualifica(list, qualifingGUI,1);
+				QualifingT qualifing = new QualifingT(list, qualifingGUI,1);
 				QualifingWaiting.qualifing = qualifing;
-				Sensore sensor = new Sensore(QualifingWaiting.qualifing,new Dati().getMinLapTime());
+				Sensor sensor = new Sensor(QualifingWaiting.qualifing,new Data().getMinLapTime());
 				qualifingGUI.addSensor(sensor);
 				test test = new test(6,qualifing,sensor,4);
 				QualifingWaiting.test = test;
@@ -72,7 +72,7 @@ public class QualifingWaiting implements Initializable{
 		
 	}
 	
-	public Qualifica getQualifing() {
+	public QualifingT getQualifing() {
 		return qualifing;
 	}
 	

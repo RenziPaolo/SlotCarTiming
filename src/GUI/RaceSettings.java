@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import timing.Qualifica;
+import timing.QualifingT;
 
 public class RaceSettings implements Initializable{
 	@FXML private VBox startingList;
@@ -85,7 +85,7 @@ public class RaceSettings implements Initializable{
 		for (int i = 0 ; i<startingList.getChildren().size();i++) {
 			participant = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).getText();
 			if (participant.equals("")) {
-				Dati.error();
+				Data.error();
 				return;
 			}
 			participants[i] = participant;
@@ -93,7 +93,7 @@ public class RaceSettings implements Initializable{
 		
 		if (qualy.isSelected()) {
 			if (qualyduration.getText().equals("")) {
-				Dati.error();
+				Data.error();
 				return;
 			}
 			
@@ -121,7 +121,7 @@ public class RaceSettings implements Initializable{
 				
 				String raceNameString = raceName.getText();
 				if (raceNameString.equals("")) {
-					Dati.error();
+					Data.error();
 					return;
 				}
 				
@@ -129,7 +129,7 @@ public class RaceSettings implements Initializable{
 					startingLane = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).getText();
 					StartingHeat = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).getText();
 					if (startingLane.equals("") || StartingHeat.equals("")) {
-						Dati.error();
+						Data.error();
 						return;
 					}
 					startingInfo[i][0] = Integer.valueOf(StartingHeat);
@@ -138,7 +138,7 @@ public class RaceSettings implements Initializable{
 				new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml")));
 			} catch (IOException e) {
 				e.printStackTrace();
-				Dati.error();
+				Data.error();
 				return;
 			}
 			
@@ -190,7 +190,7 @@ public class RaceSettings implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		qualyduration.setDisable(false);
-		Dati data = new Dati();
+		Data data = new Data();
 		qualyduration.setText(data.getQualifingPeriod()+"");
 		Colore[] colors = data.getColori();
 		String[] choices = new String[colors.length];
@@ -200,7 +200,7 @@ public class RaceSettings implements Initializable{
 		choiceLane.setItems(FXCollections.observableArrayList(choices));
 		choiceLane.setValue(data.getQualifingLane().toStringlanguage(1));
 		int numLanes = data.getNumCorsie();
-		Qualifica classification = new QualifingWaiting().getQualifing();
+		QualifingT classification = new QualifingWaiting().getQualifing();
 		if (classification==null)
 			return;
 		for (int i = 0;i<participants.length-1;i++) 
@@ -209,7 +209,7 @@ public class RaceSettings implements Initializable{
 		starting(numLanes,classification,classification.getClassification().length);
 	}
 	
-	private void starting(int numLanes, Qualifica classification,int index) {
+	private void starting(int numLanes, QualifingT classification,int index) {
 		Float[][][] classificationFloat = classification.getClassification();
 		if ((index+1/2)<=numLanes*2) {
 			for(int i = 0;i<index;i++) {

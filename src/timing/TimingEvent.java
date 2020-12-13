@@ -5,7 +5,7 @@ import java.util.EventObject;
 
 public class TimingEvent extends EventObject{
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Sensore> listeners = new ArrayList<Sensore>(); 
+	private ArrayList<Sensor> listeners = new ArrayList<Sensor>(); 
 	private int corsia;
 	
 	public TimingEvent(Object source, int corsia) {
@@ -17,7 +17,7 @@ public class TimingEvent extends EventObject{
 		return corsia;
 	}
 
-	public void addSensore(Sensore listener) {
+	public void addSensore(Sensor listener) {
 		listeners.add(listener);
 	}
 	

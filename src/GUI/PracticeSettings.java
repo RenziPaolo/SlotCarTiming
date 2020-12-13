@@ -16,9 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import testing.test;
-import timing.Pilota;
-import timing.Prove;
-import timing.Sensore;
+import timing.Driver;
+import timing.Test;
+import timing.Sensor;
 
 public class PracticeSettings implements Initializable{
 	
@@ -40,20 +40,20 @@ public class PracticeSettings implements Initializable{
 		
 		Pane practice = FXMLLoader.load(getClass().getResource("FXML/Practice.fxml"));
 		
-		Dati data = new Dati();
+		Data data = new Data();
 		int numCorsie =  data.getNumCorsie();
-		ArrayList<Pilota> list = new ArrayList<Pilota>();
+		ArrayList<Driver> list = new ArrayList<Driver>();
 		
 		for (int i = 0; i<(numCorsie);i++) {
-			Pilota pilota = new Pilota("test",(float)i,i,1);
+			Driver pilota = new Driver("test",(float)i,i,1);
 			list.add(pilota);
 		}
 		
-		Dati.setBackground(practice,120,500);
+		Data.setBackground(practice,120,500);
 		Practice prove = new Practice(practice);
-		Sensore sensor = new Sensore(new Prove(list, prove,1),data.getMinLapTime());
+		Sensor sensor = new Sensor(new Test(list, prove,1),data.getMinLapTime());
 		prove.addSensor(sensor);
-		test test =new test(6,new Prove(list, prove,1),sensor,10);	
+		test test =new test(6,new Test(list, prove,1),sensor,10);	
 		test.testCorsie(6,10);
 		
 
@@ -63,7 +63,7 @@ public class PracticeSettings implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		durata.setText(String.valueOf(new Dati().getPeriod()));
+		durata.setText(String.valueOf(new Data().getPeriod()));
 	}
 	
 	public int getDuration() {

@@ -7,13 +7,13 @@ import timing.*;
 
 public class test extends TimerTask{
 	
-	private static Sensore sensore;
+	private static Sensor sensore;
 	private int corsia;
 	private int numberOfLaps;
-	public static Evento evento;
+	public static EventT evento;
 
 	
-	public test(int corsia, Evento evento,Sensore sensore,int numberOfLaps) {
+	public test(int corsia, EventT evento,Sensor sensore,int numberOfLaps) {
 		this.corsia = corsia;
 //		HashMap<Integer,Pilota> configurazione = new HashMap<Integer,Pilota>();
 //		try(FileChannel file = (FileChannel) Files.newByteChannel(Path.of("settings.txt"), StandardOpenOption.READ)){
@@ -38,7 +38,7 @@ public class test extends TimerTask{
 			new Timer().schedule(new test(i,evento,sensore,numberOfLaps),0);
 	}
 	
-	private void generateRandomTimingEvent(int upperLimit, int lowerLimit, int numberOfLaps, int lanes,Sensore sensore) {
+	private void generateRandomTimingEvent(int upperLimit, int lowerLimit, int numberOfLaps, int lanes,Sensor sensore) {
 		TimingEvent timing = new TimingEvent(new Object(),lanes-1);
 		timing.addSensore(sensore);
 		for(;numberOfLaps>0 ;numberOfLaps--) {

@@ -15,10 +15,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class Dati {
+public class Data {
 	
-	private static int numCorsie;
-	private static Colore[] colori;
+	private static int numLanes;
+	private static Colore[] colors;
 	private static int[] swap;
 	private static float minLapTime;
 	private static int period;
@@ -31,37 +31,37 @@ public class Dati {
 	private static int[] rele;
 	
 	public static void setBackground(Pane pane,int heigth,int width) {
-		for (int i = 0; i<numCorsie;i++) {
-			Rectangle rettangolo = new Rectangle();
-			float[] colorcode = colori[i].getRGB();
-			rettangolo.setFill(Color.color(colorcode[0], colorcode[1], colorcode[2]));
-			rettangolo.setLayoutX(0);
-			rettangolo.setLayoutY((i)*heigth);
-			rettangolo.setHeight(heigth);
-			rettangolo.setWidth(width);
+		for (int i = 0; i<numLanes;i++) {
+			Rectangle rectangle = new Rectangle();
+			float[] colorcode = colors[i].getRGB();
+			rectangle.setFill(Color.color(colorcode[0], colorcode[1], colorcode[2]));
+			rectangle.setLayoutX(0);
+			rectangle.setLayoutY((i)*heigth);
+			rectangle.setHeight(heigth);
+			rectangle.setWidth(width);
 			Text num = new Text();
 			num.setLayoutX(0);
 			num.setLayoutY(((i+1)*120-20));
-			num.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)130));
+			num.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)130));
 			num.setText(""+(i+1));
-			pane.getChildren().add(rettangolo);
+			pane.getChildren().add(rectangle);
 			pane.getChildren().add(num);
 		}
 	}
 	
 	public int getNumCorsie() {
-		if (numCorsie==0)
+		if (numLanes==0)
 			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
-				numCorsie = (int)fileLanes.size()/2;
-				colori = new Colore[numCorsie];
-				swap = new int[numCorsie];
-				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*2);
+				numLanes = (int)fileLanes.size()/2;
+				colors = new Colore[numLanes];
+				swap = new int[numLanes];
+				ByteBuffer buffer = ByteBuffer.allocate(numLanes*2);
 				fileLanes.read(buffer);
 				int dato;
-				for (int i = 0; i<numCorsie*2;i++) {
+				for (int i = 0; i<numLanes*2;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
-						colori[i/2] = Colore.BLUE.getColore(dato);
+						colors[i/2] = Colore.BLUE.getColore(dato);
 					} else {
 						swap[i/2] = dato;
 					}
@@ -70,22 +70,22 @@ public class Dati {
 			} catch(IOException e){
 				System.out.println("eccezione!!");
 			}
-		return numCorsie;
+		return numLanes;
 	}
 	
 	public Colore[] getColori() {
-		if (colori == null) {
+		if (colors == null) {
 			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
-				numCorsie = (int)fileLanes.size()/2;
-				colori = new Colore[numCorsie];
-				swap = new int[numCorsie];
-				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*2);
+				numLanes = (int)fileLanes.size()/2;
+				colors = new Colore[numLanes];
+				swap = new int[numLanes];
+				ByteBuffer buffer = ByteBuffer.allocate(numLanes*2);
 				fileLanes.read(buffer);
 				int dato;
-				for (int i = 0; i<numCorsie*2;i++) {
+				for (int i = 0; i<numLanes*2;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
-						colori[i/2] = Colore.BLUE.getColore(dato);
+						colors[i/2] = Colore.BLUE.getColore(dato);
 					} else {
 						swap[i/2] = dato;
 					}
@@ -95,22 +95,22 @@ public class Dati {
 				System.out.println("eccezione!!");
 			}
 		}
-		return colori;
+		return colors;
 	}
 	
 	public int[] getSwap() {
 		if (swap==null) {
 			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
-				numCorsie = (int)fileLanes.size()/2;
-				colori = new Colore[numCorsie];
-				swap = new int[numCorsie];
-				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*2);
+				numLanes = (int)fileLanes.size()/2;
+				colors = new Colore[numLanes];
+				swap = new int[numLanes];
+				ByteBuffer buffer = ByteBuffer.allocate(numLanes*2);
 				fileLanes.read(buffer);
 				int dato;
-				for (int i = 0; i<numCorsie*2;i++) {
+				for (int i = 0; i<numLanes*2;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
-						colori[i/2] = Colore.BLUE.getColore(dato);
+						colors[i/2] = Colore.BLUE.getColore(dato);
 					} else {
 						swap[i/2] = dato;
 					}
@@ -222,18 +222,18 @@ public class Dati {
 	}
 
 	public int getCodeQualyLane() {
-		return Arrays.asList(colori).indexOf(qualifingLane);
+		return Arrays.asList(colors).indexOf(qualifingLane);
 	}
 	
 	public int[] getRequiredSensor() {
 		if (requiredSensor==null) {
 			try(FileChannel fileRequiredsensors = (FileChannel) Files.newByteChannel(Path.of("settings Requiredsensors.config"), StandardOpenOption.READ)){
 				requiredSensor = new int[getNumCorsie()];
-				rele = new int[numCorsie];
-				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*8);
+				rele = new int[numLanes];
+				ByteBuffer buffer = ByteBuffer.allocate(numLanes*8);
 				fileRequiredsensors.read(buffer);
 				int dato;
-				for (int i = 0; i<numCorsie*8;i+=4) {
+				for (int i = 0; i<numLanes*8;i+=4) {
 					dato = (int)buffer.getInt(i);
 					if (i%8==0) {
 						requiredSensor[i/8] = dato;
@@ -253,11 +253,11 @@ public class Dati {
 		if (rele==null) {
 			try(FileChannel fileRequiredsensors = (FileChannel) Files.newByteChannel(Path.of("settings Requiredsensors.config"), StandardOpenOption.READ)){
 				requiredSensor = new int[getNumCorsie()];
-				rele = new int[numCorsie];
-				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*8);
+				rele = new int[numLanes];
+				ByteBuffer buffer = ByteBuffer.allocate(numLanes*8);
 				fileRequiredsensors.read(buffer);
 				int dato;
-				for (int i = 0; i<numCorsie*8;i++) {
+				for (int i = 0; i<numLanes*8;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
 						requiredSensor[i/2] = dato;
@@ -277,10 +277,10 @@ public class Dati {
 		if (requiredSensor==null) {
 			try(FileChannel fileAdditionalsensors = (FileChannel) Files.newByteChannel(Path.of("settings Additionalsensors.config"), StandardOpenOption.READ)){
 				additionalSensors = new int[getNumCorsie()][2];
-				ByteBuffer buffer = ByteBuffer.allocate(numCorsie*8);
+				ByteBuffer buffer = ByteBuffer.allocate(numLanes*8);
 				fileAdditionalsensors.read(buffer);
 				int dato;
-				for (int i = 0; i<numCorsie*8;i++) {
+				for (int i = 0; i<numLanes*8;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
 						additionalSensors[i][0] = dato;

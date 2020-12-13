@@ -3,9 +3,9 @@ package timing;
 import java.util.ArrayList;
 import GUI.Event;
 
-public class Prove extends Evento{
+public class Test extends EventT{
 
-	public Prove(ArrayList<Pilota> piloti, Event GUI,int currentHeat) {
+	public Test(ArrayList<Driver> piloti, Event GUI,int currentHeat) {
 		super(piloti,GUI,currentHeat);
 	}
 

@@ -5,15 +5,15 @@ import java.util.Collections;
 
 import GUI.Colore;
 
-public class Corsia {
+public class Lane {
     private ArrayList<Float> laps = new ArrayList<Float>();
     private float lastLap;
     private int nome;
     private Colore colore;
     
-    public Corsia(int nome,Colore colore) {
-    	this.nome = nome;
-    	this.colore = colore;
+    public Lane(int name,Colore color) {
+    	this.nome = name;
+    	this.colore = color;
     }
     
     public Colore getColore() {
@@ -52,7 +52,7 @@ public class Corsia {
     
     @Override
     public boolean equals(Object obj) {
-    	if (obj instanceof Corsia && ((Corsia) obj).getNome() == nome)
+    	if (obj instanceof Lane && ((Lane) obj).getNome() == nome)
     		return true;
     	return false;
     }

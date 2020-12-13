@@ -14,8 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import timing.Corsia;
-import timing.Sensore;
+import timing.Lane;
+import timing.Sensor;
 
 public class Race implements Event, Initializable{
 	@FXML private Text rightTimer;
@@ -24,12 +24,13 @@ public class Race implements Event, Initializable{
 	@FXML private VBox provClassification;
 	
 	private static MyTimer timer;
-	private static Text[] currentCorsie;
-	private static Text[] bestCorsie;
-	private static Text[] numberCorsie;
-	private static Sensore sensor;
+	private static Text[] currentLanes;
+	private static Text[] bestLanes;
+	private static Text[] numberLanes;
+	private static Text[] distanceLanes;
+	private static Sensor sensor;
 
-	public Sensore getSensor() {
+	public Sensor getSensor() {
 		return sensor;
 	}
 	
@@ -40,31 +41,40 @@ public class Race implements Event, Initializable{
 	public Race() {}
 	
 	public Race(Pane racePane) {
-		int numCorsie = new Dati().getNumCorsie();
-		currentCorsie = new Text[numCorsie];
-		bestCorsie = new Text[numCorsie];
-		numberCorsie = new Text[numCorsie];
-		for (int i = 0; i<numCorsie;i++) {
-			Text currentTesto = new Text();
-			currentTesto.setLayoutX(100);
-			currentTesto.setLayoutY(((i+1)*120)-40);
-			currentTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)90));
-			currentCorsie[i] = currentTesto;
-			racePane.getChildren().add(currentTesto);
+		int numLanes = new Data().getNumCorsie();
+		currentLanes = new Text[numLanes];
+		bestLanes = new Text[numLanes];
+		numberLanes = new Text[numLanes];
+		distanceLanes = new Text[numLanes];
+		for (int i = 0; i<numLanes;i++) {
+			Text currentText = new Text();
+			currentText.setLayoutX(100);
+			currentText.setLayoutY(((i+1)*120)-40);
+			currentText.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)90));
+			currentLanes[i] = currentText;
+			racePane.getChildren().add(currentText);
 			
-			Text bestTesto = new Text();
-			bestTesto.setLayoutX(100);
-			bestTesto.setLayoutY(((i+1)*120)-20);
-			bestTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
-			bestCorsie[i] = bestTesto;
-			racePane.getChildren().add(bestTesto);
+			Text bestText = new Text();
+			bestText.setLayoutX(100);
+			bestText.setLayoutY(((i+1)*120)-20);
+			bestText.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
+			bestLanes[i] = bestText;
+			racePane.getChildren().add(bestText);
 			
-			Text numberTesto = new Text();
-			numberTesto.setLayoutX(280);
-			numberTesto.setLayoutY(((i+1)*120)-20);
-			numberTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
-			numberCorsie[i] = numberTesto;
-			racePane.getChildren().add(numberTesto);
+			Text numberText = new Text();
+			numberText.setLayoutX(280);
+			numberText.setLayoutY(((i+1)*120)-20);
+			numberText.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
+			numberLanes[i] = numberText;
+			racePane.getChildren().add(numberText);
+			
+			Text distanceText = new Text();
+			distanceText.setLayoutX(280);
+			distanceText.setLayoutY(((i+1)*120)-20);
+			distanceText.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
+			distanceLanes[i] = distanceText;
+			racePane.getChildren().add(distanceText);
+			
 		}
 		new MainMenu().getStage().getScene().setRoot(racePane);
 	}
@@ -73,20 +83,20 @@ public class Race implements Event, Initializable{
 		System.exit(0);
 	}
 	
-	public void addSensor(Sensore sensor) {
+	public void addSensor(Sensor sensor) {
 		Race.sensor = sensor;
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		timer = new MyTimer(new Dati().getMancheduration()*60,rightTimer,this);
+		timer = new MyTimer(new Data().getMancheduration()*60,rightTimer,this);
 	}
 	
 	@Override
-	public void update(Corsia corsia) {
-		currentCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getUltimoGiro()));
-		bestCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getGiroVeloce()));
-		numberCorsie[corsia.getNome()].setText(corsia.getNumeroDiGiri()+"");
+	public void update(Lane corsia) {
+		currentLanes[corsia.getNome()].setText(String.format("%.3f",corsia.getUltimoGiro()));
+		bestLanes[corsia.getNome()].setText(String.format("%.3f",corsia.getGiroVeloce()));
+		numberLanes[corsia.getNome()].setText(corsia.getNumeroDiGiri()+"");
 		
 	}
 
@@ -114,16 +124,16 @@ public class Race implements Event, Initializable{
 			e1.printStackTrace();
 		}
 		sensor.reset();
-		for (int i = 0; i<new Dati().getNumCorsie();i++) {
-			currentCorsie[i].setText("");
-			bestCorsie[i].setText("");
-			numberCorsie[i].setText("");
+		for (int i = 0; i<new Data().getNumCorsie();i++) {
+			currentLanes[i].setText("");
+			bestLanes[i].setText("");
+			numberLanes[i].setText("");
 		}
 		
 	}
 	
 	public void resetTimer() {
-		timer.setTime(new Dati().getMancheduration()*60);
+		timer.setTime(new Data().getMancheduration()*60);
 	}
 
 }

@@ -24,9 +24,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import testing.test;
-import timing.Gara;
-import timing.Pilota;
-import timing.Sensore;
+import timing.RaceT;
+import timing.Driver;
+import timing.Sensor;
 
 public class RaceWaiting implements Initializable{
 	@FXML private ChoiceBox<Integer> Heat;
@@ -38,11 +38,11 @@ public class RaceWaiting implements Initializable{
 	private test test;
 	private Pane racePane;
 	private Race raceGUI;
-	private static Gara race;
+	private static RaceT race;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Dati data = new Dati();
+		Data data = new Data();
 		int numLanes = data.getNumCorsie();
 		String[] participants = new RaceSettings().getParticipants();
 		int[][] startingInfo = new RaceSettings().getStartingInfo();
@@ -72,12 +72,12 @@ public class RaceWaiting implements Initializable{
 			change(race.getCurrentHeat());
 			}
 		});
-		Dati.setBackground(manchePreview,33,400);
+		Data.setBackground(manchePreview,33,400);
 		manchePreviewText = new Text[6];
-		ArrayList<Pilota> drivers = new ArrayList<Pilota>();
+		ArrayList<Driver> drivers = new ArrayList<Driver>();
 		for (int i = 0;i<6;i++) {
 			Text name = new Text();
-			name.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+			name.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 			name.setX(5);
 			name.setY(i*33+27);
 			manchePreviewText[i] = name;
@@ -86,9 +86,9 @@ public class RaceWaiting implements Initializable{
 		for (int i = 0; i<participants.length;i++) {
 			if(startingInfo[i][0]==1) {
 				manchePreviewText[startingInfo[i][1]].setText(participants[i]);
-				drivers.add(new Pilota(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));
+				drivers.add(new Driver(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));
 			} else {
-				drivers.add(new Pilota(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));				
+				drivers.add(new Driver(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));				
 			}
 		}
 		if (race!=null) {
@@ -97,12 +97,12 @@ public class RaceWaiting implements Initializable{
 			HBox row = new HBox();
 			Colore[] colors = data.getColori();
 			Text textRow = new Text();
-			textRow.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+			textRow.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 			textRow.setText("Pilota");
 			row.getChildren().add(textRow);
 			for (int i = 0; i<colors.length;i++) {
 				Text textRowcolors = new Text();
-				textRowcolors.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+				textRowcolors.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 				textRowcolors.setText(colors[i].toStringlanguage(1));
 				row.getChildren().add(textRowcolors);
 			}	
@@ -111,12 +111,12 @@ public class RaceWaiting implements Initializable{
 			for (int i = 0; i<classification.length;i++) {
 				row = new HBox();
 				Text textRowdriver = new Text();
-				textRowdriver.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+				textRowdriver.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 				textRowdriver.setText(race.getPiloti().get((int)(float)classification[i][0][0]).getNomePilota()+"  ");
 				row.getChildren().add(textRowdriver);
 				for (int j = 0;j<classification[i][1].length;j++) {
 					Text textRowmanche = new Text();
-					textRowmanche.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+					textRowmanche.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 					textRowmanche.setText(Math.round(classification[i][1][j])+"    ");
 					row.getChildren().add(textRowmanche);
 				}
@@ -124,7 +124,7 @@ public class RaceWaiting implements Initializable{
 				space.setLayoutY(100);
 				row.getChildren().add(space);
 				Text textRowtot = new Text();
-				textRowtot.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+				textRowtot.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 				textRowtot.setText(Math.round(classification[i][3][0])+"");
 				row.getChildren().add(textRowtot);
 				
@@ -135,11 +135,11 @@ public class RaceWaiting implements Initializable{
 		}
 		try {
 			racePane = FXMLLoader.load(getClass().getResource("FXML/Race.fxml"));
-			Dati.setBackground(racePane,120,500);
+			Data.setBackground(racePane,120,500);
 			raceGUI = new Race(racePane);
-			Gara race = new Gara(drivers, raceGUI,1,0);
+			RaceT race = new RaceT(drivers, raceGUI,1,0);
 			RaceWaiting.race = race;
-			Sensore sensor = new Sensore(race,new Dati().getMinLapTime());
+			Sensor sensor = new Sensor(race,new Data().getMinLapTime());
 			raceGUI.addSensor(sensor);	
 			test test = new test(6,race,sensor,7);
 			this.test = test;
@@ -150,14 +150,14 @@ public class RaceWaiting implements Initializable{
 	}
 	
 	public void change(int heat) {
-		ArrayList<Pilota> drivers = race.getPiloti();
+		ArrayList<Driver> drivers = race.getPiloti();
 		
 		for (int i = 0;i<6;i++) {
 			manchePreviewText[i].setText("");
 		}
 		
 		for (int i = 0;i<drivers.size();i++) {
-			Pilota driver = drivers.get(i);
+			Driver driver = drivers.get(i);
 			if (driver.getHeat()==heat) {
 				manchePreviewText[driver.getLanes()[driver.getselectedLane()].getNome()].setText(driver.getNomePilota());
 			}
@@ -172,7 +172,7 @@ public class RaceWaiting implements Initializable{
 		}
 	}
 
-	public static Gara getRace() {
+	public static RaceT getRace() {
 		return race;
 	}
 	

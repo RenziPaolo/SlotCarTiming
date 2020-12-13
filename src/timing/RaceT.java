@@ -2,27 +2,27 @@ package timing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import GUI.Dati;
+import GUI.Data;
 import GUI.Event;
 
-public class Gara extends Evento{
+public class RaceT extends EventT{
 	
-	public Gara(ArrayList<Pilota> drivers, Event GUI,int currentHeat,int currentManche) {
+	public RaceT(ArrayList<Driver> drivers, Event GUI,int currentHeat,int currentManche) {
 		super(drivers,GUI,currentHeat,currentManche);
 	}
 
 	@Override
 	public Float[][][] getClassification() {
-		Float[][][] classification = piloti.stream().map(x -> 
+		Float[][][] classification = drivers.stream().map(x -> 
 		new Float[][]
 				{
 					new Float[] {x.getId()},
 					Arrays.stream(x.getLanes()).map(y -> (float)y.getNumeroDiGiri()).toArray(size -> new Float[size]),
 					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getTimeFromStart()).sum()},
-					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getNumeroDiGiri()).sum()}
+					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getNumeroDiGiri()).sum()},
+					new Float[] {}
 				}
-				).toArray(size -> new Float[size][4][new Dati().getNumCorsie()]);
+				).toArray(size -> new Float[size][4][new Data().getNumCorsie()]);
 		
 		Arrays.sort(classification, (a, b) -> {
 			
@@ -41,8 +41,8 @@ public class Gara extends Evento{
 	}
 	
 	public void setCurrentManche(int currentManche) {
-		for (int j = 0;j<piloti.size();j++) {
-			Pilota driver = piloti.get(j);
+		for (int j = 0;j<drivers.size();j++) {
+			Driver driver = drivers.get(j);
 			if (driver.getHeat()==currentHeat) 
 				driver.setselectedLane(currentManche);
 		}

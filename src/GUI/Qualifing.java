@@ -15,8 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import timing.Corsia;
-import timing.Sensore;
+import timing.Lane;
+import timing.Sensor;
 
 public class Qualifing implements Event,Initializable{
 	@FXML private Text rightTimer;
@@ -28,9 +28,9 @@ public class Qualifing implements Event,Initializable{
 	private static Text[] currentCorsie;
 	private static Text[] bestCorsie;
 	private static Text[] numberCorsie;
-	private static Sensore sensor;
+	private static Sensor sensor;
 	
-	public Sensore getSensor() {
+	public Sensor getSensor() {
 		return sensor;
 	}
 	
@@ -39,8 +39,8 @@ public class Qualifing implements Event,Initializable{
 	}
 	
 	@Override
-	public void update(Corsia corsia) {
-		Dati data = new Dati();
+	public void update(Lane corsia) {
+		Data data = new Data();
 		currentCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getUltimoGiro()));
 		bestCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getGiroVeloce()));
 		numberCorsie[data.getCodeQualyLane()].setText(corsia.getNumeroDiGiri()+"");
@@ -74,7 +74,7 @@ public class Qualifing implements Event,Initializable{
 	public Qualifing() {}
 	
 	public Qualifing(Pane current) {
-		int numCorsie = new Dati().getNumCorsie();
+		int numCorsie = new Data().getNumCorsie();
 		currentCorsie = new Text[numCorsie];
 		bestCorsie = new Text[numCorsie];
 		numberCorsie = new Text[numCorsie];
@@ -82,28 +82,28 @@ public class Qualifing implements Event,Initializable{
 			Text currentTesto = new Text();
 			currentTesto.setLayoutX(100);
 			currentTesto.setLayoutY(((i+1)*120)-40);
-			currentTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)90));
+			currentTesto.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)90));
 			currentCorsie[i] = currentTesto;
 			current.getChildren().add(currentTesto);
 			
 			Text bestTesto = new Text();
 			bestTesto.setLayoutX(100);
 			bestTesto.setLayoutY(((i+1)*120)-20);
-			bestTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+			bestTesto.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 			bestCorsie[i] = bestTesto;
 			current.getChildren().add(bestTesto);
 			
 			Text numberTesto = new Text();
 			numberTesto.setLayoutX(280);
 			numberTesto.setLayoutY(((i+1)*120)-20);
-			numberTesto.setFont(Font.font(new Dati().getFont(),FontWeight.BOLD,(double)25));
+			numberTesto.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 			numberCorsie[i] = numberTesto;
 			current.getChildren().add(numberTesto);
 		}
 		new MainMenu().getStage().getScene().setRoot(current);
 	}
 	
-	public void addSensor(Sensore sensor) {
+	public void addSensor(Sensor sensor) {
 		Qualifing.sensor = sensor;
 	}
 	
@@ -136,7 +136,7 @@ public class Qualifing implements Event,Initializable{
 			e1.printStackTrace();
 		}
 		sensor.reset();
-		for (int i = 0; i<new Dati().getNumCorsie();i++) {
+		for (int i = 0; i<new Data().getNumCorsie();i++) {
 			currentCorsie[i].setText("");
 			bestCorsie[i].setText("");
 			numberCorsie[i].setText("");
