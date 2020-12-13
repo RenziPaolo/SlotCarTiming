@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -20,7 +22,7 @@ public class Qualifing implements Event,Initializable{
 	@FXML private Text rightTimer;
 	@FXML private Button start;
 	@FXML private Button stop;
-	@FXML private VBox provClassification;
+	@FXML private ScrollPane classification;
 	
 	private static MyTimer timer;
 	private static Text[] currentCorsie;
@@ -42,6 +44,31 @@ public class Qualifing implements Event,Initializable{
 		currentCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getUltimoGiro()));
 		bestCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getGiroVeloce()));
 		numberCorsie[data.getCodeQualyLane()].setText(corsia.getNumeroDiGiri()+"");
+		setClassification();
+	}
+	
+	private void setClassification() {
+		VBox classification = new VBox();
+		classification.getChildren().clear();
+		Float[][][] classificationfloat = new QualifingWaiting().getQualifing().getClassification();
+		int position = 0;
+		for (int i = 0; i<classificationfloat.length;i++) {
+			if(classificationfloat[i][1][0]!=0) {
+				position++;
+				HBox riga = new HBox();
+				Text pos = new Text();
+				pos.setText(position+"  ");
+				riga.getChildren().add(pos);
+				Text name = new Text();
+				name.setText(new QualifingWaiting().getQualifing().getPiloti().get((int)(float)classificationfloat[i][0][0]).getNomePilota()+"  ");
+				riga.getChildren().add(name);
+				Text laptime = new Text();
+				laptime.setText(classificationfloat[i][1]+"");
+				riga.getChildren().add(laptime);
+				classification.getChildren().add(riga);
+			}
+		}
+		this.classification.setContent(classification);
 	}
 	
 	public Qualifing() {}

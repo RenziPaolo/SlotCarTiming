@@ -63,7 +63,6 @@ public class Settings implements Initializable{
 			      }
 			    });
 			
-			font.setItems(FXCollections.observableArrayList(Font.getFamilies()));
 			font.setValue("Calibri");
 			minLapTime.setText(dati.getMinLapTime()+"");
 			mancheDuration.setText(dati.getMancheduration()+"");
@@ -204,6 +203,11 @@ public class Settings implements Initializable{
 			return;
 		}
 		
+	}
+	
+	@FXML
+	public void addFonts(ActionEvent e) {
+		font.setItems(FXCollections.observableArrayList(Font.getFamilies()));
 	}
 
 }
