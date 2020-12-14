@@ -1,6 +1,6 @@
 package timing;
 
-import GUI.Colore;
+import GUI.ColorLane;
 import GUI.Data;
 
 public class Driver {
@@ -17,12 +17,12 @@ public class Driver {
 		this.id = id;
 		Data data = new Data();
 		int numLanes = data.getNumCorsie();
-		Colore[] colors = data.getColori();
+		ColorLane[] colors = data.getColori();
 		this.lanes = new Lane[numLanes];
 		int[] swap = data.getSwap();
 		int j = 0;
 		for (int i = lane;j<numLanes;i=swap[i]) {
-			lanes[j] = new Lane(i,colors[i]);
+			lanes[j] = new Lane(i,colors[i],this);
 			j++;
 		}
 	}

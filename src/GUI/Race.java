@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import timing.Lane;
+import timing.RaceT;
 import timing.Sensor;
 
 public class Race implements Event, Initializable{
@@ -28,7 +30,10 @@ public class Race implements Event, Initializable{
 	private static Text[] bestLanes;
 	private static Text[] numberLanes;
 	private static Text[] distanceLanes;
+	private static Text[] trendLanes;
 	private static Sensor sensor;
+	private RaceT race;
+	private float[] distances;
 
 	public Sensor getSensor() {
 		return sensor;
@@ -46,6 +51,7 @@ public class Race implements Event, Initializable{
 		bestLanes = new Text[numLanes];
 		numberLanes = new Text[numLanes];
 		distanceLanes = new Text[numLanes];
+		trendLanes = new Text[numLanes];
 		for (int i = 0; i<numLanes;i++) {
 			Text currentText = new Text();
 			currentText.setLayoutX(100);
@@ -70,12 +76,20 @@ public class Race implements Event, Initializable{
 			
 			Text distanceText = new Text();
 			distanceText.setLayoutX(280);
-			distanceText.setLayoutY(((i+1)*120)-20);
-			distanceText.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
+			distanceText.setLayoutY(((i+1)*120)-40);
+			distanceText.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)90));
 			distanceLanes[i] = distanceText;
 			racePane.getChildren().add(distanceText);
 			
+			Text trendText = new Text();
+			trendText.setLayoutX(320);
+			trendText.setLayoutY(((i+1)*120)-40);
+			trendText.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)80));
+			trendLanes[i] = trendText;
+			racePane.getChildren().add(trendText);	
 		}
+		
+		race = RaceWaiting.getRace();
 		new MainMenu().getStage().getScene().setRoot(racePane);
 	}
 
@@ -93,11 +107,19 @@ public class Race implements Event, Initializable{
 	}
 	
 	@Override
-	public void update(Lane corsia) {
-		currentLanes[corsia.getNome()].setText(String.format("%.3f",corsia.getUltimoGiro()));
-		bestLanes[corsia.getNome()].setText(String.format("%.3f",corsia.getGiroVeloce()));
-		numberLanes[corsia.getNome()].setText(corsia.getNumeroDiGiri()+"");
-		
+	public void update(Lane lane) {
+		Float [][][] classification = race.getClassification();
+		float distance = classification[4][Arrays.asList(classification[0]).indexOf(new Float[]{race.getPiloti().get(race.getPiloti().indexOf(lane.getDriver())).getId()})][0];
+		currentLanes[lane.getNome()].setText(String.format("%.3f",lane.getUltimoGiro()));
+		bestLanes[lane.getNome()].setText(String.format("%.3f",lane.getGiroVeloce()));
+		numberLanes[lane.getNome()].setText(lane.getNumeroDiGiri()+"");
+		distanceLanes[lane.getNome()].setText("+"+distance);
+		if (distance>distances[lane.getNome()]) {
+			trendLanes[lane.getNome()].setText("");
+		} else {
+			trendLanes[lane.getNome()].setText("");
+		}
+		distances[lane.getNome()] = classification[4][Arrays.asList(classification[0]).indexOf(new Float[]{race.getPiloti().get(race.getPiloti().indexOf(lane.getDriver())).getId()})][0];
 	}
 
 	@Override

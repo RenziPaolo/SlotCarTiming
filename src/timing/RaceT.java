@@ -19,10 +19,9 @@ public class RaceT extends EventT{
 					new Float[] {x.getId()},
 					Arrays.stream(x.getLanes()).map(y -> (float)y.getNumeroDiGiri()).toArray(size -> new Float[size]),
 					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getTimeFromStart()).sum()},
-					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getNumeroDiGiri()).sum()},
-					new Float[] {}
+					new Float[] {(float) Arrays.stream(x.getLanes()).mapToDouble(y -> (double)y.getNumeroDiGiri()).sum()}
 				}
-				).toArray(size -> new Float[size][4][new Data().getNumCorsie()]);
+				).toArray(size -> new Float[size][5][new Data().getNumCorsie()]);
 		
 		Arrays.sort(classification, (a, b) -> {
 			
@@ -33,6 +32,18 @@ public class RaceT extends EventT{
 		
 		}
 		);
+		for (int i = 0;i<drivers.size();i++) {
+			if (i!=0) {
+				if (classification[3][i-1][0] == classification[3][i][0]) {
+					classification[4][i][0] = classification[2][i][0] - classification[2][i-1][0];
+				} else {
+					classification[4][i][0] = classification[3][i][0];
+				}
+			} else {
+				classification[4][i][0] = (float) 0;
+			}
+		}
+		
 		return classification;
 	}
 

@@ -18,12 +18,12 @@ import javafx.scene.text.Text;
 public class Data {
 	
 	private static int numLanes;
-	private static Colore[] colors;
+	private static ColorLane[] colors;
 	private static int[] swap;
 	private static float minLapTime;
 	private static int period;
 	private static String font;
-	private static Colore qualifingLane;
+	private static ColorLane qualifingLane;
 	private static int qualifingPeriod;
 	private static int mancheDuration;
 	private static int[] requiredSensor;
@@ -53,7 +53,7 @@ public class Data {
 		if (numLanes==0)
 			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
 				numLanes = (int)fileLanes.size()/2;
-				colors = new Colore[numLanes];
+				colors = new ColorLane[numLanes];
 				swap = new int[numLanes];
 				ByteBuffer buffer = ByteBuffer.allocate(numLanes*2);
 				fileLanes.read(buffer);
@@ -61,7 +61,7 @@ public class Data {
 				for (int i = 0; i<numLanes*2;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
-						colors[i/2] = Colore.BLUE.getColore(dato);
+						colors[i/2] = ColorLane.BLUE.getColore(dato);
 					} else {
 						swap[i/2] = dato;
 					}
@@ -73,11 +73,11 @@ public class Data {
 		return numLanes;
 	}
 	
-	public Colore[] getColori() {
+	public ColorLane[] getColori() {
 		if (colors == null) {
 			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
 				numLanes = (int)fileLanes.size()/2;
-				colors = new Colore[numLanes];
+				colors = new ColorLane[numLanes];
 				swap = new int[numLanes];
 				ByteBuffer buffer = ByteBuffer.allocate(numLanes*2);
 				fileLanes.read(buffer);
@@ -85,7 +85,7 @@ public class Data {
 				for (int i = 0; i<numLanes*2;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
-						colors[i/2] = Colore.BLUE.getColore(dato);
+						colors[i/2] = ColorLane.BLUE.getColore(dato);
 					} else {
 						swap[i/2] = dato;
 					}
@@ -102,7 +102,7 @@ public class Data {
 		if (swap==null) {
 			try(FileChannel fileLanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.READ)){
 				numLanes = (int)fileLanes.size()/2;
-				colors = new Colore[numLanes];
+				colors = new ColorLane[numLanes];
 				swap = new int[numLanes];
 				ByteBuffer buffer = ByteBuffer.allocate(numLanes*2);
 				fileLanes.read(buffer);
@@ -110,7 +110,7 @@ public class Data {
 				for (int i = 0; i<numLanes*2;i++) {
 					dato = (int)buffer.get(i);
 					if (i%2==0) {
-						colors[i/2] = Colore.BLUE.getColore(dato);
+						colors[i/2] = ColorLane.BLUE.getColore(dato);
 					} else {
 						swap[i/2] = dato;
 					}
@@ -173,14 +173,14 @@ public class Data {
 		pane.getChildren().add(errore);
 	}
 
-	public Colore getQualifingLane() {
+	public ColorLane getQualifingLane() {
 		if (qualifingLane == null) {
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.READ)){
 				ByteBuffer buffer = ByteBuffer.allocate(8);
 				filequaly.read(buffer);
 				buffer.rewind();
 				int index = buffer.getInt(4);
-				qualifingLane = Colore.values()[index-1];
+				qualifingLane = ColorLane.values()[index-1];
 				
 			} catch (IOException e) {
 				System.out.println("eccezione!!");

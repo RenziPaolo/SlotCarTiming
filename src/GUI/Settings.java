@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
 public class Settings implements Initializable{
 	
 	private int numberOfLanes = 6;
-	private Colore[] colors;
+	private ColorLane[] colors;
 	private int[] swap;
 	
 	@FXML private ChoiceBox<String> numberOFLanes;
@@ -120,7 +120,7 @@ public class Settings implements Initializable{
 		ArrayList<Integer> swap = new ArrayList<Integer>();
 		try {
 			for(int i = 0;i<numberOfLanes;i++) {
-				colori.add(Colore.fromlanguage(1,((ChoiceBox<String>) ((HBox) lanesPreferences.getChildren().get(i)).getChildren().get(3)).getValue()));
+				colori.add(ColorLane.fromlanguage(1,((ChoiceBox<String>) ((HBox) lanesPreferences.getChildren().get(i)).getChildren().get(3)).getValue()));
 				swap.add(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(5)	).getValue()-1);
 			}
 		} catch(java.lang.NullPointerException e1) {

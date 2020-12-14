@@ -3,20 +3,22 @@ package timing;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import GUI.Colore;
+import GUI.ColorLane;
 
 public class Lane {
     private ArrayList<Float> laps = new ArrayList<Float>();
     private float lastLap;
     private int nome;
-    private Colore colore;
+    private ColorLane colore;
+    private Driver driver;
     
-    public Lane(int name,Colore color) {
+    public Lane(int name,ColorLane color,Driver driver) {
     	this.nome = name;
     	this.colore = color;
+    	this.driver = driver;
     }
     
-    public Colore getColore() {
+    public ColorLane getColore() {
     	return colore;
     }
     
@@ -56,5 +58,9 @@ public class Lane {
     		return true;
     	return false;
     }
+
+	public Driver getDriver() {
+		return driver;
+	}
     
 }

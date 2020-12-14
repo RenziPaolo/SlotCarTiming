@@ -39,11 +39,11 @@ public class Qualifing implements Event,Initializable{
 	}
 	
 	@Override
-	public void update(Lane corsia) {
+	public void update(Lane lane) {
 		Data data = new Data();
-		currentCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getUltimoGiro()));
-		bestCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",corsia.getGiroVeloce()));
-		numberCorsie[data.getCodeQualyLane()].setText(corsia.getNumeroDiGiri()+"");
+		currentCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",lane.getUltimoGiro()));
+		bestCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",lane.getGiroVeloce()));
+		numberCorsie[data.getCodeQualyLane()].setText(lane.getNumeroDiGiri()+"");
 		setClassification();
 	}
 	

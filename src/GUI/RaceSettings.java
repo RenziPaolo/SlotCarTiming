@@ -36,12 +36,12 @@ public class RaceSettings implements Initializable{
 	@FXML private Text startingHeatText;
 	@FXML private ChoiceBox<String> choiceLane;
 	private int tot;
-	private static Colore chosenLane;
+	private static ColorLane chosenLane;
 	private static int qualyDurationInt;
 	private static String[] participants;
 	private static int[][] startingInfo;
 	
-	public Colore getChosenLane() {
+	public ColorLane getChosenLane() {
 		return chosenLane;
 	}
 	
@@ -98,11 +98,11 @@ public class RaceSettings implements Initializable{
 			}
 			
 			qualyDurationInt = Integer.valueOf(qualyduration.getText());
-			chosenLane = Colore.values()[Colore.fromlanguage(1, choiceLane.getValue())];
+			chosenLane = ColorLane.values()[ColorLane.fromlanguage(1, choiceLane.getValue())];
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
 				ByteBuffer buffer = ByteBuffer.allocate(8);
 				buffer.putInt((int)Integer.valueOf(qualyduration.getText()));
-				buffer.putInt((int)Colore.fromlanguage(1, choiceLane.getValue()));
+				buffer.putInt((int)ColorLane.fromlanguage(1, choiceLane.getValue()));
 				buffer.rewind();
 				filequaly.write(buffer);
 				
@@ -192,7 +192,7 @@ public class RaceSettings implements Initializable{
 		qualyduration.setDisable(false);
 		Data data = new Data();
 		qualyduration.setText(data.getQualifingPeriod()+"");
-		Colore[] colors = data.getColori();
+		ColorLane[] colors = data.getColori();
 		String[] choices = new String[colors.length];
 		for (int i = 0; i< colors.length; i++)
 			choices[i] = colors[i].toStringlanguage(1);

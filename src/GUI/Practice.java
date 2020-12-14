@@ -44,10 +44,10 @@ public class Practice implements Event,Initializable{
 	}
 
 	@Override
-	public void update(Lane corsia) {
-		currentCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getUltimoGiro()));
-		bestCorsie[corsia.getNome()].setText(String.format("%.3f",corsia.getGiroVeloce()));
-		numberCorsie[corsia.getNome()].setText(corsia.getNumeroDiGiri()+"");
+	public void update(Lane lane) {
+		currentCorsie[lane.getNome()].setText(String.format("%.3f",lane.getUltimoGiro()));
+		bestCorsie[lane.getNome()].setText(String.format("%.3f",lane.getGiroVeloce()));
+		numberCorsie[lane.getNome()].setText(lane.getNumeroDiGiri()+"");
 	}
 
 	public Practice() {}

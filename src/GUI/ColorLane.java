@@ -1,11 +1,11 @@
 package GUI;
 
-public enum Colore {
+public enum ColorLane {
 	YELLOW(1),GREEN(2),WHITE(3),RED(4),BLUE(5),ORANGE(6),LIGHT_BLUE(7),DARK_GREEN(8),VIOLET(9);
 	
 	private int codice;
 	
-	Colore(int codice) {
+	ColorLane(int codice) {
 		this.codice = codice;
 	}
 	
@@ -28,7 +28,7 @@ public enum Colore {
 		}
 	}
 	
-	public Colore getColore(int codice) {
+	public ColorLane getColore(int codice) {
 		switch(codice){
 		case 1: return YELLOW;
 		case 2: return GREEN;

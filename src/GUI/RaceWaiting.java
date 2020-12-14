@@ -95,7 +95,7 @@ public class RaceWaiting implements Initializable{
 			Float[][][] classification = race.getClassification();
 			VBox classificationInside = new VBox();
 			HBox row = new HBox();
-			Colore[] colors = data.getColori();
+			ColorLane[] colors = data.getColori();
 			Text textRow = new Text();
 			textRow.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 			textRow.setText("Pilota");
