@@ -1,6 +1,7 @@
 package GUI;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -171,25 +172,36 @@ public class Settings implements Initializable{
 			Data.error();
 			return;
 		}
-		try (FileChannel fileRequiredsensors = (FileChannel) Files.newByteChannel(Path.of("settings Requiredsensors.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
-			ByteBuffer buffer = ByteBuffer.allocate(numberOfLanes*8);
+		
+		try (OutputStream fileRequiredsensors = Files.newOutputStream(Path.of("settings Requiredsensors.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
+			
 			for (int i = 0;i<numberOfLanes;i++) {
-				buffer.putInt(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(7)	).getValue());
-				buffer.putInt(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(9)	).getValue());
+				String sensors = (((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(7)	).getValue()+"");
+				String rele = (((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(9)	).getValue()+"");
+				
+				fileRequiredsensors.write(sensors.getBytes());
+				fileRequiredsensors.write(",".getBytes());
+				fileRequiredsensors.write(rele.getBytes());
+				fileRequiredsensors.write(System.lineSeparator().getBytes());
 			}
-			buffer.rewind();
-			fileRequiredsensors.write(buffer);
 			
 		} catch (Exception e) {
 			Data.error();
 			return;
 		}
+		
 		try (FileChannel fileAdditionalsensors = (FileChannel) Files.newByteChannel(Path.of("settings Additionalsensors.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
-			ByteBuffer buffer = ByteBuffer.allocate(numberOfLanes*8);
+			ByteBuffer buffer = ByteBuffer.allocate(numberOfLanes*16);
 			for (int i = 0;i<numberOfLanes;i++) {
-				buffer.putInt(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(11)	).getValue());
-				buffer.putInt(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(13)	).getValue());
-			}
+				char[] sensors1 = (((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(11)	).getValue()+"").toCharArray();
+				char[] sensors2 = (((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(13)	).getValue()+"").toCharArray();
+				for (int j = 0; j<sensors1.length;j++)
+					buffer.putChar(sensors1[j]);
+				buffer.putChar(',');
+				for (int k = 0; k<sensors2.length;k++)
+					buffer.putChar(sensors2[k]);	
+				buffer.putChar('.');
+				}
 			buffer.rewind();
 			fileAdditionalsensors.write(buffer);
 			

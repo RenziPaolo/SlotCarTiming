@@ -49,14 +49,12 @@ public class PracticeSettings implements Initializable{
 			list.add(pilota);
 		}
 		
-		Data.setBackground(practice,120,500);
+		Data.setBackground(practice,120,500,true);
 		Practice prove = new Practice(practice);
 		Sensor sensor = new Sensor(new Test(list, prove,1),data.getMinLapTime());
 		prove.addSensor(sensor);
 		test test =new test(6,new Test(list, prove,1),sensor,10);	
 		test.testCorsie(6,10);
-		
-
 		
 		new MainMenu().getStage().getScene().setRoot(practice);
 	}

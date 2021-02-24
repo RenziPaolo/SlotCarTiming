@@ -30,7 +30,7 @@ public class Data {
 	private static int[][] additionalSensors;
 	private static int[] rele;
 	
-	public static void setBackground(Pane pane,int heigth,int width) {
+	public static void setBackground(Pane pane,int heigth,int width,boolean numbers) {
 		for (int i = 0; i<numLanes;i++) {
 			Rectangle rectangle = new Rectangle();
 			float[] colorcode = colors[i].getRGB();
@@ -39,13 +39,15 @@ public class Data {
 			rectangle.setLayoutY((i)*heigth);
 			rectangle.setHeight(heigth);
 			rectangle.setWidth(width);
-			Text num = new Text();
-			num.setLayoutX(0);
-			num.setLayoutY(((i+1)*120-20));
-			num.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)130));
-			num.setText(""+(i+1));
 			pane.getChildren().add(rectangle);
-			pane.getChildren().add(num);
+			if (numbers) {
+				Text num = new Text();
+				num.setLayoutX(0);
+				num.setLayoutY(((i+1)*120-20));
+				num.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)130));
+				num.setText(""+(i+1));
+				pane.getChildren().add(num);
+			}
 		}
 	}
 	

@@ -53,7 +53,8 @@ public class QualifingWaiting implements Initializable{
 			
 			try {
 				Pane qualifingPane = FXMLLoader.load(getClass().getResource("FXML/Qualifing.fxml"));
-				Data.setBackground(qualifingPane,120,500);
+				// !!!! TOGLI I NUMERI !!!!
+				Data.setBackground(qualifingPane,120,500,true);
 				QualifingWaiting.qualifingPane = qualifingPane;
 				Qualifing qualifingGUI = new Qualifing(qualifingPane);
 				QualifingWaiting.qualifingGUI = qualifingGUI;

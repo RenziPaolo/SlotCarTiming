@@ -10,20 +10,22 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RaceWaiting">
    <children>
-      <ChoiceBox fx:id="Heat" layoutX="615.0" layoutY="430.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Manche" layoutX="890.0" layoutY="430.0" prefWidth="150.0" />
+      <Text layoutX="938.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manche" wrappingWidth="67.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
       <Text layoutX="666.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batteria">
          <font>
             <Font size="15.0" />
-         </font></Text>
-      <Text layoutX="938.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manche">
-         <font>
-            <Font size="15.0" />
-         </font></Text>
-      <ScrollPane fx:id="Classification" prefHeight="720.0" prefWidth="585.0" />
+         </font>
+      </Text>
+      <ScrollPane prefHeight="720.0" prefWidth="585.0" />
       <Button layoutX="993.0" layoutY="680.0" mnemonicParsing="false" onAction="#start" text="Inizia" />
-      <VBox layoutX="609.0" layoutY="15.0" prefHeight="350.0" prefWidth="440.0" />
-      <Button layoutX="619.0" layoutY="668.0" mnemonicParsing="false" onAction="#back" text="indietro" />
+      <VBox layoutX="610.0" layoutY="15.0" prefHeight="350.0" prefWidth="440.0" />
+      <Button layoutX="619.0" layoutY="668.0" mnemonicParsing="false" onAction="#back" text="back" />
       <AnchorPane fx:id="manchePreview" layoutX="620.0" layoutY="465.0" prefHeight="200.0" prefWidth="420.0" />
+      <ChoiceBox fx:id="Heat" layoutX="642.0" layoutY="430.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

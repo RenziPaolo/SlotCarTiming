@@ -72,7 +72,7 @@ public class RaceWaiting implements Initializable{
 			change(race.getCurrentHeat());
 			}
 		});
-		Data.setBackground(manchePreview,33,400);
+		Data.setBackground(manchePreview,33,400,false);
 		manchePreviewText = new Text[6];
 		ArrayList<Driver> drivers = new ArrayList<Driver>();
 		for (int i = 0;i<6;i++) {
@@ -135,7 +135,7 @@ public class RaceWaiting implements Initializable{
 		}
 		try {
 			racePane = FXMLLoader.load(getClass().getResource("FXML/Race.fxml"));
-			Data.setBackground(racePane,120,500);
+			Data.setBackground(racePane,120,500,true);
 			raceGUI = new Race(racePane);
 			RaceT race = new RaceT(drivers, raceGUI,1,0);
 			RaceWaiting.race = race;

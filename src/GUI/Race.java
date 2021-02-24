@@ -32,7 +32,7 @@ public class Race implements Event, Initializable{
 	private static Text[] distanceLanes;
 	private static Text[] trendLanes;
 	private static Sensor sensor;
-	private RaceT race;
+	private static RaceT race;
 	private float[] distances;
 
 	public Sensor getSensor() {
@@ -115,9 +115,9 @@ public class Race implements Event, Initializable{
 		numberLanes[lane.getNome()].setText(lane.getNumeroDiGiri()+"");
 		distanceLanes[lane.getNome()].setText("+"+distance);
 		if (distance>distances[lane.getNome()]) {
-			trendLanes[lane.getNome()].setText("");
+			trendLanes[lane.getNome()].setText("↑");
 		} else {
-			trendLanes[lane.getNome()].setText("");
+			trendLanes[lane.getNome()].setText("↓");
 		}
 		distances[lane.getNome()] = classification[4][Arrays.asList(classification[0]).indexOf(new Float[]{race.getPiloti().get(race.getPiloti().indexOf(lane.getDriver())).getId()})][0];
 	}
