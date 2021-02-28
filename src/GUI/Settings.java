@@ -145,12 +145,14 @@ public class Settings implements Initializable{
 		}
 		
 		try (FileChannel fileMinLapTime = (FileChannel) Files.newByteChannel(Path.of("settings minlaptime.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
-			ByteBuffer buffer = ByteBuffer.allocate(4);
-			buffer.putFloat(Float.parseFloat(minLapTime.getText()));
+			ByteBuffer buffer = ByteBuffer.allocate(16);
+			
+			buffer.put(minLapTime.getText().getBytes());
 			buffer.rewind();
 			fileMinLapTime.write(buffer);
 			
 		} catch (IOException e) {
+			e.printStackTrace();
 			Data.error();
 			return;
 		}
@@ -169,6 +171,7 @@ public class Settings implements Initializable{
 			fileMancheDuration.write(buffer);
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			Data.error();
 			return;
 		}
