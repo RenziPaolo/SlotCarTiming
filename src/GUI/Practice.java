@@ -54,6 +54,7 @@ public class Practice implements Event,Initializable{
 	
 	public void addSensor(Sensor sensor) {
 		Practice.sensor = sensor;
+		sensor.Start();
 	}
 	
 	public Practice(Pane current) {

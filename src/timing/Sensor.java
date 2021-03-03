@@ -13,9 +13,6 @@ public class Sensor implements EventListener {
 	private CComunication cInterface;
 	
 	public Sensor(EventT evento, float minLapTime) {
-		for(int i = 0; i<new Data().getNumCorsie();i++ ) {
-			lastPass[i] = System.nanoTime();
-		}
 		this.event = evento;
 		this.minLapTime = minLapTime;
 		cInterface = new CComunication(this);
@@ -52,17 +49,11 @@ public class Sensor implements EventListener {
 	}
 	
 	public void Stop() {
-		for(int i = 0; i<new Data().getNumCorsie();i++ ) {
-			provisional[i] = (System.nanoTime()-lastPass[i])/1000000000;
-		}
 		cInterface.stop();
 		go = false;
 	}
 	
 	public void Start() {
-		for(int i = 0; i<new Data().getNumCorsie();i++ ) {
-			lastPass[i] = System.nanoTime();
-		}
 		cInterface.go();
 		cInterface.start();
 		go = true;

@@ -28,9 +28,9 @@ public abstract class EventT {
     	for (int i = 0;i<drivers.size();i++) {
     		Driver driver = drivers.get(i);
 	    	if (driver.getHeat() == currentHeat && driver.getselectedLane()==numCorsia) {
-		    Lane lane = drivers.get(i).getLanes()[currentManche];
-		    lane.setLap(tempo);
-		    GUI.update(lane);
+			    Lane lane = drivers.get(i).getLanes()[currentManche];
+			    lane.setLap(tempo);
+			    GUI.update(lane);
 		    }
     	}
      }

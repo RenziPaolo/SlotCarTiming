@@ -15,7 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import testing.test;
+//import testing.test;
 import timing.Driver;
 import timing.Test;
 import timing.Sensor;
@@ -53,8 +53,8 @@ public class PracticeSettings implements Initializable{
 		Practice prove = new Practice(practice);
 		Sensor sensor = new Sensor(new Test(list, prove,1),data.getMinLapTime());
 		prove.addSensor(sensor);
-		test test =new test(6,new Test(list, prove,1),sensor,10);	
-		test.testCorsie(6,10);
+//		test test =new test(6,new Test(list, prove,1),sensor,10);	
+//		test.testCorsie(6,10);
 		
 		new MainMenu().getStage().getScene().setRoot(practice);
 	}

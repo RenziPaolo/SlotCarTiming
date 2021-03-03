@@ -2,14 +2,14 @@ package timing;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-public class CComunication {
+public class CComunication implements Runnable{
 	private boolean go;
 	private Sensor sensor;
+	private Thread t;
 	
 	public static double convertToFloat(byte[] array) {
 		byte tmp;
@@ -38,27 +38,31 @@ public class CComunication {
 		this.sensor = sensor;
 	}
 	
-public void start() {
-	try (ZContext context = new ZContext()) {
-		//  Socket to talk to server
-		System.out.println("Connecting to hello world server");
-		
-		ZMQ.Socket socket = context.createSocket(SocketType.REQ);
-		socket.connect("tcp://localhost:5555");
-		while(go) {
-			socket.send("".getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
-			byte[] reply = socket.recv(0);
-			            
-			sensor.setTime(convertToFloat(Arrays.copyOfRange(reply, 4, 12)),convertToInt(Arrays.copyOfRange(reply, 0, 4)));
-		}
+	public void start() {
+		t = new Thread(this,"CComunication");
+		t.start();
 	}
-}
-	
-public void stop() {
-	go = false;
-}
-public void go() {
-	go = true;
-}
+		
+	public void stop() {
+		go = false;
+	}
+	public void go() {
+		go = true;
+	}
+	@Override
+	public void run() {
+		try (ZContext context = new ZContext()) {
+			
+			ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+			socket.connect("tcp://localhost:5555");
+			while(go) {
+				socket.send("".getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
+				byte[] reply = socket.recv(0);
+				            
+				sensor.setTime(convertToFloat(Arrays.copyOfRange(reply, 4, 12)),convertToInt(Arrays.copyOfRange(reply, 0, 4)));
+			}
+		}
+		
+	}
 	
 }
