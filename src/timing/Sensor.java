@@ -6,10 +6,11 @@ import GUI.Data;
 public class Sensor implements EventListener {
 	
 	private float[] lastPass = new float[new Data().getNumCorsie()];
-	float[] provisional = new float[new Data().getNumCorsie()];
+	private float[] provisional = new float[new Data().getNumCorsie()];
 	private EventT event;
 	private boolean go = true;
 	private float minLapTime;
+	private CComunication cInterface;
 	
 	public Sensor(EventT evento, float minLapTime) {
 		for(int i = 0; i<new Data().getNumCorsie();i++ ) {
@@ -17,7 +18,9 @@ public class Sensor implements EventListener {
 		}
 		this.event = evento;
 		this.minLapTime = minLapTime;
+		cInterface = new CComunication(this);
 	}
+	
 	
 	public void setTime(TimingEvent input) {
 		int index = input.getCorsia();
@@ -38,6 +41,12 @@ public class Sensor implements EventListener {
 		}
 	}
 	
+	public void setTime(double lapTime, int lane) {
+		if (go && lapTime>minLapTime) {
+			event.updatePilota(lane, (float)lapTime);
+		}
+	}
+	
 	public EventT getEvento() {
 		return event;
 	}
@@ -46,7 +55,7 @@ public class Sensor implements EventListener {
 		for(int i = 0; i<new Data().getNumCorsie();i++ ) {
 			provisional[i] = (System.nanoTime()-lastPass[i])/1000000000;
 		}
-		
+		cInterface.stop();
 		go = false;
 	}
 	
@@ -54,6 +63,8 @@ public class Sensor implements EventListener {
 		for(int i = 0; i<new Data().getNumCorsie();i++ ) {
 			lastPass[i] = System.nanoTime();
 		}
+		cInterface.go();
+		cInterface.start();
 		go = true;
 	}
 
