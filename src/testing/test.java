@@ -30,7 +30,6 @@ public class test extends TimerTask{
 		test.evento = evento;
 		test.sensore = sensore;
 		this.numberOfLaps = numberOfLaps;
-		
 	}
 	
 	public void testCorsie(int lanes,int numberOfLaps) {

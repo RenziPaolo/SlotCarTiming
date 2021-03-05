@@ -8,9 +8,9 @@ public class Driver {
 	private int heat;
 	private int selectedLane;
 	private Lane[] lanes;
-	private float id;
+	private int id;
 	
-	public Driver(String nomePilota,Float id,int lane,int heat) {
+	public Driver(String nomePilota,int id,int lane,int heat) {
 		this.nameDriver = nomePilota;
 		this.selectedLane = lane;
 		this.heat = heat;
@@ -35,15 +35,19 @@ public class Driver {
 		return nameDriver;
 	}
 
-	public int getselectedLane() {
+	public int getselectedLaneIndex() {
 		return selectedLane;
+	}
+	
+	public Lane getselectedLane() {
+		return lanes[selectedLane];
 	}
 
 	public int getHeat() {
 		return heat;
 	}
 	
-	public Float getId() {
+	public int getId() {
 		return id;
 	}
 	

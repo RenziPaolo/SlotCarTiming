@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 import testing.test;
 import timing.RaceT;
 import timing.Driver;
+import timing.Lane;
 import timing.Sensor;
 
 public class RaceWaiting implements Initializable{
@@ -86,13 +87,13 @@ public class RaceWaiting implements Initializable{
 		for (int i = 0; i<participants.length;i++) {
 			if(startingInfo[i][0]==1) {
 				manchePreviewText[startingInfo[i][1]].setText(participants[i]);
-				drivers.add(new Driver(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));
+				drivers.add(new Driver(participants[i],i,startingInfo[i][1],startingInfo[i][0]));
 			} else {
-				drivers.add(new Driver(participants[i],(float)i,startingInfo[i][1],startingInfo[i][0]));				
+				drivers.add(new Driver(participants[i],i,startingInfo[i][1],startingInfo[i][0]));				
 			}
 		}
 		if (race!=null) {
-			Float[][][] classification = race.getClassification();
+			int[] classification = race.getClassification();
 			VBox classificationInside = new VBox();
 			HBox row = new HBox();
 			ColorLane[] colors = data.getColori();
@@ -112,20 +113,23 @@ public class RaceWaiting implements Initializable{
 				row = new HBox();
 				Text textRowdriver = new Text();
 				textRowdriver.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
-				textRowdriver.setText(race.getPiloti().get((int)(float)classification[i][0][0]).getNomePilota()+"  ");
+				textRowdriver.setText(race.getPiloti().get(classification[i]).getNomePilota()+"  ");
 				row.getChildren().add(textRowdriver);
-				for (int j = 0;j<classification[i][1].length;j++) {
+				Lane[] heats = race.getPiloti().get(i).getLanes();
+				int tot = 0;
+				for (int j = 0;j<heats.length;j++) {
 					Text textRowmanche = new Text();
 					textRowmanche.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
-					textRowmanche.setText(Math.round(classification[i][1][j])+"    ");
+					textRowmanche.setText(heats[j].getNumeroDiGiri()+"    ");
 					row.getChildren().add(textRowmanche);
+					tot+= heats[j].getNumeroDiGiri();
 				}
 				Rectangle space = new Rectangle();
 				space.setLayoutY(100);
 				row.getChildren().add(space);
 				Text textRowtot = new Text();
 				textRowtot.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
-				textRowtot.setText(Math.round(classification[i][3][0])+"");
+				textRowtot.setText(tot+"");
 				row.getChildren().add(textRowtot);
 				
 				classificationInside.getChildren().add(row);
@@ -159,7 +163,7 @@ public class RaceWaiting implements Initializable{
 		for (int i = 0;i<drivers.size();i++) {
 			Driver driver = drivers.get(i);
 			if (driver.getHeat()==heat) {
-				manchePreviewText[driver.getLanes()[driver.getselectedLane()].getNome()].setText(driver.getNomePilota());
+				manchePreviewText[driver.getselectedLane().getNome()].setText(driver.getNomePilota());
 			}
 		}
 	}

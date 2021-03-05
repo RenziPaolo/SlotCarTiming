@@ -14,11 +14,51 @@ public class QualifingT extends EventT{
 
 	@Override
 
-	public Float[][][] getClassification() {
-		Float[][][] classification = drivers.stream().map(x -> new Float[][] {new Float[] {x.getId()} , new Float[] {x.getLanes()[x.getselectedLane()].getGiroVeloce()}}).toArray(size -> new Float[size][2][1]);
+	public int[] getClassification() {
+		Float[][][] classification = drivers.stream().map(x -> new Float[][] {new Float[] {} , new Float[] {x.getselectedLane().getGiroVeloce()}}).toArray(size -> new Float[size][2][1]);
 		Arrays.sort(classification, (a, b) -> Float.compare(a[1][0], b[1][0]));
 
-		return classification;
+		return null;
+	}
+	
+	class Classification{
+		
+		class SimpleDriver{
+			private int id;
+			private float bestLapTime;
+			
+			public SimpleDriver(int id, float bestLapTime){
+				this.id = id;
+				this.bestLapTime = bestLapTime;
+			}
+			
+			public int getId() {
+				return id;
+			} 
+			public float getBestLapTime() {
+				return bestLapTime;
+			}
+			
+		}
+		
+		
+		private SimpleDriver[] drivers;
+		
+		public Classification(ArrayList<Driver> drivers) {
+			this.drivers = new SimpleDriver[drivers.size()];
+			for(int i = 0; i<drivers.size();i++) {
+				this.drivers[i] = new SimpleDriver(drivers.get(i).getId(), drivers.get(i).getselectedLane().getGiroVeloce());
+			}
+			Arrays.sort(this.drivers);
+		}
+		
+		public int[] getClassificationID() {
+			int[] ClassificationID = new int[drivers.length];
+			for(int i = 0; i<drivers.length;i++) {
+				ClassificationID[i] = drivers[i].getId();
+			}
+			return ClassificationID;
+		}	
 	}
 	
 	public void setCurrentDriver(Driver currentDriver) {
