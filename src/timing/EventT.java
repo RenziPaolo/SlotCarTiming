@@ -27,7 +27,7 @@ public abstract class EventT {
     public void updatePilota(int numCorsia,Float tempo) {
     	for (int i = 0;i<drivers.size();i++) {
     		Driver driver = drivers.get(i);
-	    	if (driver.getHeat() == currentHeat && driver.getselectedLane()==numCorsia) {
+	    	if (driver.getHeat() == currentHeat && driver.getselectedLaneIndex()==numCorsia) {
 		    Lane lane = drivers.get(i).getLanes()[currentManche];
 		    lane.setLap(tempo);
 		    GUI.update(lane);
@@ -39,7 +39,7 @@ public abstract class EventT {
     	return drivers;
     }
 
-	public abstract Float[][][] getClassification();
+	public abstract int[] getClassification();
 
 	public int getCurrentHeat() {
 		return currentHeat;

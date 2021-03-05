@@ -47,7 +47,7 @@ public class QualifingWaiting implements Initializable{
 				return;
 			ArrayList<Driver> list = new ArrayList<Driver>();
 			for (int j = 0; j< participants.length;j++){
-				Driver pilota = new Driver(participants[j],(float)j,Arrays.asList(new Data().getColori()).indexOf(new Data().getQualifingLane()),0);
+				Driver pilota = new Driver(participants[j],j,Arrays.asList(new Data().getColori()).indexOf(new Data().getQualifingLane()),0);
 				list.add(pilota);
 			}
 			
@@ -107,20 +107,20 @@ public class QualifingWaiting implements Initializable{
 			this.list.getChildren().add(participantButton);
 		}
 		classification.getChildren().clear();
-		Float[][][] classificationfloat = qualifing.getClassification();
+		int[] classificationID = qualifing.getClassification();
 		int position = 0;
-		for (int i = 0; i<classificationfloat.length;i++) {
-			if(classificationfloat[i][1][0]!=0) {
+		for (int i = 0; i<classificationID.length;i++) {
+			if(classificationID[i]!=0) {
 				position++;
 				HBox riga = new HBox();
 				Text pos = new Text();
 				pos.setText(position+"  ");
 				riga.getChildren().add(pos);
 				Text name = new Text();
-				name.setText(qualifing.getPiloti().get((int)(float)classificationfloat[i][0][0]).getNomePilota()+"  ");
+				name.setText(qualifing.getPiloti().get(classificationID[i]).getNomePilota()+"  ");
 				riga.getChildren().add(name);
 				Text laptime = new Text();
-				laptime.setText(classificationfloat[i][1]+"");
+				laptime.setText(classificationID[i]+"");
 				riga.getChildren().add(laptime);
 				classification.getChildren().add(riga);
 			}

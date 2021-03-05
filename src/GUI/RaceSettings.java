@@ -210,15 +210,15 @@ public class RaceSettings implements Initializable{
 	}
 	
 	private void starting(int numLanes, QualifingT classification,int index) {
-		Float[][][] classificationFloat = classification.getClassification();
+		int[] classificationID = classification.getClassification();
 		if ((index+1/2)<=numLanes*2) {
 			for(int i = 0;i<index;i++) {
 				if(i<index+1/2) {
-					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0][0]).getNomePilota()+"");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get(classificationID[i]).getNomePilota()+"");
 					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).setText("1");
 					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i+1+"");
 				} else {
-					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[i][0][0]).getNomePilota()+"");
+					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).setText(classification.getPiloti().get(classificationID[i]).getNomePilota()+"");
 					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).setText("2");
 					((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).setText(i-(index/2)+1+"");
 				}
@@ -226,7 +226,7 @@ public class RaceSettings implements Initializable{
 		} else {
 			int groups = numLanes/index+1;
 			for (int j = 0; j<groups/index;j++) {
-				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(0)).setText(classification.getPiloti().get((int)(float)classificationFloat[j][0][0]).getNomePilota()+"");
+				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(0)).setText(classification.getPiloti().get(classificationID[j]).getNomePilota()+"");
 				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(1)).setText(groups+"");
 				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(2)).setText(j+"");	
 			}

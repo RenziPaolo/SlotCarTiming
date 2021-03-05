@@ -45,7 +45,7 @@ public class PracticeSettings implements Initializable{
 		ArrayList<Driver> list = new ArrayList<Driver>();
 		
 		for (int i = 0; i<(numCorsie);i++) {
-			Driver pilota = new Driver("test",(float)i,i,1);
+			Driver pilota = new Driver("test",i,i,1);
 			list.add(pilota);
 		}
 		

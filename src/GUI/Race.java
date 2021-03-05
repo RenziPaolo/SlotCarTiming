@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -108,18 +109,19 @@ public class Race implements Event, Initializable{
 	
 	@Override
 	public void update(Lane lane) {
-		Float [][][] classification = race.getClassification();
-		float distance = classification[4][Arrays.asList(classification[0]).indexOf(new Float[]{race.getPiloti().get(race.getPiloti().indexOf(lane.getDriver())).getId()})][0];
+		int [] classification = race.getClassification();
+		float[] distance = race.getDistance();
+		int i = Arrays.stream(classification).boxed().collect(Collectors.toList()).indexOf(lane.getDriver().getId());
 		currentLanes[lane.getNome()].setText(String.format("%.3f",lane.getUltimoGiro()));
 		bestLanes[lane.getNome()].setText(String.format("%.3f",lane.getGiroVeloce()));
 		numberLanes[lane.getNome()].setText(lane.getNumeroDiGiri()+"");
-		distanceLanes[lane.getNome()].setText("+"+distance);
-		if (distance>distances[lane.getNome()]) {
+		distanceLanes[lane.getNome()].setText("+"+distance[i]);
+		if (distance[i]>distances[lane.getNome()]) {
 			trendLanes[lane.getNome()].setText("↑");
 		} else {
 			trendLanes[lane.getNome()].setText("↓");
 		}
-		distances[lane.getNome()] = classification[4][Arrays.asList(classification[0]).indexOf(new Float[]{race.getPiloti().get(race.getPiloti().indexOf(lane.getDriver())).getId()})][0];
+		distances[lane.getNome()] = distance[i];
 	}
 
 	@Override
