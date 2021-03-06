@@ -105,6 +105,7 @@ public class Qualifing implements Event,Initializable{
 	
 	public void addSensor(Sensor sensor) {
 		Qualifing.sensor = sensor;
+		sensor.Start();
 	}
 	
 	@Override

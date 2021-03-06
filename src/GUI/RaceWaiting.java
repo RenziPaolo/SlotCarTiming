@@ -145,8 +145,8 @@ public class RaceWaiting implements Initializable{
 			RaceWaiting.race = race;
 			Sensor sensor = new Sensor(race,new Data().getMinLapTime());
 			raceGUI.addSensor(sensor);	
-			test test = new test(6,race,sensor,7);
-			this.test = test;
+//			test test = new test(6,race,sensor,7);
+//			this.test = test;
 		} catch (IOException e1) {
 //			e1.printStackTrace();
 		}

@@ -63,8 +63,8 @@ public class QualifingWaiting implements Initializable{
 				QualifingWaiting.qualifing = qualifing;
 				Sensor sensor = new Sensor(QualifingWaiting.qualifing,new Data().getMinLapTime());
 				qualifingGUI.addSensor(sensor);
-				test test = new test(6,qualifing,sensor,4);
-				QualifingWaiting.test = test;
+//				test test = new test(6,qualifing,sensor,4);
+//				QualifingWaiting.test = test;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

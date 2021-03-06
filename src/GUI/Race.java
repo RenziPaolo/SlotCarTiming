@@ -102,6 +102,7 @@ public class Race implements Event, Initializable{
 	
 	public void addSensor(Sensor sensor) {
 		Race.sensor = sensor;
+		sensor.Start();
 	}
 	
 	@Override
