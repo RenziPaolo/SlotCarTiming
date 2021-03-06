@@ -56,9 +56,10 @@ public class CComunication implements Runnable{
 			ZMQ.Socket socket = context.createSocket(SocketType.REQ);
 			socket.connect("tcp://localhost:5555");
 			while(go) {
+				System.out.println("sent request");
 				socket.send("".getBytes(ZMQ.CHARSET), ZMQ.DONTWAIT);
 				byte[] reply = socket.recv(0);
-				            
+				System.out.println("recived"+convertToFloat(Arrays.copyOfRange(reply, 4, 12))+convertToInt(Arrays.copyOfRange(reply, 0, 4)));
 				sensor.setTime(convertToFloat(Arrays.copyOfRange(reply, 4, 12)),convertToInt(Arrays.copyOfRange(reply, 0, 4)));
 			}
 		}

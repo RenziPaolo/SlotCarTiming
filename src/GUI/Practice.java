@@ -138,7 +138,7 @@ public class Practice implements Event,Initializable{
 					Text numGiri = new Text();
 					Text space = new Text();
 					space.setText("         ");
-					numGiri.setText("Giro N "+(j+1));
+					numGiri.setText("Giro N° "+(j+1));
 					tempoGiri.setText(giri.get(j)+"");
 					numGiri.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)30));
 					tempoGiri.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)30));
