@@ -4,16 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-<<<<<<< main
 import java.util.stream.Collectors;
 
-=======
-<<<<<<< HEAD
-import java.util.stream.Collectors;
-
-=======
->>>>>>> refs/remotes/origin/test
->>>>>>> ac4e6e2 Merge remote-tracking branch 'origin/test' into test
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,9 +89,11 @@ public class Race implements Event, Initializable{
 			trendLanes[i] = trendText;
 			racePane.getChildren().add(trendText);	
 		}
-		
-		race = RaceWaiting.getRace();
 		new MainMenu().getStage().getScene().setRoot(racePane);
+	}
+	
+	public void setRace(RaceT race) {
+		this.race = race;
 	}
 
 	public void exit(ActionEvent exit) throws Exception {

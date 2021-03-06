@@ -119,15 +119,10 @@ public class Settings implements Initializable{
 	public void back(ActionEvent indietro) {
 		ArrayList<Integer> colori = new ArrayList<Integer>();
 		ArrayList<Integer> swap = new ArrayList<Integer>();
-		try {
 			for(int i = 0;i<numberOfLanes;i++) {
 				colori.add(ColorLane.fromlanguage(1,((ChoiceBox<String>) ((HBox) lanesPreferences.getChildren().get(i)).getChildren().get(3)).getValue()));
 				swap.add(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(5)	).getValue()-1);
 			}
-		} catch(java.lang.NullPointerException e1) {
-			Data.error();
-			return;
-		}
 
 		
 		try (FileChannel filelanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
@@ -140,7 +135,7 @@ public class Settings implements Initializable{
 			filelanes.write(buffer);
 			
 		} catch (IOException e) {
-			Data.error();
+			Data.error("Error 404 file not found");
 			return;
 		}
 		
@@ -152,15 +147,14 @@ public class Settings implements Initializable{
 			fileMinLapTime.write(buffer);
 			
 		} catch (IOException e) {
-			e.printStackTrace();
-			Data.error();
+			Data.error("Error 404 file not found, please check all files and retry");
 			return;
 		}
 		try {
 			Files.writeString(Path.of("settings font.config"), font.getValue(), StandardOpenOption.WRITE,StandardOpenOption.CREATE);
 			
 		} catch (IOException e) {
-			Data.error();
+			Data.error("Error 404 file not found, please check all files and retry");
 			return;
 		}
 		
@@ -171,8 +165,8 @@ public class Settings implements Initializable{
 			fileMancheDuration.write(buffer);
 			
 		} catch (Exception e) {
+			Data.error("Error 404 file not found, please check all files and retry");
 			e.printStackTrace();
-			Data.error();
 			return;
 		}
 		
@@ -189,7 +183,7 @@ public class Settings implements Initializable{
 			}
 			
 		} catch (Exception e) {
-			Data.error();
+			Data.error("Error 404 file not found, please check all files and retry");
 			return;
 		}
 		
@@ -214,7 +208,7 @@ public class Settings implements Initializable{
 		try {
 			new MainMenu().getStage().setScene(new Scene(FXMLLoader.load(getClass().getResource("FXML/Main Menu.fxml"))));
 		} catch (IOException e) {
-			Data.error();
+			Data.error("Error 404 file not found, please check all files and retry");
 			return;
 		}
 		
