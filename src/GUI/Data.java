@@ -170,14 +170,16 @@ public class Data {
 		return font;
 	}
 	
-	public static void error() {
+	public static void error(String errorText) {
 		Text errore = new Text();
-		errore.setText("inserire tutti i dati");
+		errore.setText(errorText);
 		errore.setLayoutY(500);
 		errore.setLayoutX(300);
 		errore.setFont(new Font(50));
 		Pane pane = (Pane)new MainMenu().getStage().getScene().getRoot();
-		pane.getChildren().add(errore);
+		if (!pane.getChildren().contains(errore)) {
+			pane.getChildren().add(errore);
+		}
 	}
 
 	public ColorLane getQualifingLane() {

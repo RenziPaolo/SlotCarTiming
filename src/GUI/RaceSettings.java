@@ -85,7 +85,7 @@ public class RaceSettings implements Initializable{
 		for (int i = 0 ; i<startingList.getChildren().size();i++) {
 			participant = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).getText();
 			if (participant.equals("")) {
-				Data.error();
+				Data.error("Inserire i nomi di tutti i partecipanti");
 				return;
 			}
 			participants[i] = participant;
@@ -93,7 +93,7 @@ public class RaceSettings implements Initializable{
 		
 		if (qualy.isSelected()) {
 			if (qualyduration.getText().equals("")) {
-				Data.error();
+				Data.error("inserire durata qualifiche");
 				return;
 			}
 			
@@ -121,7 +121,7 @@ public class RaceSettings implements Initializable{
 				
 				String raceNameString = raceName.getText();
 				if (raceNameString.equals("")) {
-					Data.error();
+					Data.error("inserire nome gara");
 					return;
 				}
 				
@@ -129,7 +129,7 @@ public class RaceSettings implements Initializable{
 					startingLane = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).getText();
 					StartingHeat = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).getText();
 					if (startingLane.equals("") || StartingHeat.equals("")) {
-						Data.error();
+						Data.error("");
 						return;
 					}
 					startingInfo[i][0] = Integer.valueOf(StartingHeat);
@@ -138,7 +138,7 @@ public class RaceSettings implements Initializable{
 				new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml")));
 			} catch (IOException e) {
 				e.printStackTrace();
-				Data.error();
+				Data.error("inserire un numero >1 per batteria e corsia");
 				return;
 			}
 			
