@@ -4,8 +4,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+<<<<<<< main
 import java.util.stream.Collectors;
 
+=======
+<<<<<<< HEAD
+import java.util.stream.Collectors;
+
+=======
+>>>>>>> refs/remotes/origin/test
+>>>>>>> ac4e6e2 Merge remote-tracking branch 'origin/test' into test
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

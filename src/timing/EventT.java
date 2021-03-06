@@ -28,9 +28,15 @@ public abstract class EventT {
     	for (int i = 0;i<drivers.size();i++) {
     		Driver driver = drivers.get(i);
 	    	if (driver.getHeat() == currentHeat && driver.getselectedLaneIndex()==numCorsia) {
+<<<<<<< main
 			    Lane lane = drivers.get(i).getLanes()[currentManche];
 			    lane.setLap(tempo);
 			    GUI.update(lane);
+=======
+		    Lane lane = drivers.get(i).getLanes()[currentManche];
+		    lane.setLap(tempo);
+		    GUI.update(lane);
+>>>>>>> ac4e6e2 Merge remote-tracking branch 'origin/test' into test
 		    }
     	}
      }
