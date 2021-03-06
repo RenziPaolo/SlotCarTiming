@@ -34,13 +34,13 @@ public class RaceT extends EventT{
 		);
 		for (int i = 0;i<drivers.size();i++) {
 			if (i!=0) {
-				if (classification[3][i-1][0] == classification[3][i][0]) {
-					classification[4][i][0] = classification[2][i][0] - classification[2][i-1][0];
+				if (classification[i-1][3][0] == classification[i][3][0]) {
+					classification[i][4][0] = classification[i][2][0] - classification[i-1][2][0];
 				} else {
-					classification[4][i][0] = classification[3][i][0];
+					classification[i][4][0] = classification[i][3][0];
 				}
 			} else {
-				classification[4][i][0] = (float) 0;
+				classification[i][4][0] = (float) 0;
 			}
 		}
 		

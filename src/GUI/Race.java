@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,9 +87,11 @@ public class Race implements Event, Initializable{
 			trendLanes[i] = trendText;
 			racePane.getChildren().add(trendText);	
 		}
-		
-		race = RaceWaiting.getRace();
 		new MainMenu().getStage().getScene().setRoot(racePane);
+	}
+	
+	public void setRace(RaceT race) {
+		this.race = race;
 	}
 
 	public void exit(ActionEvent exit) throws Exception {

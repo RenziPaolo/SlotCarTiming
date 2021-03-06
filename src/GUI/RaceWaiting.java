@@ -139,6 +139,7 @@ public class RaceWaiting implements Initializable{
 			raceGUI = new Race(racePane);
 			RaceT race = new RaceT(drivers, raceGUI,1,0);
 			RaceWaiting.race = race;
+			raceGUI.setRace(race);
 			Sensor sensor = new Sensor(race,new Data().getMinLapTime());
 			raceGUI.addSensor(sensor);	
 			test test = new test(6,race,sensor,7);
