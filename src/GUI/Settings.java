@@ -145,13 +145,19 @@ public class Settings implements Initializable{
 		}
 		
 		try (FileChannel fileMinLapTime = (FileChannel) Files.newByteChannel(Path.of("settings minlaptime.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
-			ByteBuffer buffer = ByteBuffer.allocate(4);
-			buffer.putFloat(Float.parseFloat(minLapTime.getText()));
+			ByteBuffer buffer = ByteBuffer.allocate(16);
+			
+			buffer.put(minLapTime.getText().getBytes());
 			buffer.rewind();
 			fileMinLapTime.write(buffer);
 			
 		} catch (IOException e) {
+<<<<<<< HEAD
 			Data.error("Error 404 file not found, please check all files and retry");
+=======
+			e.printStackTrace();
+			Data.error();
+>>>>>>> refs/remotes/origin/test
 			return;
 		}
 		try {
@@ -169,7 +175,12 @@ public class Settings implements Initializable{
 			fileMancheDuration.write(buffer);
 			
 		} catch (Exception e) {
+<<<<<<< HEAD
 			Data.error("Error 404 file not found, please check all files and retry");
+=======
+			e.printStackTrace();
+			Data.error();
+>>>>>>> refs/remotes/origin/test
 			return;
 		}
 		

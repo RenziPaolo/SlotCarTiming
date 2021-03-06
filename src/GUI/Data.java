@@ -129,11 +129,16 @@ public class Data {
 	public float getMinLapTime() {
 		if (minLapTime == 0) {
 			try(FileChannel fileMinLapTime = (FileChannel) Files.newByteChannel(Path.of("settings minlaptime.config"), StandardOpenOption.READ)){
-				ByteBuffer buffer = ByteBuffer.allocate(4);
+				ByteBuffer buffer = ByteBuffer.allocate(16);
 				fileMinLapTime.read(buffer);
 				buffer.rewind();
-				minLapTime = buffer.getFloat();
-			} catch(IOException e){
+				byte[] destination = new byte[16];
+				buffer.get(destination);
+				String test = new String(destination);
+				System.out.println(test);
+				minLapTime = Float.valueOf(test);
+			} catch(Exception e){
+				e.printStackTrace();
 				System.out.println("eccezione!!");
 			}
 		}
@@ -220,7 +225,8 @@ public class Data {
 				buffer.rewind();
 				mancheDuration = buffer.getInt();
 				
-			} catch (IOException e) {
+			} catch (Exception e) {
+				e.printStackTrace();
 				System.out.println("eccezione!!");
 			}
 		}
