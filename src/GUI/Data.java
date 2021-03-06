@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
-
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 
 public class Data {
 	
+	private static Text error = new Text();
 	private static int numLanes;
 	private static ColorLane[] colors;
 	private static int[] swap;
@@ -170,15 +171,18 @@ public class Data {
 		return font;
 	}
 	
-	public static void error() {
-		Text errore = new Text();
-		errore.setText("inserire tutti i dati");
-		errore.setLayoutY(500);
-		errore.setLayoutX(300);
-		errore.setFont(new Font(50));
+	public static void error(String errorText) {
+		StringBuilder b;
+		error.setText(errorText);
+		error.setLayoutY(500);
+		error.setLayoutX(300);
+		error.setFont(new Font(25));
 		Pane pane = (Pane)new MainMenu().getStage().getScene().getRoot();
-		pane.getChildren().add(errore);
+		if(!(pane.getChildren().contains(error))){
+			pane.getChildren().add(error);
+		}
 	}
+
 
 	public ColorLane getQualifingLane() {
 		if (qualifingLane == null) {

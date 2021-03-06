@@ -59,10 +59,29 @@ public class RaceT extends EventT{
 			private int numberOfLaps;
 			private float sumOflapTimes;
 			
+<<<<<<< HEAD
 			public SimpleDriver(int id, int numberOfLaps, float sumOflapTimes){
 				this.id = id;
 				this.numberOfLaps = numberOfLaps;
 				this.sumOflapTimes = sumOflapTimes;
+=======
+			if (a[3][0] != b[3][0])
+				return Float.compare(a[3][0], b[3][0]);
+			else
+				return Float.compare(b[2][0], a[2][0]);
+		
+		}
+		);
+		for (int i = 0;i<drivers.size();i++) {
+			if (i!=0) {
+				if (classification[i-1][3][0] == classification[i][3][0]) {
+					classification[i][4][0] = classification[i][2][0] - classification[i-1][2][0];
+				} else {
+					classification[i][4][0] = classification[i][3][0];
+				}
+			} else {
+				classification[i][4][0] = (float) 0;
+>>>>>>> refs/remotes/origin/test
 			}
 			
 			public int getId() {

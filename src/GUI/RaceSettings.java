@@ -85,7 +85,7 @@ public class RaceSettings implements Initializable{
 		for (int i = 0 ; i<startingList.getChildren().size();i++) {
 			participant = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(0)).getText();
 			if (participant.equals("")) {
-				Data.error();
+				Data.error("Il nome dei partecipanti non può essere vuoto !");
 				return;
 			}
 			participants[i] = participant;
@@ -93,12 +93,14 @@ public class RaceSettings implements Initializable{
 		
 		if (qualy.isSelected()) {
 			if (qualyduration.getText().equals("")) {
-				Data.error();
-				return;
+				Data.error("La durata della qualifica deve avere una durata !");
+			} else {
+				try {qualyDurationInt = Integer.valueOf(qualyduration.getText());
+				} catch(NumberFormatException eccezioneNumero) { 
+					Data.error("La durata non può essere una stringa ! ");
+				}
+				chosenLane = ColorLane.values()[ColorLane.fromlanguage(1, choiceLane.getValue())];				
 			}
-			
-			qualyDurationInt = Integer.valueOf(qualyduration.getText());
-			chosenLane = ColorLane.values()[ColorLane.fromlanguage(1, choiceLane.getValue())];
 			try (FileChannel filequaly = (FileChannel) Files.newByteChannel(Path.of("qualifing.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
 				ByteBuffer buffer = ByteBuffer.allocate(8);
 				buffer.putInt((int)Integer.valueOf(qualyduration.getText()));
@@ -121,7 +123,7 @@ public class RaceSettings implements Initializable{
 				
 				String raceNameString = raceName.getText();
 				if (raceNameString.equals("")) {
-					Data.error();
+					Data.error("Per favore inserire il nome della gara !");
 					return;
 				}
 				
@@ -129,16 +131,16 @@ public class RaceSettings implements Initializable{
 					startingLane = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(2)).getText();
 					StartingHeat = ((TextField)((HBox)startingList.getChildren().get(i)).getChildren().get(1)).getText();
 					if (startingLane.equals("") || StartingHeat.equals("")) {
-						Data.error();
+						Data.error("Attenzione : Inserire tutte le corsie e le batterie di partenza !");
 						return;
 					}
 					startingInfo[i][0] = Integer.valueOf(StartingHeat);
 					startingInfo[i][1] = Integer.valueOf(startingLane)-1;
 				}
 				new MainMenu().getStage().getScene().setRoot(FXMLLoader.load(getClass().getResource("FXML/Race Waiting.fxml")));
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-				Data.error();
+				Data.error("Ricorda la batteria e la corsia deve essere numero > 1"); 
 				return;
 			}
 			
@@ -231,7 +233,6 @@ public class RaceSettings implements Initializable{
 				((TextField)((HBox)startingList.getChildren().get(j)).getChildren().get(2)).setText(j+"");	
 			}
 			starting(numLanes,classification,index-groups/index);
-			//da testare!!!
 		}
 	}
 
