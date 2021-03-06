@@ -1,1 +1,11 @@
 /bin/
+qualifing.config
+README.md
+settings Additionalsensors.config
+settings font.config
+settings lanes.config
+settings MancheDuration.config
+settings minlaptime.config
+settings practice.config
+settings Requiredsensors.config
+.classpath
