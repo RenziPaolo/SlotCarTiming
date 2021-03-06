@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-<<<<<<< HEAD
 import java.util.stream.Collectors;
 
-=======
->>>>>>> refs/remotes/origin/test
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

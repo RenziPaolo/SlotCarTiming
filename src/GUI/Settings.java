@@ -119,15 +119,10 @@ public class Settings implements Initializable{
 	public void back(ActionEvent indietro) {
 		ArrayList<Integer> colori = new ArrayList<Integer>();
 		ArrayList<Integer> swap = new ArrayList<Integer>();
-//		try {
 			for(int i = 0;i<numberOfLanes;i++) {
 				colori.add(ColorLane.fromlanguage(1,((ChoiceBox<String>) ((HBox) lanesPreferences.getChildren().get(i)).getChildren().get(3)).getValue()));
 				swap.add(((ChoiceBox<Integer>)	(	(HBox)lanesPreferences.getChildren().get(i)	).getChildren().get(5)	).getValue()-1);
 			}
-//		} catch(java.lang.NullPointerException e1) {
-//			Data.error();
-//			return;
-//		}
 
 		
 		try (FileChannel filelanes = (FileChannel) Files.newByteChannel(Path.of("settings lanes.config"), StandardOpenOption.WRITE,StandardOpenOption.CREATE)){
@@ -152,12 +147,7 @@ public class Settings implements Initializable{
 			fileMinLapTime.write(buffer);
 			
 		} catch (IOException e) {
-<<<<<<< HEAD
 			Data.error("Error 404 file not found, please check all files and retry");
-=======
-			e.printStackTrace();
-			Data.error();
->>>>>>> refs/remotes/origin/test
 			return;
 		}
 		try {
@@ -175,12 +165,8 @@ public class Settings implements Initializable{
 			fileMancheDuration.write(buffer);
 			
 		} catch (Exception e) {
-<<<<<<< HEAD
 			Data.error("Error 404 file not found, please check all files and retry");
-=======
 			e.printStackTrace();
-			Data.error();
->>>>>>> refs/remotes/origin/test
 			return;
 		}
 		
