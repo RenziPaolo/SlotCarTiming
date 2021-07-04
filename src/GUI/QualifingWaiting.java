@@ -17,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import testing.test;
 import timing.Driver;
 import timing.QualifingT;
 import timing.Sensor;
@@ -30,7 +29,6 @@ public class QualifingWaiting implements Initializable{
 	private static QualifingT qualifing;
 	private static Pane qualifingPane;
 	private static Qualifing qualifingGUI;
-	private static testing.test test;
 	
 	public void back(ActionEvent back) {
 		try {
@@ -94,7 +92,6 @@ public class QualifingWaiting implements Initializable{
 			participantButton.setPrefHeight(30);
 			participantButton.setBackground(Background.EMPTY);
 			participantButton.setOnAction((e->{
-				test.testCorsie(6,4);
 				qualifing.setCurrentDriver(qualifing.getPiloti().get(Arrays.asList(buttons).indexOf(e.getSource())));
 				qualifingGUI.resetTimer();
 				qualifingGUI.getTimer().start();

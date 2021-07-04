@@ -23,7 +23,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import testing.test;
 import timing.RaceT;
 import timing.Driver;
 import timing.Lane;
@@ -36,7 +35,7 @@ public class RaceWaiting implements Initializable{
 	@FXML private AnchorPane manchePreview;
 	
 	private Text[] manchePreviewText;
-	private test test;
+//	private test test;
 	private Pane racePane;
 	private Race raceGUI;
 	private static RaceT race;
@@ -181,7 +180,7 @@ public class RaceWaiting implements Initializable{
 	}
 	
 	public void start(ActionEvent indietro) {
-		test.testCorsie(6, 30);
+//		test.testCorsie(6, 30);
 		raceGUI.resetTimer();
 		raceGUI.getTimer().start();
 		raceGUI.getSensor().reset();

@@ -15,15 +15,15 @@ public class QualifingT extends EventT{
 	@Override
 
 	public int[] getClassification() {
-		Float[][][] classification = drivers.stream().map(x -> new Float[][] {new Float[] {} , new Float[] {x.getselectedLane().getGiroVeloce()}}).toArray(size -> new Float[size][2][1]);
-		Arrays.sort(classification, (a, b) -> Float.compare(a[1][0], b[1][0]));
+//		Float[][][] classification = drivers.stream().map(x -> new Float[][] {new Float[] {} , new Float[] {x.getselectedLane().getGiroVeloce()}}).toArray(size -> new Float[size][2][1]);
+//		Arrays.sort(classification, (a, b) -> Float.compare(a[1][0], b[1][0]));
 
-		return null;
+		return new Classification(drivers).getClassificationID();
 	}
 	
 	class Classification{
 		
-		class SimpleDriver{
+		class SimpleDriver implements Comparable<SimpleDriver>{
 			private int id;
 			private float bestLapTime;
 			
@@ -38,9 +38,13 @@ public class QualifingT extends EventT{
 			public float getBestLapTime() {
 				return bestLapTime;
 			}
+
+			@Override
+			public int compareTo(SimpleDriver o) {
+				return (int)(this.bestLapTime-o.bestLapTime);
+			}
 			
 		}
-		
 		
 		private SimpleDriver[] drivers;
 		
@@ -58,7 +62,8 @@ public class QualifingT extends EventT{
 				ClassificationID[i] = drivers[i].getId();
 			}
 			return ClassificationID;
-		}	
+		}
+
 	}
 	
 	public void setCurrentDriver(Driver currentDriver) {
