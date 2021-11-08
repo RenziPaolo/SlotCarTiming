@@ -9,5 +9,10 @@ module slotcartiming {
 	requires java.xml;
 	requires jeromq;
 	
+	opens GUI.practice to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.web,org.tinylog.api,org.tinylog.impl;
+	opens GUI.qualifing to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.web,org.tinylog.api,org.tinylog.impl;
+	opens GUI.race to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.web,org.tinylog.api,org.tinylog.impl;
+	opens GUI.utilities to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.web,org.tinylog.api,org.tinylog.impl;
 	opens GUI to javafx.graphics,javafx.fxml,javafx.base,javafx.controls,javafx.media,javafx.swing,javafx.web,org.tinylog.api,org.tinylog.impl;
+
 }

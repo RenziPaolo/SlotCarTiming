@@ -1,7 +1,7 @@
 package timing;
 
-import GUI.ColorLane;
-import GUI.Data;
+import GUI.utilities.ColorLane;
+import GUI.utilities.Data;
 
 public class Driver {
 	private String nameDriver;

@@ -3,7 +3,7 @@ package timing;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import GUI.ColorLane;
+import GUI.utilities.ColorLane;
 
 public class Lane {
     private ArrayList<Float> laps = new ArrayList<Float>();

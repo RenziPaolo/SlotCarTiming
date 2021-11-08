@@ -1,7 +1,8 @@
 package timing;
 
 import java.util.EventListener;
-import GUI.Data;
+
+import GUI.utilities.Data;
 
 public class Sensor implements EventListener {
 	
@@ -10,12 +11,12 @@ public class Sensor implements EventListener {
 	private EventT event;
 	private boolean go = true;
 	private float minLapTime;
-	private CComunication cInterface;
+	private SensorComunicationDirect cInterface;
 	
 	public Sensor(EventT evento, float minLapTime) {
 		this.event = evento;
 		this.minLapTime = minLapTime;
-		cInterface = new CComunication(this);
+		cInterface = new SensorComunicationDirect(this);
 	}
 	
 	

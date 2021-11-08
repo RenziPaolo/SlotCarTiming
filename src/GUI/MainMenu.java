@@ -18,7 +18,12 @@ public class MainMenu extends Application{
 	}
 	
 	public void Gara(ActionEvent gara) throws Exception {
-		Pane raceSettings = FXMLLoader.load(getClass().getResource("FXML/Race Settings.fxml"));
+		Pane raceSettings = new AnchorPane();
+		try {
+			raceSettings = FXMLLoader.load(getClass().getResource("FXML/Race Settings.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		stage.setScene(new Scene(raceSettings));
 	}
 	
