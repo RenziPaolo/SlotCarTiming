@@ -40,7 +40,6 @@ public class PracticeSettings implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		URL test = getClass().getResource("FXML/Practice.fxml");
 		Pane practice = FXMLLoader.load(getClass().getResource("FXML/Practice.fxml"));
 		
 		Data data = new Data();

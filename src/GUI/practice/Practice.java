@@ -23,7 +23,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import timing.Lane;
-import timing.Driver;
 import timing.Sensor;
 
 public class Practice implements Event,Initializable{
@@ -140,7 +139,6 @@ public class Practice implements Event,Initializable{
 			selezione.setPickOnBounds(true);
 			selezione.setOnAction((e->{
 				Integer numCorsia = Arrays.asList(selezioneCorsie).indexOf(e.getSource());
-				Driver test = sensor.getEvento().getPiloti().get(numCorsia);
 				Lane corsia = sensor.getEvento().getPiloti().get(numCorsia).getLanes()[0 ];
 				ArrayList<Float> giri =  corsia.getGiri();
 				VBox classificationData = new VBox();

@@ -52,7 +52,6 @@ public class SensorComunicationDirect implements Runnable{
 	}
 	@Override
 	public void run() {
-		Runtime r = Runtime.getRuntime();
 		Process p = null;
 		String fromC = "";
 		ProcessBuilder builder = new ProcessBuilder();

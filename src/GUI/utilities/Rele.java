@@ -1,25 +1,31 @@
 package GUI.utilities;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class Rele {
-	private Runtime r = Runtime.getRuntime();
-	private Process p = null;
-	private String fromC = null;
 	private BufferedWriter output;
 	
 	public Rele() {
-	/*
-		File f = new File(System.getProperty("user.dir"));
-		System.out.println(f.getAbsolutePath());
+		Process p = null;
+		ProcessBuilder builder = new ProcessBuilder();
+		builder.command("./SlotCarTimingCshared-test.out","6");
+		File f = new File(System.getProperty("user.dir")+"/c/test"); 
+		builder.directory(f);
+		builder.redirectErrorStream(true);
+		//only for debug
+		//builder.inheritIO();
+		
 		try {
-			p = r.exec("c/Rele.out");
+			p = builder.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		output = new BufferedWriter(new OutputStreamWriter(p.getOutputStream())); 
-		*/
+		
 	}
 	
 	public void start() {
