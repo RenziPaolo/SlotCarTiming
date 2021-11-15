@@ -98,8 +98,8 @@ public class QualifingWaiting implements Initializable{
 			participantButton.setOnAction((e->{
 				qualifing.setCurrentDriver(qualifing.getPiloti().get(Arrays.asList(buttons).indexOf(e.getSource())));
 				qualifingGUI.resetTimer();
-				qualifingGUI.getTimer().start();
-				qualifingGUI.getSensor().reset();
+				qualifingGUI.getTimer().restart();
+				qualifingGUI.start();
 				new MainMenu().getStage().getScene().setRoot(qualifingPane);
 			}));
 			
@@ -109,20 +109,24 @@ public class QualifingWaiting implements Initializable{
 		}
 		classification.getChildren().clear();
 		int[] classificationID = qualifing.getClassification();
+		float[] classificationLap = qualifing.getClassificationLap();
 		int position = 0;
 		for (int i = 0; i<classificationID.length;i++) {
-			if(classificationID[i]!=0) {
+			if(classificationLap[i]!=0.0) {
 				position++;
 				HBox riga = new HBox();
 				Text pos = new Text();
-				pos.setText(position+"  ");
+				pos.setText(position+")  ");
 				riga.getChildren().add(pos);
 				Text name = new Text();
 				name.setText(qualifing.getPiloti().get(classificationID[i]).getNomePilota()+"  ");
 				riga.getChildren().add(name);
 				Text laptime = new Text();
-				laptime.setText(classificationID[i]+"");
+				laptime.setText(classificationLap[i]+"");
 				riga.getChildren().add(laptime);
+				pos.setFont(new Font(30));
+				name.setFont(new Font(30));
+				laptime.setFont(new Font(30));
 				classification.getChildren().add(riga);
 			}
 		}	

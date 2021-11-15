@@ -15,10 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -29,8 +26,8 @@ public class Qualifing implements Event,Initializable{
 	@FXML private Text rightTimer;
 	@FXML private Button start;
 	@FXML private Button stop;
-	@FXML private ScrollPane classification;
 	
+	//private static ScrollPane classification;
 	private static MyTimer timer;
 	private static Text[] currentCorsie;
 	private static Text[] bestCorsie;
@@ -52,9 +49,9 @@ public class Qualifing implements Event,Initializable{
 		currentCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",lane.getUltimoGiro()));
 		bestCorsie[data.getCodeQualyLane()].setText(String.format("%.3f",lane.getGiroVeloce()));
 		numberCorsie[data.getCodeQualyLane()].setText(lane.getNumeroDiGiri()+"");
-		setClassification();
+		//setClassification();
 	}
-	
+	/*
 	private void setClassification() {
 		VBox classification = new VBox();
 		classification.getChildren().clear();
@@ -76,8 +73,9 @@ public class Qualifing implements Event,Initializable{
 				classification.getChildren().add(riga);
 			}
 		}
-		this.classification.setContent(classification);
+		Qualifing.classification.setContent(classification);
 	}
+	*/
 	
 	public Qualifing() {}
 	
@@ -107,13 +105,26 @@ public class Qualifing implements Event,Initializable{
 			numberTesto.setFont(Font.font(new Data().getFont(),FontWeight.BOLD,(double)25));
 			numberCorsie[i] = numberTesto;
 			current.getChildren().add(numberTesto);
-		}
+		}/*
+		classification = new ScrollPane();
+		classification.setPrefWidth(280);
+		classification.setPrefHeight(600);
+		classification.setLayoutX(800);
+		classification.setLayoutY(80);
+		current.getChildren().add(classification);
+		*/
 		new MainMenu().getStage().getScene().setRoot(current);
 	}
 	
 	public void addSensor(Sensor sensor) {
 		Qualifing.sensor = sensor;
+
+	}
+	
+	public void start() {
 		sensor.Start();
+		r.start();
+		timer.restart();
 	}
 	
 	@Override
@@ -146,6 +157,7 @@ public class Qualifing implements Event,Initializable{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		this.stop(new ActionEvent());
 		sensor.reset();
 		for (int i = 0; i<new Data().getNumCorsie();i++) {
 			currentCorsie[i].setText("");

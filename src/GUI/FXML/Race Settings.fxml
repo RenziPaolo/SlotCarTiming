@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.race.RaceSettings">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.race.RaceSettings">
    <children>
-      <CheckBox fx:id="qualy" layoutX="121.0" layoutY="43.0" mnemonicParsing="false" onAction="#qualifiche" text="Qualifche" />
+      <CheckBox fx:id="qualy" layoutX="121.0" layoutY="43.0" mnemonicParsing="false" onAction="#qualifiche" text="Qualifiche" />
       <Text layoutX="406.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Partecipante">
          <font>
             <Font size="15.0" />

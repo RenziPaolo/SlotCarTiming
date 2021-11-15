@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import GUI.Event;
 
 public abstract class EventT {
-	protected ArrayList<Driver> drivers;
-	private Event GUI;
+	protected static ArrayList<Driver> drivers;
+	protected Event GUI;
 	protected int currentHeat;
 	protected int currentManche;
 	
 	public EventT(ArrayList<Driver> driver, Event GUI,int currentHeat) {
-		this.drivers = driver;
+		EventT.drivers = driver;
 		this.GUI = GUI;
 		this.currentHeat = currentHeat;
 		this.currentManche = 0;
 	}
 	
 	public EventT(ArrayList<Driver> driver, Event GUI,int currentHeat, int currentManche) {
-		this.drivers = driver;
+		EventT.drivers = driver;
 		this.GUI = GUI;
 		this.currentHeat = currentHeat;
 		this.currentManche = currentManche;
@@ -28,9 +28,9 @@ public abstract class EventT {
     	for (int i = 0;i<drivers.size();i++) {
     		Driver driver = drivers.get(i);
 	    	if (driver.getHeat() == currentHeat && driver.getselectedLaneIndex()==numCorsia) {
-		    Lane lane = drivers.get(i).getLanes()[currentManche];
-		    lane.setLap(tempo);
-		    GUI.update(lane);
+			    Lane lane = driver.getLanes()[currentHeat];
+			    lane.setLap(tempo);
+			    GUI.update(lane);
 		    }
     	}
      }

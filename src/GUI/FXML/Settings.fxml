@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Settings">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.utilities.Settings">
    <children>
       <ChoiceBox fx:id="numberOFLanes" layoutX="80.0" layoutY="50.0" prefWidth="150.0" />
       <Text layoutX="250.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° Corsie">
