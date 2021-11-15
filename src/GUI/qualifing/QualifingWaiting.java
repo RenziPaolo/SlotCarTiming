@@ -44,6 +44,11 @@ public class QualifingWaiting implements Initializable{
 	}
 	
 	public QualifingWaiting() {
+		setQualy();
+
+		
+	}
+	public void setQualy() {
 		if(qualifing ==null) {
 			String[] participants = new RaceSettings().getParticipants();
 			if (participants == null)
@@ -71,8 +76,6 @@ public class QualifingWaiting implements Initializable{
 				e1.printStackTrace();
 			}
 		}
-
-		
 	}
 	
 	public QualifingT getQualifing() {
@@ -108,6 +111,9 @@ public class QualifingWaiting implements Initializable{
 			this.list.getChildren().add(participantButton);
 		}
 		classification.getChildren().clear();
+		if(qualifing == null) {
+			setQualy();
+		}
 		int[] classificationID = qualifing.getClassification();
 		float[] classificationLap = qualifing.getClassificationLap();
 		int position = 0;

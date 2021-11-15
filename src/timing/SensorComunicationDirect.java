@@ -55,8 +55,8 @@ public class SensorComunicationDirect implements Runnable{
 		Process p = null;
 		String fromC = "";
 		ProcessBuilder builder = new ProcessBuilder();
-		builder.command("./SlotCarTimingCshared-test.out","6");
-		File f = new File(System.getProperty("user.dir")+"/c/test"); 
+		builder.command("./SlotCarTimingCshared-test.out");
+		File f = new File(System.getProperty("user.dir")+"/c"); 
 		builder.directory(f);
 		builder.redirectErrorStream(true);
 		//only for debug
