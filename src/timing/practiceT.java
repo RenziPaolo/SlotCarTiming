@@ -16,5 +16,17 @@ public class practiceT extends EventT{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+    public void updatePilota(int numCorsia,Float tempo) {
+    	for (int i = 0;i<drivers.size();i++) {
+    		Driver driver = drivers.get(i);
+	    	if (driver.getHeat() == currentHeat && driver.getselectedLaneIndex()==numCorsia) {
+			    Lane lane = driver.getLanes()[0];
+			    lane.setLap(tempo);
+			    GUI.update(lane);
+		    }
+    	}
+     }
 
 }
