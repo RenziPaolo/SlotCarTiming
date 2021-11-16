@@ -123,14 +123,14 @@ public class Qualifing implements Event,Initializable{
 	
 	public void start() {
 		sensor.Start();
-		//r.start();
+		r.start();
 		timer.restart();
 	}
 	
 	@Override
 	public void stop(ActionEvent e) {
 		sensor.Stop();
-		//r.stop();
+		r.stop();
 		timer.stop();
 		stop.setVisible(false);
 		start.setVisible(true);
@@ -139,7 +139,7 @@ public class Qualifing implements Event,Initializable{
 	@Override
 	public void start(ActionEvent e) {
 		sensor.Start();
-		//r.start();
+		r.start();
 		timer.restart();
 		stop.setVisible(true);
 		start.setVisible(false);

@@ -1,20 +1,20 @@
 package GUI.utilities;
-/*
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-*/
+
 public class Rele {
-	/*
+	
 	private BufferedWriter output;
 	
 	public Rele() {
 		
 		Process p = null;
 		ProcessBuilder builder = new ProcessBuilder();
-		builder.command("./SlotCarTimingCshared-test.out","6");
-		File f = new File(System.getProperty("user.dir")+"/c/test"); 
+		builder.command("./Rele.out");
+		File f = new File(System.getProperty("user.dir")+"/c"); 
 		builder.directory(f);
 		builder.redirectErrorStream(true);
 		//only for debug
@@ -46,5 +46,5 @@ public class Rele {
 			e.printStackTrace();
 		}
 	}
-	*/
+	
 }
