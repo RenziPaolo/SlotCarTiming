@@ -174,5 +174,10 @@ public class Qualifing implements Event,Initializable{
 	public void resetTimer() {
 		timer.setTime(new RaceSettings().getQualyduration()*60);
 	}
+
+	@Override
+	public void error() {
+		Data.error("errore nella comunicazione con i sensori");	
+	}
 	
 }

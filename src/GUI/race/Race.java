@@ -191,4 +191,8 @@ public class Race implements Event, Initializable{
 		timer.setTime(new Data().getMancheduration()*60);
 	}
 
+	@Override
+	public void error() {
+		Data.error("errore nella comunicazione con i sensori");	
+	}
 }

@@ -170,5 +170,10 @@ public class Practice implements Event,Initializable{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void error() {
+		Data.error("errore nella comunicazione con i sensori");	
+	}
 	
 }

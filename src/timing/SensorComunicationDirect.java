@@ -83,6 +83,7 @@ public class SensorComunicationDirect implements Runnable{
 			}
 			System.out.println(fromC);
 			if (fromC.equals("")) {continue;}
+			if (fromC.equals("Request event notification failed")) {sensor.error();}
 			String[] LapTimeAndLane = fromC.split(":");
 			sensor.setTime(Double.valueOf(LapTimeAndLane[0]), Integer.valueOf(LapTimeAndLane[1]));
 		}

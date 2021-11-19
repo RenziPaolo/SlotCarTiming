@@ -19,6 +19,9 @@ public class Sensor implements EventListener {
 		cInterface = new SensorComunicationDirect(this);
 	}
 	
+	public void error() {
+		event.error();
+	}
 	
 	public void setTime(TimingEvent input) {
 		int index = input.getCorsia();

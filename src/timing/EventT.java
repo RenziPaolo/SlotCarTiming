@@ -35,6 +35,10 @@ public abstract class EventT {
     	}
      }
     
+    public void error() {
+    	GUI.error();
+    }
+    
     public ArrayList<Driver> getPiloti(){
     	return drivers;
     }

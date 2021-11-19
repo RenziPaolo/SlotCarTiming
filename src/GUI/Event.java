@@ -8,4 +8,5 @@ public interface Event {
 	public void stop(ActionEvent e);
 	public void start(ActionEvent e);
 	public void exit();
+	public void error();
 }
